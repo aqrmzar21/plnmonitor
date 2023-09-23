@@ -179,86 +179,75 @@ if (isset($_POST['signed'])) {
                                     <h3 class="card-title">Form Input</h3>
                                 </div>
 
-                                <div class="card card-primary card-outline">
-
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
-                                    <form class="form-horizontal" id="form" enctype="multipart/form-data">
-                                        <div class="card-body">
-                                            <!-- <div class="form-group">
-                                                <label for="tgl">
-                                                    Tanggal
-                                                    <input type="date" name="tanggal" class="form-control mt-2" required>
-                                                </label>
-                                                <label for="time">
-                                                    Waktu
-                                                    <input type="time" name="waktu" class="form-control mt-2" required>
-                                                </label>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form class="form-horizontal" id="form" enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <!-- <div class="form-group">
+                                                <label for="tgl">Tanggal<input type="date" name="tanggal" class="form-control mt-2" required></label>
+                                                <label for="time">Waktu<input type="time" name="waktu" class="form-control mt-2" required></label>
                                             </div> -->
-                                            <div class="form-group">
-                                                <label for="name">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Email address</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">No HP</label>
-                                                <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter +62" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="agenda">Unit</label>
-                                                <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="kabid">Jabatan</label>
-                                                <!-- <input type="text" class="form-control" id="leader" name="bidang" required> -->
-                                                <select name="bidang" id="kabid" class="form-control custom-select" placeholder="Enter Jabatan">
-                                                    <option value="" disabled selected>Jabatan/Bidang</option>
-                                                    <option value="REN">Perencanaan</option>
-                                                    <option value="Pengadaan">Pengadaan</option>
-                                                    <option value="Pembangkitan">Pembangkitan</option>
-                                                    <option value="Jaringan">Jaringan</option>
-                                                    <option value="SDM">Pemberdayaan</option>
-                                                    <option value="PAD">Keuangan</option>
-                                                    <option value="UP2K">UP2K</option>
-                                                    <option value="TEL">Transaksi Energi Listrik</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-10">
-                                                    <label class="col-form-label" for="sig">Tanda Tangan</label>
-                                                    <br />
-                                                    <div id="sig"></div>
-                                                    <textarea id="signature64" name="signed" style="display: none"></textarea>
-                                                </div>
-                                                <div class="col-2">
-                                                    <!-- <button id="clear" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button> -->
-                                                    <!-- <button class="btn btn-sm btn-success"><i class="fa fa-paper-plane"></i></button> -->
-                                                </div>
-                                            </div>
-                                            <!-- </div> -->
-                                            <!-- /.card-end -->
-                                            <!-- <div class="card-footer bgw"> -->
-                                            <button id="clear" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button>
-                                            <button class="btn btn-sm btn-outline-success"><i class="fa fa-paper-plane"></i></button>
-                                            <!-- <button type="submit" class="btn btn-primary float-right" name="add">Next</button> -->
-                                            <!-- <button type="submit" class="btn btn-primary float-right" name="signed">Next</button> -->
+                                        <div class="form-group">
+                                            <label for="name">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" required>
                                         </div>
-                                        <!-- /.card-footer -->
-                                    </form>
-                                </div>
-                                <!-- /.card -->
-                                <div class="card-footer bg-light"><button type="submit" class="btn btn-default "><a href="absen.php">Cancel</a></button></div>
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">No HP</label>
+                                            <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter +62" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="agenda">Unit</label>
+                                            <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kabid">Jabatan</label>
+                                            <!-- <input type="text" class="form-control" id="leader" name="bidang" required> -->
+                                            <select name="bidang" id="kabid" class="form-control custom-select" placeholder="Enter Jabatan">
+                                                <option value="" disabled selected>Jabatan/Bidang</option>
+                                                <option value="REN">Perencanaan</option>
+                                                <option value="Pengadaan">Pengadaan</option>
+                                                <option value="Pembangkitan">Pembangkitan</option>
+                                                <option value="Jaringan">Jaringan</option>
+                                                <option value="SDM">Pemberdayaan</option>
+                                                <option value="PAD">Keuangan</option>
+                                                <option value="UP2K">UP2K</option>
+                                                <option value="TEL">Transaksi Energi Listrik</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-10">
+                                                <label class="col-form-label" for="sig">Tanda Tangan</label>
+                                                <br />
+                                                <div id="sig"></div>
+                                                <textarea id="signature64" name="signed" style="display: none"></textarea>
+                                            </div>
+                                            <div class="col-2">
+                                                <!-- <button id="clear" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button> -->
+                                                <!-- <button class="btn btn-sm btn-outline-success"><i class="fa fa-paper-plane"></i></button> -->
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-sm btn-success float-right mx-2"><i class="fa fa-paper-plane"> Submit</i></button>
+                                        <button id="clear" class="btn btn-sm btn-outline-danger float-right"><i class="fa fa-trash"></i></button>
+                                        <!-- <button type="submit" class="btn btn-primary float-right" name="add">Next</button> -->
+                                        <!-- <button type="submit" class="btn btn-primary float-right" name="signed">Next</button> -->
+                                        <button type="submit" class="btn btn-default"><a href="absen.php">Cancel</a></button>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </form>
+                                <!-- /.div-card -->
                             </div>
-                            <!-- /.card body -->
+                            <!-- /.card -->
 
                         </div>
                         <!-- /.col-lg-6 -->
 
                         <div class="col-lg-6">
 
+                            <!-- card-outline -->
                             <div class="card card-primary card-outline">
                                 <div class="card-header">
                                     <h5 class="card-title m-0">Form Data</h5>
@@ -279,8 +268,7 @@ if (isset($_POST['signed'])) {
                                     </table>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
-
+                            <!-- /.card-primary -->
 
                         </div>
                         <!-- /.col-md-6 -->
@@ -296,12 +284,12 @@ if (isset($_POST['signed'])) {
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                4.0
-            </div>
+
             <!-- Default to the left -->
             <strong>Copyright &copy; 2023 PT. PLN UP3 KOTA GORONTALO.</strong> All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 4.0
+            </div>
         </footer>
         <!-- Akhir main Footer  -->
 
@@ -437,9 +425,9 @@ if (isset($_POST['signed'])) {
                 for (let i = 0; i < data.length; i++) {
                     const row = `
                         <tr>
-                            <td><span class="badge bg-info">${data[i].tanggal}</span></td>
+                            <td><span class="badge bg-info">${data[i].waktu}</span></td>
                             <td>${data[i].nm_absen}</td>
-                            <td><span class="badge bg-success">${data[i].waktu}</span></td>
+                            <td><span class="badge bg-success">${data[i].unit}</span></td>
                         </tr>`
                     rows += row
                 }

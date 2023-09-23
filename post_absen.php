@@ -78,14 +78,19 @@ if (isset($_POST['signed'])) {
         } else {
           echo json_encode(mysqli_error($conn));
         }
-
       } else {
         echo json_encode([
-          "message" => "Gagal menyimpan file."
+          "success" => false,
+          "message" => "Gagal menyimpan file.",
+          "data" => (object) []
         ]);
       }
     } else {
-      echo json_encode("Tipe gambar tidak diizinkan.");
+      echo json_encode([
+        "success" => false,
+        "message" => "Tipe gambar tidak diizinkan.",
+        "data" => (object) []
+      ]);
     }
   } else {
     echo json_encode([
@@ -101,17 +106,3 @@ if (isset($_POST['signed'])) {
     "data" => (object) []
   ]);
 }
-
-  // // Mengambil data tanda tangan
-  // $image_base64 = $data['signed'];
-  // // Ubah ekstensi sesuai dengan tipe gambar yang Anda gunakan (contoh: PNG)
-  // $ext = 'png';
-
-  // // Menghasilkan nama berkas dengan ekstensi
-  // $file = uniqid() . '.' . $ext;
-
-  // // Menggabungkan direktori upload dengan nama berkas
-  // $fullPath = "upload/" . $file;
-
-  // // Menyimpan berkas tanda tangan
-  // file_put_contents($fullPath, base64_decode($image_base64));
