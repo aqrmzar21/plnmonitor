@@ -40,16 +40,16 @@ $user = query("SELECT * FROM t_datauser");
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li>
-          <h5 class="nav-link" id="tx-link">PLN Monitor</h5>
+          <h5 class="nav-link h5 text-primary" id="tx-light"><strong>SI</strong>Monitoring</h5>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="index3.html" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/absensi/absen.php" class="nav-link">Absensi</a>
+          <a href="pages/absensi/signature.php" class="nav-link">Absensi</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/examples/register-v2.html" class="nav-link">Registrasi</a>
+          <a href="pages/examples/login.php" class="nav-link">Login</a>
         </li>
       </ul>
 

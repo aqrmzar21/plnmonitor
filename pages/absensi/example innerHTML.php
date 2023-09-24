@@ -60,95 +60,104 @@ if (isset($_POST['signed'])) {
     </style>
 </head>
 
-<body class="hold-transition layout-top-nav">
-    <div class="container">
+<body class="hold-transition sidebar-collapse layout-top-nav">
+    <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-light navbar-white">
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+            <div class="container">
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
 
-            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                <!-- Left navbar links -->
-                <ul class="navbar-nav navbar-no-expand">
-                    <!-- SEARCH FORM -->
+                        <li class="nav-item">
+                            <a href="absen.php" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../tables/data.php" class="nav-link">Data Detail</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                <li><a href="#" class="dropdown-item">Some action </a></li>
+                                <li><a href="absensi.php" class="dropdown-item">Data Detail</a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-                    </li>
+                                <li class="dropdown-divider"></li>
 
-                </ul>
+                                <!-- Level two dropdown-->
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
+                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                        <li>
+                                            <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
+                                        </li>
+
+                                        <!-- Level three dropdown-->
+                                        <li class="dropdown-submenu">
+                                            <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
+                                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
+                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
+                                                <li><a href="#" class="dropdown-item">3rd level</a></li>
+                                            </ul>
+                                        </li>
+                                        <!-- End Level three -->
+
+                                        <li><a href="#" class="dropdown-item">level 2</a></li>
+                                        <li><a href="#" class="dropdown-item">level 2</a></li>
+                                    </ul>
+                                </li>
+                                <!-- End Level two -->
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                </div>
+
                 <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav ml-auto">
-
-                    <li class="nav-item dropdown">
-                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">PerKategori</a>
-                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            <li><a href="#" class="dropdown-item">Internal </a></li>
-                            <li><a href="#" class="dropdown-item">External</a></li>
-
-                            <li class="dropdown-divider"></li>
-
-                            <!-- Level two dropdown-->
-                            <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Waktu</a>
-                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li>
-                                        <a tabindex="-1" href="#" class="dropdown-item">Pagi</a>
-                                    </li>
-
-                                    <!-- Level three dropdown-->
-                                    <li class="dropdown-submenu">
-                                        <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Siang</a>
-                                        <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                            <li><a href="#" class="dropdown-item">1rd Rapat</a></li>
-                                            <li><a href="#" class="dropdown-item">2rd Rapat</a></li>
-                                            <li><a href="#" class="dropdown-item">3rd Rapat</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Level three -->
-                                    <li><a href="#" class="dropdown-item">Sore</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Level two -->
-                        </ul>
-                    </li>
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline ml-0 ml-md-3">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <li class="nav-item">
-                        <a href="../tables/data.php" class="nav-link">Data Detail</a>
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a href="absen.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
-                    </li>
+
                 </ul>
-
-
             </div>
-
         </nav>
         <!-- /.navbar -->
 
 
+        <div w3-include-html="../layout/sidebar.html"></div>
+
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper bg-wt">
+        <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0"> <strong>Monitoring</strong> <small>Data</small></h1>
+                            <h1 class="m-0"> Tambah Absensi <small>Data</small></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb" id="currentDateTime"></li>
-                                <ol class="breadcrumb float-sm-right">
-                                    <!--  <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-                                    <!-- <li class="breadcrumb-item"><a href="#">Tanggal : </a></li> -->
-                                    <li class="breadcrumb"> Tanggal </li>
-                                    <li class="breadcrumb active" id="currentDate"> </li>
-                                </ol>
-                                <!-- <p class="breadcrumb" id="currentDateTime">Waktu : </p> -->
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Layout</a></li>
+                                <li class="breadcrumb-item active">Top Navigation</li>
+                            </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -167,7 +176,7 @@ if (isset($_POST['signed'])) {
                             <div class="card card-primary">
                                 <!-- Horizontal Form -->
                                 <div class="card-header">
-                                    <h3 class="card-title">Form Absensi</h3>
+                                    <h3 class="card-title">Form Input</h3>
                                 </div>
 
                                 <!-- /.card-header -->
@@ -347,15 +356,6 @@ if (isset($_POST['signed'])) {
             return [year, month, day].join('-');
         }
 
-        function updateDate() {
-            const currentDate = new Date();
-            const formattedDate = formatDate(currentDate);
-            document.getElementById('currentDate').textContent = ' : ' + formattedDate;
-        }
-
-        // Memanggil fungsi updateDate setiap detik
-        setInterval(updateDate, 1000);
-
         const clearForm = (e) => {
             e.target[0].value = ''
             e.target[1].value = ''
@@ -380,14 +380,6 @@ if (isset($_POST['signed'])) {
                 hour: "2-digit",
                 minute: "2-digit"
             })
-
-            function updateDateTime() {
-                const currentDateTime = `${waktu}`;
-                document.getElementById('currentDateTime').textContent = 'Waktu saat ini: ' + currentDateTime;
-            }
-
-            // Memanggil fungsi updateDateTime setiap detik
-            setInterval(updateDateTime, 1000);
 
             const data = new FormData()
 
@@ -444,6 +436,45 @@ if (isset($_POST['signed'])) {
         }, 1000)
     </script>
 
+    <!-- awal include html -->
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                elmnt.innerHTML = this.responseText;
+                            }
+                            if (this.status == 404) {
+                                elmnt.innerHTML = "Page not found.";
+                            }
+                            /* Remove the attribute, and call this function once more: */
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function: */
+                    return;
+                }
+            }
+        }
+    </script>
+
+    <script>
+        includeHTML();
+    </script>
+    <!-- akhir dunia -->
 
 </body>
 

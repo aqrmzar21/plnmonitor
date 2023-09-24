@@ -152,7 +152,7 @@ if (isset($_POST['cari'])) {
                     <form action="" method="POST">
                       <input type="search" placeholder="Cari data...." name="keyword" class="col-sm-4 form-control ml-auto">
                       <button type="submit" name="cari" class="btn btn-block btn-primary col-sm-1 ml-auto"><i class="fas fa-search"></i></button>
-                    </form>
+
                   </div>
                   <div class="card-body p-0">
                     <table class="table table-sm">
@@ -168,6 +168,7 @@ if (isset($_POST['cari'])) {
                       </tbody>
 
                     </table>
+                    </form>
                   </div>
                   <!-- /.card-body -->
                 </div>
