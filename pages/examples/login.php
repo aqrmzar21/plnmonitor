@@ -1,6 +1,14 @@
 <?php
-require 'proses/koneksi.php';
+session_start();
 
+// cek sudah login maka akan mengarahkan ke hal dasbord
+if (isset($_SESSION['login'])) {
+  header("Location: ../../index.php");
+  exit;
+}
+
+require 'proses/koneksi.php';
+// require '../../db/function.php';
 
 if (isset($_POST['login'])) {
   $login = login($_POST);
@@ -55,7 +63,7 @@ if (isset($_POST['login'])) {
 
         <form action="" method="POST">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" autocomplete="off">
+            <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -63,7 +71,7 @@ if (isset($_POST['login'])) {
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -81,7 +89,7 @@ if (isset($_POST['login'])) {
             </div>
             <!-- /.col -->
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block" name="login">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block" name="login">Masuk</button>
             </div>
             <!-- /.col -->
           </div>

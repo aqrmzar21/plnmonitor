@@ -200,3 +200,25 @@ function edit($data)
   // info ke sql ada perubahan
   return mysqli_affected_rows($conn);
 }
+
+function login($data)
+{
+  $conn = koneksi();
+
+  $username = htmlspecialchars($data['username']);
+  $password = htmlspecialchars($data['password']);
+
+  if ($username == 'admin' && $password == 'admin') {
+    // set sesion
+    $_SESSION['login']= true;
+
+    // header("Location: dataabsen/absens.php");
+    header("Location: index.php");
+    exit;
+  } else {
+    return [
+      'error' => true,
+      'pesan' => 'username/password Salah'
+    ];
+  }
+}

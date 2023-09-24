@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// cek jika belum login maka akan mengarahkan ke hal login
+if (!isset($_SESSION['login'])) {
+  header("Location: pages/examples/login.php");
+  exit;
+}
+
+
 require 'db/function.php';
 // tampung ke variabel datanya
 $user = query("SELECT * FROM t_datauser");
@@ -8,6 +17,7 @@ $user = query("SELECT * FROM t_datauser");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,7 +94,7 @@ $user = query("SELECT * FROM t_datauser");
               <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
+            <a href="pages/examples/logout.php" class="dropdown-item">
               <i class="fa fa-power-off mr-2"></i> Log Out
               <!-- <span class="float-right text-muted text-sm">2 days</span> -->
             </a>

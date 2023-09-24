@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// cek jika belum login maka akan mengarahkan ke hal login
+if (!isset($_SESSION['login'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,13 +82,13 @@
         </form>
 
         <div class="social-auth-links text-center">
-          <a href="#" class="btn btn-block btn-primary">
+          <a href="login.php" class="btn btn-block btn-primary">
             <i class="fab fa-facebook mr-2"></i>
-            Sign up using Facebook
+            Login
           </a>
-          <a href="#" class="btn btn-block btn-danger">
+          <a href="logout.php" class="btn btn-block btn-danger">
             <i class="fab fa-google-plus mr-2"></i>
-            Sign up using Google+
+            Logout
           </a>
         </div>
 

@@ -48,8 +48,6 @@ function edit($data)
   return mysqli_affected_rows($conn);
 }
 
-$id = $_GET['id'];
-$u = query("SELECT * FROM t_datauser WHERE id_user = $id");
 
 function login($data)
 {
@@ -58,9 +56,13 @@ function login($data)
   $username = htmlspecialchars($data['username']);
   $password = htmlspecialchars($data['password']);
 
-  if ($username == 'admin' && $password = 'admin') {
+  if (query("SELECT * FROM t_datauser WHERE username = '$username' && password = '$password'")) {
+    // if ($username == 'admin' && $password == 'admin') {
+    // set sesion
+    $_SESSION['login'] = true;
+
     // header("Location: dataabsen/absens.php");
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
   } else {
     return [
