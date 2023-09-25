@@ -40,6 +40,7 @@ $user = query("SELECT * FROM t_datauser");
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -70,10 +71,10 @@ $user = query("SELECT * FROM t_datauser");
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="float-left">
-                <a href="pages/datauser/infouser.php" class="btn btn-default btn-flat">Profil</a>
+                <a href="../datauser/infouser.php" class="btn btn-default btn-flat">Profil</a>
               </div>
               <div class="float-sm-right">
-                <a href="pages/login/logout-proses.php" class="btn btn-default btn-flat">Keluar</a>
+                <a href="../examples/logout.php" class="btn btn-default btn-flat">Keluar</a>
               </div>
             </li>
           </ul>
@@ -83,160 +84,167 @@ $user = query("SELECT * FROM t_datauser");
     </nav>
     <!-- /.navbar -->
 
+
     <div w3-include-html="../layout/sidebar.html"></div>
+    <div class="container-fluid m-3">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 float-right">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 float-right">
 
-          <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h3 class="card-title">Data Pengguna</h3>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-              <table class="table table-hover text-nowrap">
-                <thead>
-                  <tr>
-                    <th>NO</th>
-                    <th>User</th>
-                    <th>Level</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i = 1;
-                  foreach ($user as $u) : ?>
-                    <tr>
-                      <td><?= $i++; ?></td>
-                      <td><?= $u['nama_pengguna']; ?></td>
-                      <td><?= $u['level']; ?></td>
-                      <td><a href="pages/datauser/infouser.php?id=<?= $u['id_user']; ?>">more</a></td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-
-          </div>
-          <!-- /.card -->
-
-          <div class="card card-primary collapsed-card">
-            <div class="card-header">
-              <h3 class="card-title">Expandable</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-              </div>
-              <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Admin</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th width="10px">#</th>
-                        <th>Nama Admin</th>
-                        <th>NIP</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $i = 1;
-                      ?>
-                      <tr>
-                        <td style="text-align: center"><?php echo $i; ?>.</td>
-                        <td><?php echo $u['nama_pengguna']; ?> </td>
-                        <td><?php echo $u['nip']; ?></td>
-                        <td width="130px">
-                          <div style="text-align: center;">
-                            <a href="infouser.php?id=<?php echo $u['id_user'] ?>" class="btn btn-info btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-eye"></i></a>
-                            <a href="editadmin.php?id=<?php echo $u['id_user']; ?>" class="btn btn-default btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fas fa-edit"></i></a>
-                            <a onclick="deleteme(<?php echo $u['id_user']; ?>)" class="btn btn-danger btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-trash"></i></a>
-                          </div>
-                        </td>
-                      </tr>
-                      <?php
-                      $i++;
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.box-body -->
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col-md-8 -->
-
-        <div class="col-lg-4">
-          <!-- /.login-box -->
-          <div class="register-box">
-            <!-- Profile Image -->
             <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+              <div class="card-header">
+                <h3 class="card-title">Data Pengguna</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
                 </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>NO</th>
+                      <th>User</th>
+                      <th>Level</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1;
+                    foreach ($user as $u) : ?>
+                      <tr>
+                        <td><?= $i++; ?></td>
+                        <td><?= $u['nama_pengguna']; ?></td>
+                        <td><?= $u['level']; ?></td>
+                        <td><a href="infouser.php?id=<?= $u['id_user']; ?>">more</a></td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
 
-                <h3 class="profile-username text-center">BOT System 4.0</h3>
+            </div>
+            <!-- /.card -->
 
-                <p class="text-muted text-center">WEB Engineer</p>
+            <div class="card card-primary collapsed-card">
+              <div class="card-header">
+                <h3 class="card-title">Expandable</h3>
 
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Nama Lengkap</b>
-                    <p class="float-right"><?= $u['nama_pengguna']; ?></p>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Jabatan</b>
-                    <p class="float-right"><?= $u['level']; ?></p>
-                  </li>
-                  <li class="list-group-item">
-                    <b>NIP</b>
-                    <p class="float-right"><?= $u['nip']; ?></p>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Nama Pengguna</b>
-                    <p class="float-right"><?= $u['username']; ?></p>
-                  </li>
-                </ul>
-
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-sm">
-                  <b>Ubah</b>
-                </button>
-                <a href="../../index.php" class="btn btn-primary btn-block"><b>Back</b></a>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Admin</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="10px">#</th>
+                          <th>Nama Admin</th>
+                          <th>NIP</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        ?>
+                        <tr>
+                          <td style="text-align: center"><?php echo $i; ?>.</td>
+                          <td><?php echo $u['nama_pengguna']; ?> </td>
+                          <td><?php echo $u['nip']; ?></td>
+                          <td width="130px">
+                            <div style="text-align: center;">
+                              <a href="infouser.php?id=<?php echo $u['id_user'] ?>" class="btn btn-info btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-eye"></i></a>
+                              <a href="editadmin.php?id=<?php echo $u['id_user']; ?>" class="btn btn-default btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fas fa-edit"></i></a>
+                              <a onclick="deleteme(<?php echo $u['id_user']; ?>)" class="btn btn-danger btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-trash"></i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <?php
+                        $i++;
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.register-box -->
-        </div>
-        <!-- /.col-md-4 -->
+          <!-- /.col-md-8 -->
 
+          <div class="col-lg-4">
+            <!-- /.login-box -->
+            <div class="register-box">
+              <!-- Profile Image -->
+              <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                  </div>
+
+                  <h3 class="profile-username text-center">BOT System 4.0</h3>
+
+                  <p class="text-muted text-center">WEB Engineer</p>
+
+                  <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                      <b>Nama Lengkap</b>
+                      <p class="float-right"><?= $u['nama_pengguna']; ?></p>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Jabatan</b>
+                      <p class="float-right"><?= $u['level']; ?></p>
+                    </li>
+                    <li class="list-group-item">
+                      <b>NIP</b>
+                      <p class="float-right"><?= $u['nip']; ?></p>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Nama Pengguna</b>
+                      <p class="float-right"><?= $u['username']; ?></p>
+                    </li>
+                  </ul>
+
+                  <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-sm">
+                    <b>Ubah</b>
+                  </button>
+                  <a href="../../index.php" class="btn btn-primary btn-block"><b>Back</b></a>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.register-box -->
+          </div>
+          <!-- /.col-md-4 -->
+
+        </div>
+        <!-- /.row -->
       </div>
-      <!-- /.row -->
     </div>
+    <!-- /.div content-wrapper -->
+    <div w3-include-html="../layout/footer.html"></div>
 
   </div>
+
+
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->

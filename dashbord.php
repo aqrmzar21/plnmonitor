@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// cek jika belum login maka akan mengarahkan ke hal login
+if (!isset($_SESSION['login'])) {
+  header("Location: pages/examples/login.php");
+  exit;
+}
+
+
+require 'db/function.php';
+// tampung ke variabel datanya
+$user = query("SELECT * FROM t_datauser");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +73,7 @@
             <li class="user-header">
               <img src="dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
 
-              <p>Aqram Zar<small>Admin Operator</small></p>
+              <p>Aqram<small>Admin Operator</small></p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
@@ -65,7 +81,7 @@
                 <a href="pages/datauser/infouser.php" class="btn btn-default btn-flat">Profil</a>
               </div>
               <div class="float-sm-right">
-                <a href="pages/login/logout-proses.php" class="btn btn-default btn-flat">Keluar</a>
+                <a href="pages/examples/logout.php" class="btn btn-default btn-flat">Keluar</a>
               </div>
             </li>
           </ul>
@@ -80,8 +96,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <img src="dist/img/AdminLTE3.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light"><b>PLN</b>Monitor</span>
       </a>
 
       <!-- Sidebar -->
@@ -763,7 +779,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard v3</li>
+                <li class="breadcrumb-item active">Dashboard</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -1017,236 +1033,7 @@
             <!-- /.col-md-6 -->
           </div>
           <!-- /.row -->
-          <!-- iini boleh di hapus karena ini copy paste dari index php ===============================  -->
-          <div class="row">
-            <img src="dist/img/imgPLN.png" alt="" width="200" class="bgxl">
-            <div class="container bgx">
-              <div class="col-4 ml-2 bgx1">
-                <!-- /.login-box  asli-->
-                <div class="login-boxs">
-                  <!-- /.login-logo -->
-                  <div class="card card-outline card-primary">
-                    <div class="card-header text-center">
-                      <a href="../../index2.html" class="h3"><b>PLN</b>Monitor</a>
-                    </div>
-                    <div class="card-body">
-                      <p class="login-box-msg">Masuk untuk memulai sesi</p>
 
-                      <form action="../../index3.html" method="post">
-                        <div class="input-group mb-2">
-                          <input type="email" class="form-control" placeholder="Username/Email">
-                          <div class="input-group-append">
-                            <div class="input-group-text">
-                              <span class="fas fa-envelope"></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="input-group mb-2">
-                          <input type="password" class="form-control" placeholder="Password">
-                          <div class="input-group-append">
-                            <div class="input-group-text">
-                              <span class="fas fa-lock"></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-12">
-                            <p class="m-1">
-                              <a href="forgot-password.html">I forgot my password</a>
-                            </p>
-                          </div>
-                          <!-- /.col 12-->
-                        </div>
-                      </form>
-
-                      <div class="social-auth-links text-center mt-2 mb-3">
-                        <a href="#" class="btn btn-block btn-primary">
-                          <i class="mr-2"></i> Masuk
-                        </a>
-                      </div>
-                      <!-- /.social-auth-links -->
-                    </div>
-                    <!-- /.card-body -->
-                  </div>
-                  <!-- /.card -->
-                </div>
-                <!-- /.login-box -->
-
-              </div>
-              <div class="col-6 bgx2">
-                <img src="dist/img/photo3.jpg" alt="bgx2" class=" bgx2">
-              </div>
-              <div class="col-4 bgx3"></div>
-
-            </div>
-          </div>
-          <!-- /.div row -->
-          <!-- iini akhir gambar beserta login box ===============================  -->
-          <div class="row">
-            <div class="col-lg-4">
-              <!-- /.login-box -->
-              <div class="login-box mb-3">
-                <!-- /.login-logo -->
-                <div class="card card-outline card-primary collapsed-card">
-                  <div class="card-header text-center">
-                    <a href="../../index2.html" class="h3"><b>PLN</b>Monitor</a>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="login-box-msg">Masuk untuk memulai sesi</p>
-
-                    <form action="../../index3.html" method="post">
-                      <div class="input-group mb-2">
-                        <input type="email" class="form-control" placeholder="Username/Email">
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="input-group mb-2">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                          <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <!-- <div class="col-6">
-                          <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                              Remember Me
-                            </label>
-                          </div>
-                        </div> -->
-                        <!-- /.col -->
-                        <div class="col-12">
-                          <p class="m-1">
-                            <a href="forgot-password.html">I forgot my password</a>
-                          </p>
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                    </form>
-
-                    <div class="social-auth-links text-center mt-2 mb-3">
-                      <a href="#" class="btn btn-block btn-primary">
-                        <i class="mr-2"></i> Masuk
-                      </a>
-                    </div>
-                    <!-- /.social-auth-links -->
-                  </div>
-                  <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-              </div>
-              <!-- /.login-box -->
-            </div>
-            <!-- /.col-md-4 -->
-            <div class="col-lg-8">
-
-              <div class="card card-primary card-outline">
-                <div class="card-header">
-                  <h3 class="card-title">Data Pengguna</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                  </div>
-                  <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
-                    <thead>
-                      <tr>
-                        <th>NO</th>
-                        <th>User</th>
-                        <th>Level</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $i = 1;
-                      foreach ($user as $u) : ?>
-                        <tr>
-                          <td><?= $i++; ?></td>
-                          <td><?= $u['nama_pengguna']; ?></td>
-                          <td><?= $u['level']; ?></td>
-                          <td><a href="pages/datauser/infouser.php?id=<?= $u['id_user']; ?>">more</a></td>
-                        </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
-
-              </div>
-              <!-- /.card -->
-
-              <div class="card card-primary collapsed-card">
-                <div class="card-header">
-                  <h3 class="card-title">Expandable</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                  </div>
-                  <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Admin</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                          <tr>
-                            <th width="10px">#</th>
-                            <th>Nama Admin</th>
-                            <th>NIP</th>
-                            <th>Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $i = 1;
-                          ?>
-                          <tr>
-                            <td style="text-align: center"><?php echo $i; ?>.</td>
-                            <td><?php echo $u['nama_pengguna']; ?> </td>
-                            <td><?php echo $u['nip']; ?></td>
-                            <td width="130px">
-                              <div style="text-align: center;">
-                                <a href="infouser.php?id=<?php echo $u['id_user'] ?>" class="btn btn-info btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-eye"></i></a>
-                                <a href="editadmin.php?id=<?php echo $u['id_user']; ?>" class="btn btn-default btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fas fa-edit"></i></a>
-                                <a onclick="deleteme(<?php echo $u['id_user']; ?>)" class="btn btn-danger btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-trash"></i></a>
-                              </div>
-                            </td>
-                          </tr>
-                          <?php
-                          $i++;
-                          ?>
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- /.box-body -->
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col-md-8 -->
-          </div>
-          <!-- /.row -->
 
         </div>
         <!-- /.container-fluid -->
@@ -1262,13 +1049,8 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
-      </div>
-    </footer>
+    <div w3-include-html="pages/layout/footer.html"></div>
+
   </div>
   <!-- ./wrapper -->
 
@@ -1285,6 +1067,45 @@
   <script src="plugins/chart.js/Chart.min.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard3.js"></script>
+  <!-- awal include html -->
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /* Loop through a collection of all HTML elements: */
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          /* Make an HTTP request using the attribute value as the file name: */
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                elmnt.innerHTML = this.responseText;
+              }
+              if (this.status == 404) {
+                elmnt.innerHTML = "Page not found.";
+              }
+              /* Remove the attribute, and call this function once more: */
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /* Exit the function: */
+          return;
+        }
+      }
+    }
+  </script>
+
+  <script>
+    includeHTML();
+  </script>
+  <!-- akhir dunia -->
 </body>
 
 </html>

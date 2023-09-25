@@ -1,27 +1,6 @@
 <?php
-function koneksi()
-{
-  return mysqli_connect('localhost', 'root', '', 'plnmonitoring');
-}
 
-function query($query)
-{
-  $conn = koneksi();
-  $result = mysqli_query($conn, $query);
-
-  // jika datanya hanya 1
-  if (mysqli_num_rows($result) == 1) {
-    return mysqli_fetch_assoc($result);
-  }
-
-
-  $rows = [];
-  while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
-  }
-
-  return $rows;
-}
+require 'koneksi.php';
 
 // ini db t_datapengunjung 
 function tambah($data)
@@ -201,6 +180,7 @@ function edit($data)
   return mysqli_affected_rows($conn);
 }
 
+
 function login($data)
 {
   $conn = koneksi();
@@ -208,12 +188,13 @@ function login($data)
   $username = htmlspecialchars($data['username']);
   $password = htmlspecialchars($data['password']);
 
-  if ($username == 'admin' && $password == 'admin') {
+  if (query("SELECT * FROM t_datauser WHERE username = '$username' && password = '$password'")) {
+    // if ($username == 'admin' && $password == 'admin') {
     // set sesion
-    $_SESSION['login']= true;
+    $_SESSION['login'] = true;
 
     // header("Location: dataabsen/absens.php");
-    header("Location: index.php");
+    header("Location: ../../dashbord.php");
     exit;
   } else {
     return [

@@ -3,26 +3,17 @@ session_start();
 
 // cek sudah login maka akan mengarahkan ke hal dasbord
 if (isset($_SESSION['login'])) {
-  header("location: ../../index.php");
+  header("location: ../../dashbord.php");
   exit;
 }
 
-require 'proses/koneksi.php';
-// require '../../db/function.php';
+// require 'proses/koneksi.php';
+require '../../db/function.php';
 
 if (isset($_POST['login'])) {
   $login = login($_POST);
 }
 
-// if (login($_POST) > 0) {
-//   echo "<script>
-//       alert('data berhasil ditambahkan');
-//       </script>";
-// } else {
-//   echo "<script>
-//       alert('data gagal ditambahkan');
-//       </script>";
-// }
 ?>
 
 

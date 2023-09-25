@@ -1,11 +1,11 @@
 <?php
-session_start();
+// session_start();
 
-// cek jika belum login maka akan mengarahkan ke hal login
-if (!isset($_SESSION['login'])) {
-  header("Location: pages/examples/login.php");
-  exit;
-}
+// // cek jika belum login maka akan mengarahkan ke hal login
+// if (!isset($_SESSION['login'])) {
+//   header("Location: pages/examples/login.php");
+//   exit;
+// }
 
 
 require 'db/function.php';
@@ -40,16 +40,14 @@ $user = query("SELECT * FROM t_datauser");
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li>
-          <h5 class="nav-link h5 text-primary" id="tx-light"><strong>SI</strong>Monitoring</h5>
+          <a href="index3.html" class="nav-link h5 text-primary" id="tx-light"><strong>SI</strong>Monitoring</a>
         </li>
+        <!-- <li class="nav-item d-none d-sm-inline-block"><a class="nav-link">Home</a></li> -->
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a href="pages/examples/login.php" class="nav-link">Login</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="pages/absensi/signature.php" class="nav-link">Absensi</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/examples/login.php" class="nav-link">Login</a>
         </li>
       </ul>
 
@@ -116,6 +114,17 @@ $user = query("SELECT * FROM t_datauser");
 
         <div class="container-fluid">
 
+          <div class="container">
+            <div class="row mt-4">
+              <div class="col-6 mx-auto">
+                <img src="dist/img/imgPLN.png" alt="" width="200" class="bgxl">
+                <div class="card mx-auto">
+                  <span class="h2 text-center">12 : 12 : 12</span>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- Container INFO Box -->
           <div class="container mt-4">
@@ -507,13 +516,7 @@ $user = query("SELECT * FROM t_datauser");
                   <!-- /.row -->
 
                 </div>
-                <div class="card-footer-sm">
-                  <!-- <img class="img-circle elevation-5" src="dist/img/user8-128x128.jpg" alt="User Avatar"> -->
-                  <div class="bg-block text-center bg-info m-3">
-                    <h5 class="m-2">Total</h5>
-                    <h5 class="widget-user-desc">Data (VA)</h5>
-                  </div>
-                </div>
+
 
               </div>
               <!-- /.widget-user -->
@@ -528,7 +531,7 @@ $user = query("SELECT * FROM t_datauser");
                   <h3 class="widget-user-username text-right">Jumlah Pelanggan</h3>
                   <h5 class="widget-user-desc text-right">Data (Plg)</h5>
                 </div>
-                <div class="widget-user-image">
+                <div class="widget-user-image mb-6">
                   <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
                 </div>
                 <div class="card-footer">
@@ -652,6 +655,10 @@ $user = query("SELECT * FROM t_datauser");
                     </div>
                   </div>
                   <!-- /.row -->
+                </div>
+                <div class="card-body">
+                  <div class="card mx-auto bg-dark text-center"> Total</div>
+
                 </div>
               </div>
               <!-- /.widget-user -->
