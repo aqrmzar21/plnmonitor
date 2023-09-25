@@ -3,7 +3,7 @@ session_start();
 
 // cek sudah login maka akan mengarahkan ke hal dasbord
 if (isset($_SESSION['login'])) {
-  header("Location: ../../index.php");
+  header("location: ../../index.php");
   exit;
 }
 
@@ -66,7 +66,7 @@ if (isset($_POST['login'])) {
             <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
