@@ -34736,7 +34736,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .widget-user .widget-user-image {
   left: 50%;
-  margin-left: -45px;
+  margin: -45px auto;
   position: absolute;
   top: 80px;
 }

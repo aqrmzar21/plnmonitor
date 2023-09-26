@@ -29,12 +29,16 @@ $absensi = query("SELECT * FROM t_dataabsen");
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
+    <?php
+    include '../layout/top-nav.php'
+    ?>
 
-    <div w3-include-html="../layout/top-nav.html"></div>
     <!-- INNER HTML Navbar  -->
 
+    <?php
+    include '../layout/sidebar.php'
+    ?>
     <!-- Main Sidebar Container -->
-    <div w3-include-html="../layout/sidebar.html"></div>
     <!-- INNER HTML Sidebar -->
 
     <!-- Content Wrapper. Contains page content -->
@@ -114,7 +118,9 @@ $absensi = query("SELECT * FROM t_dataabsen");
     </div>
     <!-- /.content-wrapper -->
 
-    <div w3-include-html="../layout/footer.html"></div>
+    <?php
+    include '../layout/footer.php';
+    ?>
 
 
   </div>
@@ -159,46 +165,6 @@ $absensi = query("SELECT * FROM t_dataabsen");
       });
     });
   </script>
-
-  <!-- awal include html -->
-  <script>
-    function includeHTML() {
-      var z, i, elmnt, file, xhttp;
-      /* Loop through a collection of all HTML elements: */
-      z = document.getElementsByTagName("*");
-      for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-          /* Make an HTTP request using the attribute value as the file name: */
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-              if (this.status == 200) {
-                elmnt.innerHTML = this.responseText;
-              }
-              if (this.status == 404) {
-                elmnt.innerHTML = "Page not found.";
-              }
-              /* Remove the attribute, and call this function once more: */
-              elmnt.removeAttribute("w3-include-html");
-              includeHTML();
-            }
-          }
-          xhttp.open("GET", file, true);
-          xhttp.send();
-          /* Exit the function: */
-          return;
-        }
-      }
-    }
-  </script>
-
-  <script>
-    includeHTML();
-  </script>
-  <!-- akhir dunia -->
 
 </body>
 

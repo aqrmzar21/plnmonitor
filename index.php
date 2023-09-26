@@ -249,16 +249,17 @@ $user = query("SELECT * FROM t_datauser");
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-primary">
-                  <h3 class="widget-user-username text-left">Penjualan Listrik</h3>
-                  <h5 class="widget-user-desc text-left">Data (KWh)</h5>
+                  <h3 class="widget-user-username mt-3 text-center">Penjualan Listrik</h3>
+                  <h5 class="widget-user-desc mt-3 text-center">Data (KWh)</h5>
                 </div>
                 <div class="widget-user-image">
-                  <img class="img-circle elevation-1" src="dist/img/user1-128x128.jpg" alt="User Avatar">
+                  <!-- <img class="img-circle elevation-1" src="dist/img/user3-128x128.jpg" alt="User Avatar"> -->
                 </div>
                 <div class="card-footer">
                   <div class="row">
                     <div class="col-sm-6 border-right">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
                         <h5 class="description-header">238.437 PLG</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
@@ -267,6 +268,7 @@ $user = query("SELECT * FROM t_datauser");
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
                         <h5 class="description-header">97.909 PLG</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
@@ -279,7 +281,7 @@ $user = query("SELECT * FROM t_datauser");
                   <div class="row text-sm text-white">
                     <div class="col-lg-6">
                       <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-2 bg-warning">
+                      <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text">S</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
@@ -327,7 +329,7 @@ $user = query("SELECT * FROM t_datauser");
                     </div>
 
                     <div class="col-lg-6">
-                      <div class="info-box-xs mt-2 bg-warning">
+                      <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text">S</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
@@ -377,6 +379,9 @@ $user = query("SELECT * FROM t_datauser");
                   <!-- /.row -->
 
                 </div>
+                <div class="card-body">
+                  <div class="card mx-auto bg-dark text-center"> Total</div>
+                </div>
               </div>
               <!-- /.widget-user -->
             </div>
@@ -387,16 +392,18 @@ $user = query("SELECT * FROM t_datauser");
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-info">
-                  <h3 class="widget-user-username">Daya Terpasang</h3>
-                  <h5 class="widget-user-desc">Data (VA)</h5>
+                  <h3 class="widget-user-username mt-3">Daya Terpasang</h3>
+                  <h5 class="widget-user-desc mt-2">Data (VA)</h5>
                 </div>
                 <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="dist/img/user8-128x128.jpg" alt="User Avatar">
+                  <!-- <img class="img-circle elevation-2" src="dist/img/user8-128x128.jpg" alt="User Avatar"> -->
+                  <!-- <i class="fa fa-bolt" width="100%"></i> -->
                 </div>
                 <div class="card-footer">
                   <div class="row">
                     <div class="col-sm-6 border-right">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
                         <h5 class="description-header">3,200</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
@@ -406,6 +413,7 @@ $user = query("SELECT * FROM t_datauser");
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
                         <h5 class="description-header">35</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
@@ -516,7 +524,9 @@ $user = query("SELECT * FROM t_datauser");
                   <!-- /.row -->
 
                 </div>
-
+                <div class="card-body">
+                  <div class="card mx-auto bg-dark text-center"> Total</div>
+                </div>
 
               </div>
               <!-- /.widget-user -->
@@ -528,16 +538,14 @@ $user = query("SELECT * FROM t_datauser");
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header text-white bg-primary">
-                  <h3 class="widget-user-username text-right">Jumlah Pelanggan</h3>
-                  <h5 class="widget-user-desc text-right">Data (Plg)</h5>
-                </div>
-                <div class="widget-user-image mb-6">
-                  <img class="img-circle" src="dist/img/user3-128x128.jpg" alt="User Avatar">
+                  <h3 class="widget-user-username mt-3">Jumlah Pelanggan</h3>
+                  <h5 class="widget-user-desc mt-3">Data (Plg)</h5>
                 </div>
                 <div class="card-footer">
                   <div class="row">
                     <div class="col-sm-6 border-right">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
                         <h5 class="description-header">3,200</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
@@ -547,6 +555,7 @@ $user = query("SELECT * FROM t_datauser");
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
                         <h5 class="description-header">35</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
@@ -559,7 +568,7 @@ $user = query("SELECT * FROM t_datauser");
                   <div class="row text-sm text-white">
                     <div class="col-lg-6">
                       <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-2 bg-warning">
+                      <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text"><b>S</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
@@ -607,7 +616,7 @@ $user = query("SELECT * FROM t_datauser");
                     </div>
 
                     <div class="col-lg-6">
-                      <div class="info-box-xs mt-2 bg-warning">
+                      <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text">S</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
@@ -658,7 +667,6 @@ $user = query("SELECT * FROM t_datauser");
                 </div>
                 <div class="card-body">
                   <div class="card mx-auto bg-dark text-center"> Total</div>
-
                 </div>
               </div>
               <!-- /.widget-user -->
@@ -674,33 +682,9 @@ $user = query("SELECT * FROM t_datauser");
     <!-- /.content-wrapper -->
 
     <!-- Contact Footer =========================================================== -->
-    <!-- <footer>
-      <div class="container bg-primary text-white">
-        <div class="row">
-          <div class="col-lg-3 mt-3">
-            <h4 class="tx-wt pl-2">Hubungi Kami</h4>
-
-          </div>
-          <div class="col-lg-9 mt-3">
-            <h4 class="tx-wt">Ikuti Kami</h4>
-
-          </div>
-        </div>
-      </div>
-    </footer> -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="float-right d-none d-sm-inline">
-        4.0
-      </div>
-      <!-- Default to the left -->
-      <strong>Copyright &copy; 2023 PT. PLN UP3 KOTA GORONTALO |</strong> All rights reserved.
-      <!-- <span><i class="fa fa-facebook">PLN UP3 Kota Gorontalo</i></span>
-      <span><i class="fa fa-instagram">PLN UP3 Kota Gorontalo</i></span>
-      <span><i class="fa fa-youtube-play">PLN UP3 Kota Gorontalo</i></span> -->
-    </footer>
+    <div w3-include-html="pages/layout/footer.html"></div>
   </div>
   <!-- ./wrapper -->
 
@@ -712,6 +696,45 @@ $user = query("SELECT * FROM t_datauser");
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+  <!-- awal include html -->
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /* Loop through a collection of all HTML elements: */
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          /* Make an HTTP request using the attribute value as the file name: */
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                elmnt.innerHTML = this.responseText;
+              }
+              if (this.status == 404) {
+                elmnt.innerHTML = "Page not found.";
+              }
+              /* Remove the attribute, and call this function once more: */
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /* Exit the function: */
+          return;
+        }
+      }
+    }
+  </script>
+
+  <script>
+    includeHTML();
+  </script>
+  <!-- akhir dunia -->
 </body>
 
 </html>
