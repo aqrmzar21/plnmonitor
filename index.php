@@ -9,8 +9,11 @@
 
 
 require 'db/function.php';
+// include 'pages/forms/proses/proses-form.php';
+
 // tampung ke variabel datanya
-$user = query("SELECT * FROM t_datauser");
+// $user = query("SELECT * FROM t_datauser");
+$pr1 = query("SELECT * FROM pascabayar1")[0];
 
 ?>
 
@@ -119,7 +122,12 @@ $user = query("SELECT * FROM t_datauser");
               <div class="col-6 mx-auto">
                 <img src="dist/img/imgPLN.png" alt="" width="200" class="bgxl">
                 <div class="card mx-auto">
-                  <span class="h2 text-center">12 : 12 : 12</span>
+                  <!-- <span class="h2 text-center">12 : 12 : 12</span> -->
+                  <!-- <span class="h6 text-center"> PHP// date("l", mktime(0, 0, 0, 1, 5, 2002)); </span> -->
+                  <span class="h6 text-center mt-2"><?= date("l"); ?></span>
+                  <span class="h2 text-center text-olive"><b><?= date("d F Y"); ?></b></span>
+                  <span class="h5 text-center" id="clock"><b></b></span>
+
 
                 </div>
               </div>
@@ -132,10 +140,11 @@ $user = query("SELECT * FROM t_datauser");
 
               <div class="col-lg-2 col-6 ">
                 <!-- small card -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-warning">
                   <div class="inner">
                     <h3>S</h3>
 
+                    <p><?= $pr1['cols1']; ?></p>
                     <p>7842</p>
                   </div>
                   <div class="icon">
@@ -149,10 +158,10 @@ $user = query("SELECT * FROM t_datauser");
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-primary">
+                <div class="small-box bg-danger">
                   <div class="inner">
                     <h3>R</h3>
-
+                    <p><?= $pr1['colr1']; ?></p>
                     <p>315553</p>
                   </div>
                   <div class="icon">
@@ -166,9 +175,10 @@ $user = query("SELECT * FROM t_datauser");
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-warning">
+                <div class="small-box bg-olive">
                   <div class="inner">
                     <h3>B</h3>
+                    <p><?= $pr1['colb1']; ?></p>
 
                     <p>7842</p>
                   </div>
@@ -183,9 +193,10 @@ $user = query("SELECT * FROM t_datauser");
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-orange">
                   <div class="inner">
                     <h3>I</h3>
+                    <p><?= $pr1['coli1']; ?></p>
 
                     <p>1687</p>
                   </div>
@@ -200,10 +211,10 @@ $user = query("SELECT * FROM t_datauser");
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-orange">
+                <div class="small-box bg-lightblue">
                   <div class="inner">
                     <h3>P</h3>
-
+                    <p><?= $pr1['colp1']; ?></p>
                     <p>2888</p>
                   </div>
                   <div class="icon">
@@ -217,7 +228,7 @@ $user = query("SELECT * FROM t_datauser");
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-success">
+                <div class="small-box bg-secondary">
                   <div class="inner">
                     <h3>53<sup style="font-size: 20px">%</sup></h3>
 
@@ -735,6 +746,20 @@ $user = query("SELECT * FROM t_datauser");
     includeHTML();
   </script>
   <!-- akhir dunia -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+
+      const timeString = hours + ':' + minutes + ':' + seconds;
+      document.getElementById('clock').innerHTML = '' + timeString;
+    }
+
+    // Panggil fungsi updateClock() setiap detik
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 
 </html>

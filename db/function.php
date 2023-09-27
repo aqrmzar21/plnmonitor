@@ -1,6 +1,6 @@
 <?php
 
-require 'koneksi.php';
+require 'connect.php';
 
 // ini db t_datapengunjung 
 function tambah($data)

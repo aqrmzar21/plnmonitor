@@ -10,7 +10,7 @@ if (!isset($_SESSION['login'])) {
 
 require 'db/function.php';
 // tampung ke variabel datanya
-$user = query("SELECT * FROM t_datauser");
+$user = query("SELECT * FROM t_datauser")[0];
 
 ?>
 
@@ -73,7 +73,11 @@ $user = query("SELECT * FROM t_datauser");
             <li class="user-header">
               <img src="dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
 
-              <p>Aqram<small>Admin Operator</small></p>
+
+
+              <p><?= $user['nama_pengguna']; ?>
+                <small><?= $user['level']; ?></small>
+              </p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
@@ -92,9 +96,7 @@ $user = query("SELECT * FROM t_datauser");
     </nav>
     <!-- /.navbar -->
 
-    <?php
-    include 'pages/layout/sidebarr.php';
-    ?>
+    <div w3-include-html="pages/layout/sidebar.html"></div>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
