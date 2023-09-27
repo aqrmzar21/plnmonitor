@@ -1,3 +1,14 @@
+<?php
+
+include '../../db/function.php';
+
+$conn = koneksi();
+
+$us = mysqli_query($conn, "SELECT * FROM t_datauser WHERE username = '$username'");
+while ($d = mysqli_fetch_array($us))
+
+?>
+
 <!-- Navbar dalam pages/../ -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <!-- Left navbar links -->
@@ -27,7 +38,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
           <p>
-            Alexander Pierce - Bot Web
+            <?php echo $d['nama_pengguna']; ?>
             <small>since 2023</small>
           </p>
         </li>

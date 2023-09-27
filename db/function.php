@@ -1,6 +1,28 @@
 <?php
 
-require 'connect.php';
+function koneksi()
+{
+  return mysqli_connect('localhost', 'root', '', 'plnmonitoring');
+}
+
+function query($query)
+{
+  $conn = koneksi();
+  $result = mysqli_query($conn, $query);
+
+  // jika datanya hanya 1
+  if (mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
+  }
+
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
 
 // ini db t_datapengunjung 
 function tambah($data)
@@ -102,38 +124,38 @@ function hapus($id)
   return mysqli_affected_rows($conn);
 }
 
-function ubah($data)
-{
-  $conn = koneksi();
+// function ubah($data)
+// {
+//   $conn = koneksi();
 
-  //pecah database menjadi lebih singkats
-  $id = $data['id_absen'];
-  $nm = htmlspecialchars($data['nm_pgnjng']);
-  $email = htmlspecialchars($data['email']);
-  $hp = htmlspecialchars($data['nohp']);
-  $agenda = htmlspecialchars($data['agenda']);
-  $kprluan = htmlspecialchars($data['kprluan']);
-  $tanggal = htmlspecialchars($data['tgl']);
-  $waktu = htmlspecialchars($data['waktu']);
-  // $gambar = htmlspecialchars($data['gambar']);
-  $gambar = upload();
+//   //pecah database menjadi lebih singkats
+//   $id = $data['id_absen'];
+//   $nm = htmlspecialchars($data['nm_pgnjng']);
+//   $email = htmlspecialchars($data['email']);
+//   $hp = htmlspecialchars($data['nohp']);
+//   $agenda = htmlspecialchars($data['agenda']);
+//   $kprluan = htmlspecialchars($data['kprluan']);
+//   $tanggal = htmlspecialchars($data['tgl']);
+//   $waktu = htmlspecialchars($data['waktu']);
+//   // $gambar = htmlspecialchars($data['gambar']);
+//   $gambar = upload();
 
 
-  $query = "UPDATE t_datapengunjung SET
-            nm_pgnjng = '$nm', 
-            email = '$email', 
-            nohp = '$hp', 
-            agenda = '$agenda', 
-            kprluan = '$kprluan', 
-            tgl = '$tanggal', 
-            waktu ='$waktu'
-            gambar ='$gambar'
-            WHERE id_absen = $id";
+//   $query = "UPDATE t_datapengunjung SET
+//             nm_pgnjng = '$nm', 
+//             email = '$email', 
+//             nohp = '$hp', 
+//             agenda = '$agenda', 
+//             kprluan = '$kprluan', 
+//             tgl = '$tanggal', 
+//             waktu ='$waktu'
+//             gambar ='$gambar'
+//             WHERE id_absen = $id";
 
-  mysqli_query($conn, $query) or die(mysqli_error($conn));
-  // info ke sql ada perubahan
-  return mysqli_affected_rows($conn);
-}
+//   mysqli_query($conn, $query) or die(mysqli_error($conn));
+//   // info ke sql ada perubahan
+//   return mysqli_affected_rows($conn);
+// }
 
 function cari($keyword)
 {

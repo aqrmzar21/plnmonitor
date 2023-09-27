@@ -16,21 +16,19 @@ $user = query("SELECT * FROM t_datauser")[0];
 
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIMPLN | FIXDashboard</title>
+<link rel="icon" href="dist/img/favicon.ico">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | FIXDashboard</title>
-  <link rel="icon" href="dist/img/favicon.ico">
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<!-- IonIcons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 <!--
 `body` tag options:
@@ -123,6 +121,7 @@ $user = query("SELECT * FROM t_datauser")[0];
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-6">
+
               <div class="card">
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
@@ -311,55 +310,23 @@ $user = query("SELECT * FROM t_datauser")[0];
 
               <div class="card">
                 <div class="card-header border-0">
-                  <h3 class="card-title">Online Store Overview</h3>
+                  <h3 class="card-title">Donut Chart</h3>
+
                   <div class="card-tools">
-                    <a href="#" class="btn btn-sm btn-tool">
-                      <i class="fas fa-download"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-tool">
-                      <i class="fas fa-bars"></i>
-                    </a>
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
                   </div>
                 </div>
                 <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                    <p class="text-success text-xl">
-                      <i class="ion ion-ios-refresh-empty"></i>
-                    </p>
-                    <p class="d-flex flex-column text-right">
-                      <span class="font-weight-bold">
-                        <i class="ion ion-android-arrow-up text-success"></i> 12%
-                      </span>
-                      <span class="text-muted">CONVERSION RATE</span>
-                    </p>
-                  </div>
-                  <!-- /.d-flex -->
-                  <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                    <p class="text-warning text-xl">
-                      <i class="ion ion-ios-cart-outline"></i>
-                    </p>
-                    <p class="d-flex flex-column text-right">
-                      <span class="font-weight-bold">
-                        <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
-                      </span>
-                      <span class="text-muted">SALES RATE</span>
-                    </p>
-                  </div>
-                  <!-- /.d-flex -->
-                  <div class="d-flex justify-content-between align-items-center mb-0">
-                    <p class="text-danger text-xl">
-                      <i class="ion ion-ios-people-outline"></i>
-                    </p>
-                    <p class="d-flex flex-column text-right">
-                      <span class="font-weight-bold">
-                        <i class="ion ion-android-arrow-down text-danger"></i> 1%
-                      </span>
-                      <span class="text-muted">REGISTRATION RATE</span>
-                    </p>
-                  </div>
-                  <!-- /.d-flex -->
+                  <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
+                <!-- /.card-body -->
               </div>
+              <!-- /.card -->
             </div>
             <!-- /.col-md-6 -->
           </div>
@@ -393,6 +360,7 @@ $user = query("SELECT * FROM t_datauser")[0];
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE -->
   <script src="dist/js/adminlte.js"></script>
+  <script src="plugins/chart.js/Chart.min.js"></script>
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="plugins/chart.js/Chart.min.js"></script>
@@ -435,8 +403,52 @@ $user = query("SELECT * FROM t_datauser")[0];
 
   <script>
     includeHTML();
+    <?php if (isset($_SESSION['logout_message'])) : ?>
+      // Tampilkan pesan alert
+      alert("<?php echo $_SESSION['logout_message']; ?>");
+
+      // Hapus pesan dari sesi
+      <?php unset($_SESSION['logout_message']); ?>
+    <?php endif; ?>
   </script>
   <!-- akhir dunia -->
+  <script>
+    $(function() {
+      /* ChartJS
+       * -------
+       * Here we will create a few charts using ChartJS
+       */
+      //-------------
+      //- DONUT CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+      var donutData = {
+        labels: [
+          'Tarif S',
+          'Tarif R',
+          'Tarif B',
+          'Tarif I',
+          'Tarif P',
+        ],
+        datasets: [{
+          data: [50, 225, 400, 29, 19],
+          backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
+        }]
+      }
+      var donutOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions
+      })
+    })
+  </script>
 </body>
 
 </html>

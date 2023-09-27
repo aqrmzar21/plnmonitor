@@ -2,5 +2,10 @@
 session_start();
 session_destroy();
 
-header("location : login.php");
+// Set pesan sukses logout dalam sesi
+$_SESSION['logout_message'] = "Anda telah berhasil logout.";
+
+
+header("location: login.php");
+
 exit;

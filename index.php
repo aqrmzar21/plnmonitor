@@ -30,6 +30,10 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="dist/css/bg.css">
@@ -707,6 +711,8 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+  <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+
   <!-- awal include html -->
   <script>
     function includeHTML() {
@@ -744,9 +750,17 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
   <script>
     includeHTML();
+
   </script>
   <!-- akhir dunia -->
   <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    })
+
     function updateClock() {
       const now = new Date();
       const hours = now.getHours().toString().padStart(2, '0');

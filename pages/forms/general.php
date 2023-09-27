@@ -142,35 +142,35 @@ if (isset($_POST['subk'])) {
                     <div class="form-group row">
                       <label for="input2" class="col-sm-1 col-form-label">Pasca Bayar</label>
                       <div class="input-group col-sm-2">
-                        <input type="text" name="cols1" class="form-control is-info">
+                        <input type="text" name="pr_s1" class="form-control is-info">
                         <span class="input-group-append">
                           <button type="button" class="btn btn-info btn-flat">S</button>
                         </span>
                       </div>
                       <!-- /input-group -->
                       <div class="input-group col-sm-2">
-                        <input type="text" name="pb_r1" class="form-control is-info">
+                        <input type="text" name="pr_r1" class="form-control is-info">
                         <span class="input-group-append">
                           <button type="button" class="btn btn-info btn-flat">R</button>
                         </span>
                       </div>
                       <!-- /input-group -->
                       <div class="input-group col-sm-2">
-                        <input type="text" name="colb1" class="form-control is-info">
+                        <input type="text" name="pr_b1" class="form-control is-info">
                         <span class="input-group-append">
                           <button type="button" class="btn btn-info btn-flat">B</button>
                         </span>
                       </div>
                       <!-- /input-group -->
                       <div class="input-group col-sm-2">
-                        <input type="text" name="coli1" class="form-control is-info">
+                        <input type="text" name="pr_i1" class="form-control is-info">
                         <span class="input-group-append">
                           <button type="button" class="btn btn-info btn-flat">I</button>
                         </span>
                       </div>
                       <!-- /input-group -->
                       <div class="input-group col-sm-2">
-                        <input type="text" name="colp1" class="form-control is-info">
+                        <input type="text" name="pr_p1" class="form-control is-info">
                         <span class="input-group-append">
                           <button type="button" class="btn btn-info btn-flat">P</button>
                         </span>
@@ -294,7 +294,7 @@ if (isset($_POST['subk'])) {
                             <img class="img-circle img-bordered-md" src="../../dist/img/img-3.png" alt="user image" width="25px">
                           </span>
                         </div>
-                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['cols1']; ?>">
+                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['pr_s1']; ?>">
                         <div class="input-group-append">
                           <span class="input-group-text bg-orange" name="gols"><strong>S</strong></span>
                         </div>
@@ -306,7 +306,7 @@ if (isset($_POST['subk'])) {
                             <img class="img-circle img-bordered-md" src="../../dist/img/img-4.png" alt="user image" width="25px">
                           </span>
                         </div>
-                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['colr1']; ?>">
+                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['pr_r1']; ?>">
                         <div class="input-group-append">
                           <span class="input-group-text bg-danger" name="golr"><strong>R</strong></span>
                         </div>
@@ -318,7 +318,7 @@ if (isset($_POST['subk'])) {
                             <img class="img-circle img-bordered-md" src="../../dist/img/img-5.png" alt="user image" width="25px">
                           </span>
                         </div>
-                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['colb1']; ?>">
+                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['pr_b1']; ?>">
                         <div class="input-group-append">
                           <span class="input-group-text bg-lightblue" name="golb"><strong>B</strong></span>
                         </div>
@@ -330,7 +330,7 @@ if (isset($_POST['subk'])) {
                             <img class="img-circle img-bordered-md" src="../../dist/img/img-6.png" alt="user image" width="25px">
                           </span>
                         </div>
-                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['coli1']; ?>">
+                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['pr_i1']; ?>">
                         <div class="input-group-append">
                           <span class="input-group-text bg-olive" name="goli"><strong>I</strong></span>
                         </div>
@@ -342,7 +342,7 @@ if (isset($_POST['subk'])) {
                             <img class="img-circle img-bordered-md" src="../../dist/img/img-7.png" alt="user image" width="25px">
                           </span>
                         </div>
-                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['colp1']; ?>">
+                        <input type="number" class="form-control-lg form-control" value="<?= $pr1['pr_p1']; ?>">
                         <div class="input-group-append">
                           <span class="input-group-text bg-warning" name="golp"><strong>P</strong></span>
                         </div>
@@ -368,63 +368,7 @@ if (isset($_POST['subk'])) {
               <!-- /.card -->
 
               <!-- general form elements -->
-              <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title">Different Styles</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <h4>Input</h4>
-                  <div class="form-group">
-                    <label for="exampleInputBorder">Bottom Border only <code>.form-control-border</code></label>
-                    <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder=".form-control-border">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputBorderWidth2">Bottom Border only 2px Border
-                      <code>.form-control-border.border-width-2</code></label>
-                    <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" placeholder=".form-control-border.border-width-2">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputRounded0">Flat <code>.rounded-0</code></label>
-                    <input type="text" class="form-control rounded-0" id="exampleInputRounded0" placeholder=".rounded-0">
-                  </div>
-                  <h4>Custom Select</h4>
-                  <div class="form-group">
-                    <label for="exampleSelectBorder">Bottom Border only <code>.form-control-border</code></label>
-                    <select class="custom-select form-control-border" id="exampleSelectBorder">
-                      <option>Value 1</option>
-                      <option>Value 2</option>
-                      <option>Value 3</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleSelectBorderWidth2">Bottom Border only
-                      <code>.form-control-border.border-width-2</code></label>
-                    <select class="custom-select form-control-border border-width-2" id="exampleSelectBorderWidth2">
-                      <option>Value 1</option>
-                      <option>Value 2</option>
-                      <option>Value 3</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Flat <code>.rounded-0</code></label>
-                    <select class="custom-select rounded-0" id="exampleSelectRounded0">
-                      <option>Value 1</option>
-                      <option>Value 2</option>
-                      <option>Value 3</option>
-                    </select>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
+
               <!-- /.card -->
 
             </div>
@@ -432,29 +376,6 @@ if (isset($_POST['subk'])) {
             <!-- right column -->
             <div class="col-md-6">
               <!-- Form Element sizes -->
-              <div class="card card-success">
-                <div class="card-header">
-                  <h3 class="card-title">Different Height</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
-                  <br>
-                  <input class="form-control" type="text" placeholder="Default input">
-                  <br>
-                  <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-
               <div class="row">
                 <div class="col-sm-6">
                   <div class="card card-danger">
@@ -514,165 +435,7 @@ if (isset($_POST['subk'])) {
               </div>
 
               <!-- general form elements disabled -->
-              <div class="card card-warning">
-                <div class="card-header">
-                  <h3 class="card-title">General Elements</h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <!-- text input -->
-                        <div class="form-group">
-                          <label>Text</label>
-                          <input type="text" class="form-control" placeholder="Enter ...">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Text Disabled</label>
-                          <input type="text" class="form-control" placeholder="Enter ..." disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <!-- textarea -->
-                        <div class="form-group">
-                          <label>Textarea</label>
-                          <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Textarea Disabled</label>
-                          <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
-                        </div>
-                      </div>
-                    </div>
 
-                    <!-- input states -->
-                    <div class="form-group">
-                      <label class="col-form-label" for="inputSuccess"><i class="fas fa-check"></i> Input with
-                        success</label>
-                      <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with
-                        warning</label>
-                      <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ...">
-                    </div>
-                    <div class="form-group">
-                      <label class="col-form-label" for="inputError"><i class="far fa-times-circle"></i> Input with
-                        error</label>
-                      <input type="text" class="form-control is-invalid" id="inputError" placeholder="Enter ...">
-                    </div>
-
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <!-- checkbox -->
-                        <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Checkbox</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" checked>
-                            <label class="form-check-label">Checkbox checked</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" disabled>
-                            <label class="form-check-label">Checkbox disabled</label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <!-- radio -->
-                        <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radio1">
-                            <label class="form-check-label">Radio</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radio1" checked>
-                            <label class="form-check-label">Radio checked</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" disabled>
-                            <label class="form-check-label">Radio disabled</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <!-- select -->
-                        <div class="form-group">
-                          <label>Select</label>
-                          <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Select Disabled</label>
-                          <select class="form-control" disabled>
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <!-- Select multiple-->
-                        <div class="form-group">
-                          <label>Select Multiple</label>
-                          <select multiple class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Select Multiple Disabled</label>
-                          <select multiple class="form-control" disabled>
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card-body -->
-              </div>
               <!-- /.card -->
               <!-- general form elements disabled -->
             </div>

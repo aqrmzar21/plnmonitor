@@ -35,6 +35,11 @@ function subk($data)
   $coli1 = $data['coli1'];
   $colp1 = $data['colp1'];
 
+  $pr_s1 = $data['pr_s1'];
+  $pr_r1 = $data['pr_r1'];
+  $pr_b1 = $data['pr_b1'];
+  $pr_i1 = $data['pr_i1'];
+  $pr_p1 = $data['pr_p1'];
 
   $querypb1 = "INSERT INTO
               pascabayar1 
@@ -43,7 +48,7 @@ function subk($data)
   mysqli_query($conn, $querypb1) or die(mysqli_error($conn));
   $querypr1 = "INSERT INTO
               prabayar1 
-            VALUES (NULL, '$cols1', '$colr1', '$colb1', '$coli1', '$colp1' );
+            VALUES (NULL, '$pr_s1', '$pr_r1', '$pr_b1', '$pr_i1', '$pr_p1' );
           ";
   mysqli_query($conn, $querypr1) or die(mysqli_error($conn));
 
