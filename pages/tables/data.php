@@ -1,6 +1,6 @@
 <?php
 // pangggil koneksi ke database
-require '../absensi/proses/prosesa.php';
+require '../../db/function.php';
 
 $absensi = query("SELECT * FROM t_dataabsen");
 // $absen = query("SELECT * FROM t_dataabsen");
@@ -88,6 +88,15 @@ $absensi = query("SELECT * FROM t_dataabsen");
                       </tr>
                     </thead>
                     <tbody>
+                      <!-- <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Unit/Perusahaan</th>
+                        <th>Jabatan/Bidang</th>
+                        <th>No Telp</th>
+                        <th>Email</th>
+                        <th>Tanda Tangan</th>
+                      </tr> -->
                       <?php $i = 1;
                       foreach ($absensi as $ab) : ?>
                         <tr>

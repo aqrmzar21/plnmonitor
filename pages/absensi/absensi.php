@@ -1,5 +1,5 @@
 <?php
-require 'proses/prosesa.php';
+require 'proses.php';
 
 $absensi = query("SELECT * FROM t_dataabsen");
 

@@ -7,7 +7,6 @@
 //   exit;
 // }
 
-
 require 'db/function.php';
 // include 'pages/forms/proses/proses-form.php';
 
@@ -130,7 +129,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                   <!-- <span class="h6 text-center"> PHP// date("l", mktime(0, 0, 0, 1, 5, 2002)); </span> -->
                   <span class="h6 text-center mt-2"><?= date("l"); ?></span>
                   <span class="h2 text-center text-olive"><b><?= date("d F Y"); ?></b></span>
-                  <span class="h5 text-center" id="clock"><b></b></span>
+                  <span class="h5 text-center " id="clock"><b></b></span>
 
 
                 </div>
@@ -711,7 +710,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
-  <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+  <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
   <!-- awal include html -->
   <script>
@@ -750,7 +749,6 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
   <script>
     includeHTML();
-
   </script>
   <!-- akhir dunia -->
   <script>

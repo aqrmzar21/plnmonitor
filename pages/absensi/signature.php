@@ -1,6 +1,6 @@
 <?php
 // pangggil koneksi ke database
-require 'proses/prosesa.php';
+require '../../db/function.php';
 
 if (isset($_POST['signed'])) {
     if (signed($_POST) > 0) {

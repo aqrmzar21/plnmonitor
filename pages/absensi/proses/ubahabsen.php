@@ -1,5 +1,5 @@
 <?php
-require 'prosesa.php';
+require '../../../db/function.php';
 
 $id = $_GET['id'];
 
