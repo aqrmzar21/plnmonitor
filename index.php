@@ -6,6 +6,13 @@
 //   header("Location: pages/examples/login.php");
 //   exit;
 // }
+$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+$today = $formatter->format(new DateTime());
+$formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+$now = $formatterID->format(new DateTime());
+
+// setlocale(LC_TIME, 'id_ID');
+// $now = strftime("%A", strtotime("now"));
 
 require 'db/function.php';
 // include 'pages/forms/proses/proses-form.php';
@@ -46,15 +53,14 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li>
-          <a href="index3.html" class="nav-link h5 text-primary" id="tx-light"><strong>SI</strong>Monitoring</a>
+          <h3>
+            <!-- <a href="index3.html" class="nav-link text-primary brand-text" id="tx-light"><strong>SI</strong>Monitoring</a> -->
+            <img class="mx-auto nav-item" src="dist/img/imgPLN.png" alt="" width="20%">
+
+          </h3>
         </li>
         <!-- <li class="nav-item d-none d-sm-inline-block"><a class="nav-link">Home</a></li> -->
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/examples/login.php" class="nav-link">Login</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/absensi/signature.php" class="nav-link">Absensi</a>
-        </li>
+
       </ul>
 
       <!-- Right navbar links -->
@@ -88,8 +94,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <!-- <span class="dropdown-header text-center">My Profile</span> -->
             <div class="dropdown-divider"></div>
-            <a href="pages/datauser/infouser.php" class="dropdown-item">
-              <i class="fas fa-user-circle mr-2"></i> My Profile
+            <!-- <a href="pages/datauser/infouser.php" class="dropdown-item"> -->
+            <a href="pages/absensi/signature.php" class="dropdown-item">
+              <i class="fas fa-user-circle mr-2"></i> Absensi
               <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
             </a>
             <div class="dropdown-divider"></div>
@@ -98,8 +105,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
               <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
             </a>
             <div class="dropdown-divider"></div>
-            <a href="pages/examples/logout.php" class="dropdown-item">
-              <i class="fa fa-power-off mr-2"></i> Log Out
+            <!-- <a href="pages/examples/logout.php" class="dropdown-item"> -->
+            <a href="pages/examples/login.php" class="dropdown-item">
+              <i class="fa fa-power-off mr-2"></i> Log In
               <!-- <span class="float-right text-muted text-sm">2 days</span> -->
             </a>
 
@@ -115,6 +123,15 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper bg-wt">
+      <?php
+      // include 'pages/layout/top-nav.php'
+      ?>
+
+      <!-- INNER HTML Navbar  -->
+
+      <?php
+      // include 'pages/layout/sidebar.php'
+      ?>
       <!-- Main content ============================================================================================ -->
       <div class="content">
 
@@ -122,14 +139,14 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
           <div class="container">
             <div class="row mt-4">
-              <div class="col-6 mx-auto">
-                <img src="dist/img/imgPLN.png" alt="" width="200" class="bgxl">
+              <div class="col-4 mx-auto">
                 <div class="card mx-auto">
+                  <!-- <img class="mx-auto" src="dist/img/imgPLN.png" alt="" width="200"> -->
                   <!-- <span class="h2 text-center">12 : 12 : 12</span> -->
                   <!-- <span class="h6 text-center"> PHP// date("l", mktime(0, 0, 0, 1, 5, 2002)); </span> -->
-                  <span class="h6 text-center mt-2"><?= date("l"); ?></span>
-                  <span class="h2 text-center text-olive"><b><?= date("d F Y"); ?></b></span>
-                  <span class="h5 text-center " id="clock"><b></b></span>
+                  <!-- <span class="h6 text-center mt-2"><?= date("l"); ?></span> -->
+                  <!-- <span class="h2 text-center text-olive"><b><?= date('M d, Y') ?></b></span> -->
+                  <!-- <span class="h5 text-center " id="clock"></span> -->
                 </div>
               </div>
             </div>
@@ -229,17 +246,17 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
               <!-- ./col -->
               <div class="col-lg-2 col-6">
                 <!-- small card -->
-                <div class="small-box bg-secondary">
+                <div class="small-box bg-white">
                   <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                    <p>Bounce Rate</p>
+                    <!-- <img class="text-center mx-auto" src="dist/img/imgPLN.png" alt="" width="100%"> -->
+                    <p class="text-olive text-center" style="font-size: 12px"><b><?= $now; ?></b></p>
+                    <h3 id="clock" class="text-center"><sup style="font-size: 20px">%</sup></h3>
                   </div>
                   <div class="icon">
-                    <i class="far fa-star"></i>
+                    <!-- <i class="far fa-star"></i> -->
                   </div>
                   <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
+                    <!-- More info <i class="fas fa-arrow-circle-right"></i> -->
                   </a>
                 </div>
               </div>
@@ -252,7 +269,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
         </div><!-- /.container-fluid -->
 
-
+        <div class="card mx-auto col-3">
+          <span class="h2 text-center text-olive"><b><?= $today; ?></b></span>
+        </div>
         <div class="container">
           <div class="row">
 

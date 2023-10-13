@@ -35,7 +35,7 @@ $koneksi = koneksi();
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="signature.php" class="nav-link">Back</a>
+              <!-- <a href="signature.php" class="nav-link">Back</a> -->
             </li>
 
           </ul>
@@ -813,6 +813,7 @@ $koneksi = koneksi();
         </div>
       </div>
     </footer>
+
   </div>
   <!-- ./wrapper -->
 

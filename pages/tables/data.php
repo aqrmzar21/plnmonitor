@@ -32,25 +32,44 @@ $absensi = query("SELECT * FROM t_dataabsen");
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-collapse layout-top-nav">
   <div class="wrapper">
-    <?php
-    include '../layout/top-nav.php'
-    ?>
 
-    <!-- INNER HTML Navbar  -->
+    <!-- Main Header Container -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+      <div class="container">
+        <h3 class="brand-text"><b>PLN</b>Monitor</h3>
 
-    <?php
-    include '../layout/sidebar.php'
-    ?>
-    <!-- Main Sidebar Container -->
+        <!-- SEARCH FORM -->
+
+
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Messages Dropdown Menu -->
+          <form class="form-inline ml-0 ml-md-3">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+        </ul>
+      </div>
+    </nav>
     <!-- INNER HTML Sidebar -->
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1>DataTables</h1>
@@ -66,8 +85,8 @@ $absensi = query("SELECT * FROM t_dataabsen");
       </section>
 
       <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
+      <section class="content-footer">
+        <div class="container">
           <div class="row">
             <div class="col-12">
 
@@ -132,10 +151,16 @@ $absensi = query("SELECT * FROM t_dataabsen");
     </div>
     <!-- /.content-wrapper -->
 
-    <?php
-    include '../layout/footer.php';
-    ?>
-
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- Default to the left -->
+      <div class="container">
+        <strong>Copyright &copy; 2023 PT. PLN UP3 KOTA GORONTALO.</strong> All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b> 4.0
+        </div>
+      </div>
+    </footer>
 
   </div>
   <!-- ./wrapper -->

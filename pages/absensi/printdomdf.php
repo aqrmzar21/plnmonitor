@@ -4,7 +4,8 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 require 'proses.php';
-$koneksi = koneksi();
+// $koneksi = koneksi();
+$koneksi = (mysqli_connect('localhost', 'root', '', 'plnmonitoring'));
 
 // Misalnya, Anda memiliki array $data yang berisi data yang ingin Anda cetak
 $data = (mysqli_query($koneksi, "SELECT * FROM t_dataabsen"));
@@ -83,7 +84,7 @@ foreach ($data as $ab) {
 $html .= '</table>';
 $html .= '<br><br>';
 
-$html .= '<table border="1" cellspacing="0" cellpadding="13" style="margin: 0 auto; width: 100%">';
+$html .= '<table border="1" cellspacing="0" cellpadding="6" style="margin: 0 auto; width: 100%">';
 $html .= '<tr  style="font-size: 11px;">';
 $html .= '<td style="text-align: center;"> Sistem Manajemen Keselamatan dan Kesehatan Kerja</>';
 // Mengambil nomor halaman saat ini
