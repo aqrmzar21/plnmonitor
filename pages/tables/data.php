@@ -5,6 +5,11 @@ require '../../db/function.php';
 $absensi = query("SELECT * FROM t_dataabsen");
 // $absen = query("SELECT * FROM t_dataabsen");
 
+// ============================================================================
+// INI ADALAH KODE UNTUK MELIHAT DATA ABSENN TANPA HARUS LOGIN terlebih dahulu 
+// =============================================================================
+
+
 ?>
 
 <!DOCTYPE html>

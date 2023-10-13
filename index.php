@@ -130,8 +130,6 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                   <span class="h6 text-center mt-2"><?= date("l"); ?></span>
                   <span class="h2 text-center text-olive"><b><?= date("d F Y"); ?></b></span>
                   <span class="h5 text-center " id="clock"><b></b></span>
-
-
                 </div>
               </div>
             </div>

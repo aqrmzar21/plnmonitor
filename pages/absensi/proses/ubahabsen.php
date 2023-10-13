@@ -1,5 +1,6 @@
 <?php
-require '../../../db/function.php';
+// require '../../../db/function.php';
+require '../proses.php';
 
 $id = $_GET['id'];
 
@@ -92,16 +93,13 @@ if (isset($_POST['ubah'])) {
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="sig">Tanda Tangan</label>
           <div id="sig" class="col-sm-10">
-            <!-- <textarea id="signature64" name="signed" class="form-control"></textarea> -->
-            <!-- <input type="image" class="form-control" name="gmbr" value=" "> -->
-
             <img src="../upload/<?= $ubah['signed']; ?>" alt="mysignature">
           </div>
         </div>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary" name="edit">Save</button>
+        <button type="submit" class="btn btn-primary" name="ubah">Save</button>
         <button type="submit" class="btn btn-default float-right"><a href="../absen.php">Back</a></button>
       </div>
       <!-- /.card-footer -->

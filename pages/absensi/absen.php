@@ -20,6 +20,7 @@ if (isset($_POST['cari'])) {
   $absen = cari($_POST['keyword']);
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -233,7 +234,7 @@ if (isset($_POST['cari'])) {
                         </div>
                       </div>
                       <div class="input-group mb-3">
-                        <input type="date" class="form-control" name="tgl" placeholder="Hari, Tanggal" required>
+                        <input type="date" class="form-control" id="tgl" name="tgl" placeholder="Hari, Tanggal" required>
                         <div class="input-group-append">
                           <div class="input-group-text">
                           </div>
@@ -258,11 +259,11 @@ if (isset($_POST['cari'])) {
 
                       <div class="input-group mb-4">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                          <!-- <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar"> -->
+                          <!-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> -->
                         </div>
                         <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
+                          <!-- <span class="input-group-text">Upload</span> -->
                         </div>
                       </div>
 
@@ -276,6 +277,13 @@ if (isset($_POST['cari'])) {
                   <!-- /.register-body -->
                 </div>
               </div>
+
+              <form method="POST" action="proses.php">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" name="tanggal">
+                <input type="submit" value="Kirim">
+              </form>
+
 
 
               <div class="col-12">
@@ -400,6 +408,95 @@ if (isset($_POST['cari'])) {
         $("#absensiBerhasil").html(rows)
       });
     }, 1000);
+
+    // JavaScript untuk menampilkan pesan dari PHP dalam alert
+    <?php
+    if (isset($_POST['tanggal'])) {
+      echo "alert('Anda memilih tanggal: " . $tanggal_indonesia . "');";
+    }
+
+
+    // ========================================== filter pencarian berdasarkan tanggal ===========
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $tanggal = $_POST["tanggal"];
+
+      // // Set locale ke bahasa Indonesia
+      // setlocale(LC_TIME, 'id_ID');
+
+      // // Set locale ke bahasa Indonesia
+      // setlocale(LC_TIME, 'id_ID');
+
+      // // Format tanggal dalam bahasa Indonesia
+      // $timestamp = strtotime($tanggal); // Ubah string tanggal ke timestamp
+      // $tanggal_indonesia = ucfirst(strftime('%A, %d %B %Y', $timestamp)); // ucfirst untuk mengkapitalkan huruf pertama hari
+
+
+      // echo "<script>alert('Anda memilih tanggal: $tanggal_indonesia');</script>";
+      // }
+
+      $tanggal_indonesia = tampilkanTanggalIndonesia($tanggal);
+
+      // Mengirim hasil ke JavaScript
+      echo "
+  <script>
+  alert('Anda memilih tanggal: $tanggal_indonesia');
+  window.location.href = 'absen.php';
+
+  </script>
+  ";
+    }
+
+    // Fungsi untuk menampilkan tanggal dalam bahasa Indonesia
+    function tampilkanTanggalIndonesia($tanggal)
+    {
+      $tanggal_array = explode('-', $tanggal);
+      $tahun = $tanggal_array[0];
+      $bulan = tampilkanNamaBulanIndonesia($tanggal_array[1]);
+      $hari = tampilkanHariIndonesia(date('N', strtotime($tanggal)));
+
+      return "$hari, {$tanggal_array[2]} $bulan $tahun";
+    }
+
+    // Fungsi untuk mengganti nama bulan dalam bahasa Indonesia
+    function tampilkanNamaBulanIndonesia($bulan)
+    {
+      $nama_bulan = [
+        '01' => 'Januari',
+        '02' => 'Februari',
+        '03' => 'Maret',
+        '04' => 'April',
+        '05' => 'Mei',
+        '06' => 'Juni',
+        '07' => 'Juli',
+        '08' => 'Agustus',
+        '09' => 'September',
+        '10' => 'Oktober',
+        '11' => 'November',
+        '12' => 'Desember',
+      ];
+
+      return $nama_bulan[$bulan];
+    }
+
+    // Fungsi untuk mengganti nama hari dalam bahasa Indonesia
+    function tampilkanHariIndonesia($hari)
+    {
+      $nama_hari = [
+        '1' => 'Senin',
+        '2' => 'Selasa',
+        '3' => 'Rabu',
+        '4' => 'Kamis',
+        '5' => 'Jumat',
+        '6' => 'Sabtu',
+        '7' => 'Minggu',
+      ];
+
+      return $nama_hari[$hari];
+    }
+
+    // ========================================== filter pencarian berdasarkan tanggal ===========
+
+    ?>
   </script>
 </body>
 

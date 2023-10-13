@@ -1,6 +1,7 @@
 <?php
 // pangggil koneksi ke database
-require '../../db/function.php';
+// require '../../db/function.php';
+require 'proses.php';
 
 if (isset($_POST['signed'])) {
     if (signed($_POST) > 0) {
@@ -119,7 +120,7 @@ if (isset($_POST['signed'])) {
                         <a href="../tables/data.php" class="nav-link">Data Detail</a>
                     </li>
                     <li class="nav-item">
-                        <a href="absen.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+                        <a href="absensi.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
                     </li>
                 </ul>
 
@@ -141,14 +142,14 @@ if (isset($_POST['signed'])) {
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb" id="currentDateTime"></li>
+                                <!-- <li class="breadcrumb" id="currentDateTime"></li> -->
                                 <ol class="breadcrumb float-sm-right">
                                     <!--  <li class="breadcrumb-item"><a href="#">Home</a></li> -->
                                     <!-- <li class="breadcrumb-item"><a href="#">Tanggal : </a></li> -->
-                                    <li class="breadcrumb"> Tanggal </li>
+                                    <!-- <li class="breadcrumb"> Tanggal : </li> -->
+                                    <!-- <li class="breadcrumb" id="currentDateTime">Waktu : </li> -->
                                     <li class="breadcrumb active" id="currentDate"> </li>
                                 </ol>
-                                <!-- <p class="breadcrumb" id="currentDateTime">Waktu : </p> -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -161,7 +162,7 @@ if (isset($_POST['signed'])) {
                     <div class="row">
 
                         <!-- Colom Tanda Tangan form di Atas -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
 
                             <!-- CARD FORM INPUT  -->
                             <div class="card card-primary">
@@ -174,6 +175,7 @@ if (isset($_POST['signed'])) {
                                 <!-- form start -->
                                 <form class="form-horizontal" id="form" enctype="multipart/form-data">
                                     <div class="card-body">
+                                        
                                         <!-- <div class="form-group">
                                                 <label for="tgl">Tanggal<input type="date" name="tanggal" class="form-control mt-2" required></label>
                                                 <label for="time">Waktu<input type="time" name="waktu" class="form-control mt-2" required></label>
@@ -183,7 +185,7 @@ if (isset($_POST['signed'])) {
                                             <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">Email address</label>
+                                            <label for="email">Email</label>
                                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
                                         </div>
                                         <div class="form-group">
@@ -197,17 +199,9 @@ if (isset($_POST['signed'])) {
                                         <div class="form-group">
                                             <label for="kabid">Jabatan</label>
                                             <!-- <input type="text" class="form-control" id="leader" name="bidang" required> -->
-                                            <select name="bidang" id="kabid" class="form-control custom-select" placeholder="Enter Jabatan">
-                                                <option value="" disabled selected>Jabatan/Bidang</option>
-                                                <option value="REN">Perencanaan</option>
-                                                <option value="Pengadaan">Pengadaan</option>
-                                                <option value="Pembangkitan">Pembangkitan</option>
-                                                <option value="Jaringan">Jaringan</option>
-                                                <option value="SDM">Pemberdayaan</option>
-                                                <option value="PAD">Keuangan</option>
-                                                <option value="UP2K">UP2K</option>
-                                                <option value="TEL">Transaksi Energi Listrik</option>
-                                            </select>
+                                            <?php
+                                            include 'css/opsi.php';
+                                            ?>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-10">
@@ -236,7 +230,7 @@ if (isset($_POST['signed'])) {
                         </div>
                         <!-- /.col-lg-6 -->
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
 
                             <!-- card-outline -->
                             <div class="card card-primary card-outline">
@@ -344,13 +338,13 @@ if (isset($_POST['signed'])) {
             if (day.length < 2)
                 day = '0' + day;
 
-            return [year, month, day].join('-');
+            return [year, month, day].join('/');
         }
 
         function updateDate() {
             const currentDate = new Date();
             const formattedDate = formatDate(currentDate);
-            document.getElementById('currentDate').textContent = ' : ' + formattedDate;
+            document.getElementById('currentDate').textContent = '  ' + formattedDate;
         }
 
         // Memanggil fungsi updateDate setiap detik
@@ -401,7 +395,9 @@ if (isset($_POST['signed'])) {
             data.append('signed', $("#signature64").val())
 
             $.ajax({
-                url: 'http://localhost/plnmonitor/post_absen.php',
+                // INI DISESUAIKAN LAGI DATA YANG DISIMPAN Setalah di Hosting
+                // url: 'http://localhost/plnmonitor/post_absen.php',
+                url: 'http://localhost/plnmonitor/pages/absensi/proses/post_absen.php',
                 data: data,
                 cache: false,
                 contentType: false,
@@ -428,7 +424,9 @@ if (isset($_POST['signed'])) {
         })
 
         setInterval(() => {
-            $.get("http://localhost/plnmonitor/get_absen.php", function(data, status) {
+            // INI KETIKA DI HOSTING Harus di ubah sesuai dengann hal yang lainnya
+            // $.get("http://localhost/plnmonitor/get_absen.php", function(data, status) {
+            $.get("http://localhost/plnmonitor/pages/absensi/proses/get_absen.php", function(data, status) {
                 let rows = ''
                 for (let i = 0; i < data.length; i++) {
                     const row = `
@@ -443,7 +441,6 @@ if (isset($_POST['signed'])) {
             });
         }, 1000)
     </script>
-
 
 </body>
 

@@ -7,5 +7,3 @@
   $absen = query("SELECT * FROM t_dataabsen");
 
   echo json_encode($absen);
-
-?>

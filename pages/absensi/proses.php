@@ -131,8 +131,8 @@ function ubah($data)
   $nm = htmlspecialchars($data['nm_absen']);
   $email = htmlspecialchars($data['email']);
   $hp = htmlspecialchars($data['nope']);
-  $agenda = htmlspecialchars($data['unit']);
-  $kprluan = htmlspecialchars($data['bidang']);
+  $unit = htmlspecialchars($data['unit']);
+  $bidang = htmlspecialchars($data['bidang']);
   $tanggal = htmlspecialchars($data['tanggal']);
   $waktu = htmlspecialchars($data['waktu']);
   // $gambar = ($data['signed']);
@@ -143,8 +143,8 @@ function ubah($data)
             nm_absen = '$nm', 
             email = '$email', 
             nope = '$hp', 
-            unit = '$agenda', 
-            bidang = '$kprluan', 
+            unit = '$unit', 
+            bidang = '$bidang', 
             tanggal = '$tanggal', 
             waktu ='$waktu'
             WHERE id_absen = $id";
@@ -155,6 +155,3 @@ function ubah($data)
 }
 
 
-// ========================================== filter pencarian berdasarkan tanggal ===========
-
-// ========================================== filter pencarian berdasarkan tanggal ===========
