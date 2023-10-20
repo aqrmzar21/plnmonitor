@@ -71,8 +71,6 @@ $user = query("SELECT * FROM t_datauser")[0];
             <li class="user-header">
               <img src="dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
 
-
-
               <p><?= $user['nama_pengguna']; ?>
                 <small><?= $user['level']; ?></small>
               </p>
@@ -95,6 +93,9 @@ $user = query("SELECT * FROM t_datauser")[0];
     <!-- /.navbar -->
 
     <div w3-include-html="pages/layout/sidebar.html"></div>
+    <?php
+    // include 'pages/layout/sidebar.php'
+    ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

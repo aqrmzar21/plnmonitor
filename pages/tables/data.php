@@ -44,8 +44,8 @@ $absensi = query("SELECT * FROM t_dataabsen");
 
 
         <!-- Right navbar links -->
+        <!-- Messages Dropdown Menu 
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-          <!-- Messages Dropdown Menu -->
           <form class="form-inline ml-0 ml-md-3">
             <div class="input-group input-group-sm">
               <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -59,8 +59,8 @@ $absensi = query("SELECT * FROM t_dataabsen");
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
-          <!-- Notifications Dropdown Menu -->
         </ul>
+         Notifications Dropdown Menu -->
       </div>
     </nav>
     <!-- INNER HTML Sidebar -->
@@ -72,7 +72,7 @@ $absensi = query("SELECT * FROM t_dataabsen");
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>DataTables</h1>
+              <h1>Data Absensi</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">

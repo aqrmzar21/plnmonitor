@@ -1,4 +1,9 @@
 <?php
+// if (!isset($_SESSION['login'])) {
+//   header("Location: ../examples/login.php");
+//   exit;
+// }
+
 require 'proses.php';
 $koneksi = koneksi();
 // $absensi = query("SELECT * FROM t_dataabsen");
@@ -73,7 +78,7 @@ $koneksi = koneksi();
       <!-- Brand Logo -->
 
       <a href="../../index3.html" class="brand-link">
-        <h3 class="brand-text"><b>PLN</b>Monitor</h3>
+        <span class="brand-text"><b>PLN</b>Monitor</span>
       </a>
 
       <!-- Sidebar -->
@@ -631,9 +636,9 @@ $koneksi = koneksi();
             </li>
             <li class="nav-header">LABELS</li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="../examples/logout.php" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
-                <p class="text">Important</p>
+                <p class="text">Log Out</p>
               </a>
             </li>
             <li class="nav-item">
@@ -731,7 +736,7 @@ $koneksi = koneksi();
                         <th>Unit</th>
                         <th>Jabatan/Bidang</th>
                         <th>Tanggal Rapat</th>
-                        <!-- <th>Waktu Rapat</th> -->
+                        <th>Waktu Rapat</th>
                         <th>Signature</th>
                         <th width="80px">Aksi</th>
                       </tr>
@@ -762,6 +767,7 @@ $koneksi = koneksi();
                             <td><?= $ab['unit']; ?></td>
                             <td><?= $ab['bidang']; ?></td>
                             <td><?= $ab['tanggal']; ?></td>
+                            <td><?= $ab['waktu']; ?></td>
                             <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
                             <td>
                               <div class="text-center">

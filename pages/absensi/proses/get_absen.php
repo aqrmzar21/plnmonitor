@@ -1,10 +1,13 @@
 <?php
-  header("Content-Type: application/json");
+header("Content-Type: application/json");
 
 
-  // require 'db/function.php';
-  require '../proses.php';
+// require 'db/function.php';
+require '../proses.php';
 
-  $absen = query("SELECT * FROM t_dataabsen");
+// $currentTime = date("Y-m-d");
 
-  echo json_encode($absen);
+$absen = query("SELECT * FROM t_dataabsen");
+// $absen = query("SELECT * FROM t_dataabsen WHERE waktu >= '$currentTime'");
+
+echo json_encode($absen);

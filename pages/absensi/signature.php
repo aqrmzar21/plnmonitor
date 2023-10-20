@@ -175,7 +175,7 @@ if (isset($_POST['signed'])) {
                                 <!-- form start -->
                                 <form class="form-horizontal" id="form" enctype="multipart/form-data">
                                     <div class="card-body">
-                                        
+
                                         <!-- <div class="form-group">
                                                 <label for="tgl">Tanggal<input type="date" name="tanggal" class="form-control mt-2" required></label>
                                                 <label for="time">Waktu<input type="time" name="waktu" class="form-control mt-2" required></label>
@@ -241,9 +241,9 @@ if (isset($_POST['signed'])) {
                                     <table class="table table-sm">
 
                                         <tr>
-                                            <th style="width: 50px">#</th>
+                                            <th style="width: 50px">Time</th>
                                             <th>Nama</th>
-                                            <th style="width: 20px">Status</th>
+                                            <th style="width: 20px">Unit</th>
                                         </tr>
 
                                         <tbody id="absensiBerhasil">
@@ -440,6 +440,27 @@ if (isset($_POST['signed'])) {
                 $("#absensiBerhasil").html(rows)
             });
         }, 1000)
+
+        // setInterval(() => {
+        //     $.get("http://localhost/plnmonitor/pages/absensi/proses/get_absen.php", function(data, status) {
+        //         let rows = '';
+        //         const currentTime = new Date(); // Waktu saat ini
+        //         for (let i = 0; i < data.length; i++) {
+        //             const waktuAbsen = new Date(data[i].waktu); // Waktu absen dari data
+        //             // Bandingkan apakah waktu absen adalah di masa lalu
+        //             if (waktuAbsen >= currentTime) {
+        //                 const row = `
+        //             <tr>
+        //                 <td><span class="badge bg-info">${data[i].waktu}</span></td>
+        //                 <td>${data[i].nm_absen}</td>
+        //                 <td><span class="badge bg-success">${data[i].unit}</span></td>
+        //             </tr>`;
+        //                 rows += row;
+        //             }
+        //         }
+        //         $("#absensiBerhasil").html(rows);
+        //     });
+        // }, 1000);
     </script>
 
 </body>

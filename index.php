@@ -6,13 +6,18 @@
 //   header("Location: pages/examples/login.php");
 //   exit;
 // }
-$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
-$today = $formatter->format(new DateTime());
-$formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+$formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
+$tgl = $formatter->format(new DateTime());
+$formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE);
 $now = $formatterID->format(new DateTime());
+$formatID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+$live = $formatID->format(new DateTime());
 
-// setlocale(LC_TIME, 'id_ID');
-// $now = strftime("%A", strtotime("now"));
+$month = explode(" ", $now)[1];
+$day = explode(" ", $live)[0];
+$day = str_replace(",", "", $day);
+$year = explode(" ", $live)[3];
+// print_r($month);
 
 require 'db/function.php';
 // include 'pages/forms/proses/proses-form.php';
@@ -138,7 +143,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
         <div class="container-fluid">
 
           <div class="container">
-            <div class="row mt-4">
+            <div class="row mt-2">
               <div class="col-4 mx-auto">
                 <div class="card mx-auto">
                   <!-- <img class="mx-auto" src="dist/img/imgPLN.png" alt="" width="200"> -->
@@ -249,8 +254,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                 <div class="small-box bg-white">
                   <div class="inner">
                     <!-- <img class="text-center mx-auto" src="dist/img/imgPLN.png" alt="" width="100%"> -->
-                    <p class="text-olive text-center" style="font-size: 12px"><b><?= $now; ?></b></p>
-                    <h3 id="clock" class="text-center"><sup style="font-size: 20px">%</sup></h3>
+                    <h6 class="text-black text-center" style="font-size: 22px"><b><?= $day; ?></b></h6>
+                    <h3 id="clock" class="text-center text-blue"><sup style="font-size: 20px">%</sup></h3>
+                    <h6 class="text-black text-center" style="font-size: 14px"><b><?= $tgl; ?></b></h6>
                   </div>
                   <div class="icon">
                     <!-- <i class="far fa-star"></i> -->
@@ -269,29 +275,113 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
         </div><!-- /.container-fluid -->
 
-        <div class="card mx-auto col-3">
-          <span class="h2 text-center text-olive"><b><?= $today; ?></b></span>
+        <!-- <div class="card mx-auto col-4">
+          <span class="h3 text-center text-olive"><b></b></span>
+        </div> -->
+
+
+        <!-- <div class="card"> -->
+        <div class="card-body">
+          <ul class="pagination pagination-month justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">«</a></li>
+            <li class="page-item  <?= $month == 'Jan' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Jan</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Feb' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Feb</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Mar' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Mar</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Apr' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Apr</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Mey' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Mey</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item" <?= $month == 'Jun' ? 'active' : '' ?>>
+              <a class="page-link" href="#">
+                <p class="page-month">Jun</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Jul' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Jul</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Aug' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Aug</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item <?= $month == 'Sep' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Sep</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item <?= $month == 'Okt' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Okt</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Nov' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Nov</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item  <?= $month == 'Des' ? 'active' : '' ?>">
+              <a class="page-link" href="#">
+                <p class="page-month">Des</p>
+                <p class="page-year"><?= $year; ?></p>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">»</a></li>
+          </ul>
+          <!-- </div> -->
+
         </div>
+
         <div class="container">
-          <div class="row">
+          <div class="row mb-4">
 
             <div class="col-md-4">
               <!-- Widget: user widget style 1 -->
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-primary">
-                  <h3 class="widget-user-username mt-3 text-center">Penjualan Listrik</h3>
-                  <h5 class="widget-user-desc mt-3 text-center">Data (KWh)</h5>
+                  <h3 class="brand-text mt-3 text-center"><strong>PENJUALAN LISTRIK</strong></h3>
+                  <h5 class="widget-user-desc text-center">Data (KWh)</h5>
                 </div>
                 <div class="widget-user-image">
                   <!-- <img class="img-circle elevation-1" src="dist/img/user3-128x128.jpg" alt="User Avatar"> -->
                 </div>
-                <div class="card-footer">
+                <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-6 border-right">
+                    <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">238.437 PLG</h5>
+                        <h5 class="description-header">238.437 KWH</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -300,7 +390,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                     <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">97.909 PLG</h5>
+                        <h5 class="description-header">97.909 KWH</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -323,9 +413,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-danger">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">R</span>
+                          <span class="card-box-text">R</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">225,612</span>
+                          <span class="card-box-number float-right">225,612</span>
                         </div>
                         <!-- /.info-box-content -->
                       </div>
@@ -410,9 +500,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                   <!-- /.row -->
 
                 </div>
-                <div class="card-body">
-                  <div class="card mx-auto bg-dark text-center"> Total</div>
-                </div>
+
               </div>
               <!-- /.widget-user -->
             </div>
@@ -422,20 +510,20 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
               <!-- Widget: user widget style 1 -->
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-info">
-                  <h3 class="widget-user-username mt-3">Daya Terpasang</h3>
+                <div class="widget-user-header bg-secondary">
+                  <h3 class="brand-text mt-3"><b>DAYA TERPASANG</b></h3>
                   <h5 class="widget-user-desc mt-2">Data (VA)</h5>
                 </div>
                 <div class="widget-user-image">
                   <!-- <img class="img-circle elevation-2" src="dist/img/user8-128x128.jpg" alt="User Avatar"> -->
                   <!-- <i class="fa fa-bolt" width="100%"></i> -->
                 </div>
-                <div class="card-footer">
+                <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-6 border-right">
+                    <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">3,200</h5>
+                        <h5 class="description-header">3,200 VA</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -445,7 +533,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                     <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35</h5>
+                        <h5 class="description-header">35 VA</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -555,9 +643,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                   <!-- /.row -->
 
                 </div>
-                <div class="card-body">
-                  <div class="card mx-auto bg-dark text-center"> Total</div>
-                </div>
+
 
               </div>
               <!-- /.widget-user -->
@@ -569,15 +655,15 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
               <div class="card card-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header text-white bg-primary">
-                  <h3 class="widget-user-username mt-3">Jumlah Pelanggan</h3>
-                  <h5 class="widget-user-desc mt-3">Data (Plg)</h5>
+                  <h3 class="brand-text mt-2"><strong>JUMLAH PELANGGAN</strong></h3>
+                  <h5 class="widget-user-desc mt-2">Data (Plg)</h5>
                 </div>
-                <div class="card-footer">
+                <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-6 border-right">
+                    <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">3,200</h5>
+                        <h5 class="description-header">3,200 PLG</h5>
                         <span class="description-text">PRA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -587,7 +673,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                     <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35</h5>
+                        <h5 class="description-header">35 PLG</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
@@ -696,9 +782,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                   </div>
                   <!-- /.row -->
                 </div>
-                <div class="card-body">
-                  <div class="card mx-auto bg-dark text-center"> Total</div>
-                </div>
+
               </div>
               <!-- /.widget-user -->
             </div>
