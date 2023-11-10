@@ -5,7 +5,7 @@ use Dompdf\Options;
 
 require 'proses.php';
 // $koneksi = koneksi();
-$koneksi = (mysqli_connect('localhost', 'root', '', 'plnmonitoring'));
+$koneksi = (mysqli_connect('localhost', 'root', '', 'absensiplen'));
 
 // Misalnya, Anda memiliki array $data yang berisi data yang ingin Anda cetak
 $data = (mysqli_query($koneksi, "SELECT * FROM t_dataabsen"));
@@ -43,7 +43,7 @@ $html .= '<td colspan="3">Hari/Tanggal : ' . $today;
 $html .= '</td>';
 $html .= '<td colspan="4">Lokasi : </td></tr>';
 $html .= '<tr><td style="font-size: 10px;" colspan="7">Kegiatan :</td></tr>';
-$html .= '<tr><td colspan="7"></td></tr>';
+$html .= '<tr><td colspan="7">    </td></tr>';
 $html .= '</table>';
 $html .= '<br><br>';
 

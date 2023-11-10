@@ -1,7 +1,7 @@
 <?php
 function koneksi()
 {
-  return mysqli_connect('localhost', 'root', '', 'plnmonitoring');
+  return mysqli_connect('localhost', 'root', '', 'absensiplen');
 }
 
 function query($query)
@@ -153,5 +153,3 @@ function ubah($data)
   // info ke sql ada perubahan
   return mysqli_affected_rows($conn);
 }
-
-

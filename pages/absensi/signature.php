@@ -182,7 +182,7 @@ if (isset($_POST['signed'])) {
                                             </div> -->
                                         <div class="form-group">
                                             <label for="name">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" required>
+                                            <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" autofocus required>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
@@ -190,11 +190,11 @@ if (isset($_POST['signed'])) {
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">No HP</label>
-                                            <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter +62" required>
+                                            <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter 08xxxxxx" onkeypress="isInputNumber(event)" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="agenda">Unit</label>
-                                            <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" required>
+                                            <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" autocapitalize="word" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="kabid">Jabatan</label>
@@ -281,20 +281,6 @@ if (isset($_POST['signed'])) {
     </div>
     <!-- ./wrapper -->
 
-
-    <!-- <form method="POST" action="upload.php">
-            <h5>Tanda Tangan Touch Screen</h5>
-            <label class="" for="">Tanda Tangan:</label>
-            <br />
-            <div id="sig"></div>
-            <textarea id="signature64" name="signed" style="display: none"></textarea>
-            <br />
-            <button id="clear" class="btn btn-danger">Hapus Tanda Tangan</button>
-            <button class="btn btn-success">Submit</button>
-        </form> -->
-    <!-- /.container -->
-
-
     <script type="text/javascript">
         var sig = $('#sig').signature({
             syncField: '#signature64',
@@ -305,6 +291,17 @@ if (isset($_POST['signed'])) {
             sig.signature('clear');
             $("#signature64").val('');
         });
+
+        function isInputNumber(evt) {
+
+            var ch = String.fromCharCode(evt.which);
+
+            // Mengecek apakah karakter adalah digit (0-9) atau titik (".")
+            if (!/^\d*\.?\d*$/.test(ch)) {
+                evt.preventDefault();
+            }
+
+        }
     </script>
 
     <!-- REQUIRED SCRIPTS -->

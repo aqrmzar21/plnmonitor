@@ -314,7 +314,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                 <p class="page-year"><?= $year; ?></p>
               </a>
             </li>
-            <li class="page-item" <?= $month == 'Jun' ? 'active' : '' ?>>
+            <li class="page-item <?= $month == 'Jun' ? 'active' : '' ?>">
               <a class="page-link" href="#">
                 <p class="page-month">Jun</p>
                 <p class="page-year"><?= $year; ?></p>
@@ -385,22 +385,6 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                         <span class="description-text">PRA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">97.909 KWH</h5>
-                        <span class="description-text">PASCA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                    </div>
-
-                    <!-- /.col -->
-                  </div>
-
-                  <div class="row text-sm text-white">
-                    <div class="col-lg-6">
                       <!-- Info Boxes Style 2 -->
                       <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
@@ -448,8 +432,14 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       </div>
                       <!-- /.info-box -->
                     </div>
-
-                    <div class="col-lg-6">
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
+                        <h5 class="description-header">97.909 KWH</h5>
+                        <span class="description-text">PASCA BAYAR</span>
+                      </div>
+                      <!-- /.description-block -->
                       <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text">S</span>
@@ -461,7 +451,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-danger">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">R</span>
+                          <span class="info-box-text"><b>R</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
                           <span class="info-box-number float-right">225,612</span>
                         </div>
@@ -496,8 +486,9 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       </div>
                       <!-- /.info-box -->
                     </div>
+
+                    <!-- /.col -->
                   </div>
-                  <!-- /.row -->
 
                 </div>
 
@@ -527,73 +518,8 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                         <span class="description-text">PRA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35 VA</h5>
-                        <span class="description-text">PASCA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="row text-sm text-white">
-                    <div class="col-lg-6">
                       <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-2 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text float-right">S</span>
-                          <!-- <span class="info-box-icon float-right"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text float-right">R</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text float-right"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text float-right"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text float-right"><b>P</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-
-                    <div class="col-lg-6">
-                      <div class="info-box-xs mt-2 bg-warning">
+                      <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text">S</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
@@ -604,16 +530,16 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-danger">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">R</span>
+                          <span class="card-box-text">R</span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">225,612</span>
+                          <span class="card-box-number float-right">225,612</span>
                         </div>
                         <!-- /.info-box-content -->
                       </div>
                       <!-- /.info-box -->
                       <div class="info-box-xs mb-2 bg-olive">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">B</span>
+                          <span class="info-box-text"><b>B</b></span>
                           <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
                           <span class="info-box-number float-right">5,977</span>
                         </div>
@@ -622,7 +548,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mb-2 bg-orange">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">I</span>
+                          <span class="info-box-text"><b>I</b></span>
                           <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
                           <span class="info-box-number float-right">29</span>
                         </div>
@@ -639,66 +565,30 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       </div>
                       <!-- /.info-box -->
                     </div>
-                  </div>
-                  <!-- /.row -->
-
-                </div>
-
-
-              </div>
-              <!-- /.widget-user -->
-            </div>
-            <!-- /.col TENGAH-->
-
-            <div class="col-md-4">
-              <!-- Widget: user widget style 1 -->
-              <div class="card card-widget widget-user">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header text-white bg-primary">
-                  <h3 class="brand-text mt-2"><strong>JUMLAH PELANGGAN</strong></h3>
-                  <h5 class="widget-user-desc mt-2">Data (Plg)</h5>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">3,200 PLG</h5>
-                        <span class="description-text">PRA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                    </div>
                     <!-- /.col -->
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="description-block">
                         <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35 PLG</h5>
+                        <h5 class="description-header">35 VA</h5>
                         <span class="description-text">PASCA BAYAR</span>
                       </div>
                       <!-- /.description-block -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <div class="row text-sm text-white">
-                    <div class="col-lg-6">
                       <!-- Info Boxes Style 2 -->
                       <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
                           <span class="info-box-text"><b>S</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,291</span>
+                          <span class="info-box-number float-right">5,101</span>
                         </div>
                         <!-- /.info-box-content -->
                       </div>
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-danger">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>R</b></span>
+                          <span class="card-box-text"><b>R</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">232,805</span>
+                          <span class="card-box-number float-right">225,612</span>
                         </div>
                         <!-- /.info-box-content -->
                       </div>
@@ -731,11 +621,39 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       </div>
                       <!-- /.info-box -->
                     </div>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
 
-                    <div class="col-lg-6">
+                </div>
+
+
+              </div>
+              <!-- /.widget-user -->
+            </div>
+            <!-- /.col TENGAH-->
+
+            <div class="col-md-4">
+              <!-- Widget: user widget style 1 -->
+              <div class="card card-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header text-white bg-primary">
+                  <h3 class="brand-text mt-2"><strong>JUMLAH PELANGGAN</strong></h3>
+                  <h5 class="widget-user-desc mt-2">Data (Plg)</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
+                        <h5 class="description-header">3,200 PLG</h5>
+                        <span class="description-text">PRA BAYAR</span>
+                      </div>
+                      <!-- /.description-block -->
+                      <!-- Info Boxes Style 2 -->
                       <div class="info-box-xs mt-3 bg-warning">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">S</span>
+                          <span class="info-box-text"><b>S</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
                           <span class="info-box-number float-right">5,101</span>
                         </div>
@@ -744,16 +662,16 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-danger">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">R</span>
+                          <span class="card-box-text"><b>R</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">225,612</span>
+                          <span class="card-box-number float-right">225,612</span>
                         </div>
                         <!-- /.info-box-content -->
                       </div>
                       <!-- /.info-box -->
                       <div class="info-box-xs mb-2 bg-olive">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">B</span>
+                          <span class="info-box-text"><b>B</b></span>
                           <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
                           <span class="info-box-number float-right">5,977</span>
                         </div>
@@ -762,7 +680,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mb-2 bg-orange">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">I</span>
+                          <span class="info-box-text"><b>I</b></span>
                           <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
                           <span class="info-box-number float-right">29</span>
                         </div>
@@ -771,7 +689,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       <!-- /.info-box -->
                       <div class="info-box-xs mt-2 bg-lightblue">
                         <div class="info-box-content m-2">
-                          <span class="info-box-text">P</span>
+                          <span class="info-box-text"><b>P</b></span>
                           <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
                           <span class="info-box-number float-right">1,657</span>
                         </div>
@@ -779,8 +697,66 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
                       </div>
                       <!-- /.info-box -->
                     </div>
+                    <!-- /.col -->
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="description-block">
+                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
+                        <h5 class="description-header">35 PLG</h5>
+                        <span class="description-text">PASCA BAYAR</span>
+                      </div>
+                      <!-- /.description-block -->
+                      <!-- Info Boxes Style 2 -->
+                      <div class="info-box-xs mt-3 bg-warning">
+                        <div class="info-box-content m-2">
+                          <span class="info-box-text"><b>S</b></span>
+                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
+                          <span class="info-box-number float-right">5,101</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                      <div class="info-box-xs mt-2 bg-danger">
+                        <div class="info-box-content m-2">
+                          <span class="card-box-text"><b>R</b></span>
+                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
+                          <span class="card-box-number float-right">225,612</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                      <div class="info-box-xs mb-2 bg-olive">
+                        <div class="info-box-content m-2">
+                          <span class="info-box-text"><b>B</b></span>
+                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
+                          <span class="info-box-number float-right">5,977</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                      <div class="info-box-xs mb-2 bg-orange">
+                        <div class="info-box-content m-2">
+                          <span class="info-box-text"><b>I</b></span>
+                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
+                          <span class="info-box-number float-right">29</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                      <div class="info-box-xs mt-2 bg-lightblue">
+                        <div class="info-box-content m-2">
+                          <span class="info-box-text"><b>P</b></span>
+                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
+                          <span class="info-box-number float-right">1,657</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
                   </div>
                   <!-- /.row -->
+
                 </div>
 
               </div>

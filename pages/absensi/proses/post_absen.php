@@ -1,7 +1,7 @@
 <?php
 function koneksi()
 {
-  return mysqli_connect('localhost', 'root', '', 'plnmonitoring');
+  return mysqli_connect('localhost', 'root', '', 'absensiplen');
 }
 
 function query($query)
