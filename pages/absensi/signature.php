@@ -89,31 +89,6 @@ if (isset($_POST['signed'])) {
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                             <li><a href="#" class="dropdown-item">Internal </a></li>
                             <li><a href="#" class="dropdown-item">External</a></li>
-
-                            <li class="dropdown-divider"></li>
-
-                            <!-- Level two dropdown-->
-                            <li class="dropdown-submenu dropdown-hover">
-                                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Waktu</a>
-                                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                    <li>
-                                        <a tabindex="-1" href="#" class="dropdown-item">Pagi</a>
-                                    </li>
-
-                                    <!-- Level three dropdown-->
-                                    <li class="dropdown-submenu">
-                                        <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Siang</a>
-                                        <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                                            <li><a href="#" class="dropdown-item">1rd Rapat</a></li>
-                                            <li><a href="#" class="dropdown-item">2rd Rapat</a></li>
-                                            <li><a href="#" class="dropdown-item">3rd Rapat</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- End Level three -->
-                                    <li><a href="#" class="dropdown-item">Sore</a></li>
-                                </ul>
-                            </li>
-                            <!-- End Level two -->
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -138,14 +113,14 @@ if (isset($_POST['signed'])) {
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0"> <strong>Monitoring</strong> <small>Data</small></h1>
+                            <h1 class="m-0"> <strong>Absensi</strong> <small class="text-md">Rapat</small></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <!-- <li class="breadcrumb" id="currentDateTime"></li> -->
                                 <ol class="breadcrumb float-sm-right">
-                                    <!--  <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-                                    <!-- <li class="breadcrumb-item"><a href="#">Tanggal : </a></li> -->
+                                    <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+                                    <li class="breadcrumb-item"><a href="#">Tanggal : </a></li>
                                     <!-- <li class="breadcrumb"> Tanggal : </li> -->
                                     <!-- <li class="breadcrumb" id="currentDateTime">Waktu : </li> -->
                                     <li class="breadcrumb active" id="currentDate"> </li>

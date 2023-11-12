@@ -37,16 +37,18 @@ if (isset($_POST['login'])) {
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page bg-white">
   <div class="login-box">
 
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="../../index2.html" class="h1"><b>PLN</b>Monitor</a>
+        <!-- <h2> -->
+        <a href="../../index2.html" class="h2"><b class="brand-text">Absensi</b>PLN</a>
+        <!-- </h2> -->
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Masuk untuk memulai sesi</p>
 
         <?php if (isset($login['error'])) : ?>
           <p class="login-box-msg text-danger"><?= $login['pesan']; ?></p>
@@ -70,36 +72,27 @@ if (isset($_POST['login'])) {
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
+            <div class="col-6">
+              <!-- <a href="register.php" class="btn btn-primary btn-block" name="register">Register</a> -->
+              <a href="../../index.php" class="btn btn-default btn-block">In</a>
               <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+                <!-- <input type="checkbox" id="remember"> -->
                 <label for="remember">
-                  Remember Me
+                  <!-- Remember Me -->
                 </label>
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-6">
               <button type="submit" class="btn btn-primary btn-block" name="login">Masuk</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
-
-        <div class="social-auth-links text-center mt-2 mb-3">
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-          </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-          </a>
-        </div>
         <!-- /.social-auth-links -->
 
-        <p class="mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
-        </p>
-        <!-- <p class="mb-0"><a href="register.html" class="text-center">Register a new membership</a></p> -->
+        <p class="text-center"><a href="forgot-password.html">I forgot my password</a></p>
+        <p class="text-center"><a href="register.php" class="text-center">Register a new membership</a></p>
       </div>
       <!-- /.card-body -->
     </div>

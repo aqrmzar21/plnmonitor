@@ -13,18 +13,27 @@ $now = $formatterID->format(new DateTime());
 $formatID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 $live = $formatID->format(new DateTime());
 
-$month = explode(" ", $now)[1];
+$month = explode(" ", $now)[2];
 $day = explode(" ", $live)[0];
 $day = str_replace(",", "", $day);
 $year = explode(" ", $live)[3];
-// print_r($month);
 
 require 'db/function.php';
+$koneksi = koneksi();
 // include 'pages/forms/proses/proses-form.php';
-
+$absen = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen");
+$dab = mysqli_fetch_assoc($absen);
+$unit = 'UP3 Gorontalo';
+$absen2 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit = '$unit' ");
+$dab2 = mysqli_fetch_assoc($absen2);
+$absen3 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit != '$unit' ");
+$dab3 = mysqli_fetch_assoc($absen3);
+$anggota = mysqli_query($koneksi, "SELECT COUNT(*) AS totalanggota FROM t_datapengunjung");
+$danggota = mysqli_fetch_assoc($anggota);
 // tampung ke variabel datanya
-// $user = query("SELECT * FROM t_datauser");
-$pr1 = query("SELECT * FROM pascabayar1")[0];
+// $pr1 = query("SELECT * FROM pascabayar1")[0];
+$absens = query("SELECT * FROM t_dataabsen");
+// print_r($dab2);
 
 ?>
 
@@ -45,6 +54,10 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="dist/css/bg.css">
@@ -127,7 +140,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper bg-wt">
+    <section class="content-wrapper bg-wt">
       <?php
       // include 'pages/layout/top-nav.php'
       ?>
@@ -136,646 +149,263 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
       <?php
       // include 'pages/layout/sidebar.php'
+
       ?>
+      <!-- fix for small devices only -->
+      <div class="clearfix visible-sm-block"></div>
+      <!-- <div class="col-xs-12"> -->
+      <div class="col-xs-2">
+        <div class="" style="background-color: rgb(255, 255, 255); color: white;">
+          <span class="info-box-icon"><i class="fa fa-shopping-cart"></i></span>
+          <div class="info-box-content ">
+            <span class="info-box-text">Tarif S</span>
+            <span class="info-box-number"><?php echo $dab['totalpengunjung']; ?></span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
       <!-- Main content ============================================================================================ -->
-      <div class="content">
+      <section class="container py-5 px-4">
 
-        <div class="container-fluid">
 
-          <div class="container">
-            <div class="row mt-2">
-              <div class="col-4 mx-auto">
-                <div class="card mx-auto">
-                  <!-- <img class="mx-auto" src="dist/img/imgPLN.png" alt="" width="200"> -->
-                  <!-- <span class="h2 text-center">12 : 12 : 12</span> -->
-                  <!-- <span class="h6 text-center"> PHP// date("l", mktime(0, 0, 0, 1, 5, 2002)); </span> -->
-                  <!-- <span class="h6 text-center mt-2"><?= date("l"); ?></span> -->
-                  <!-- <span class="h2 text-center text-olive"><b><?= date('M d, Y') ?></b></span> -->
-                  <!-- <span class="h5 text-center " id="clock"></span> -->
+        <div class="card py-4 px-5 bg-green">
+          <div class="card bg-white my-3 p-2">
+            <div class="widget-user-header">
+              <h3 class="text-olive mx-4 my-2 float-right"><b id="clock">Hi, World!</b></h3>
+              <h2 class="brand-text ml-3 mt-2"><strong>Dashbord Info</strong></h2>
+              <p class="widget-user-desc ml-3 mb-4 text-xs"><?= $live ?></p>
+            </div>
+            <!-- <<div class="card mx-auto col-4"> -->
+            <!-- </div> -->
+            <div class="row">
+              <div class="col-8">
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="widget-user-header card bg-green ml-4">
+                      <h4 class="brand-text my-2 p-2 ml-3">
+                        <i class="px-2 fas fa-address-book"></i>
+                        <strong>Data Absensi</strong>
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div class="col-12 ml-2">
+                    <!-- <div class="card"> -->
+                    <!-- <div class="card-body ml-4"> -->
+                    <ul class="pagination pagination-xs pagination-month justify-content-center">
+                      <li class="page-item"><a class="page-link" disabled href="#">«</a></li>
+                      <li class="page-item  <?= $day == 'Senin' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Senin</p>
+                          <p class="page-year"><?= $month; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item  <?= $day == 'Selasa' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Selasa</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item  <?= $day == 'Rabu' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Rabu</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item  <?= $day == 'Kamis' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Kamis</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item  <?= $day == 'Jumat' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Jumat</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item <?= $day == 'Sabtu' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Sabtu</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item  <?= $day == 'Minggu' ? 'active' : '' ?>">
+                        <a class="page-link" href="#">
+                          <p class="page-month">Ahad</p>
+                          <p class="page-year"><?= $year; ?></p>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" disabled href="#">»</a></li>
+                    </ul>
+                    <!-- </div> -->
+
+                  </div>
+                  <!-- </div> -->
                 </div>
+                <!-- ./div row2 -->
+              </div>
+              <div class="col-4">
+                <div class="row mx-4">
+                  <div class="card col-12 p-2">
+                    <h6 class="text-center text-olive pt-2" style="font-size: 18px"><b>Gorontalo</b></h6>
+                  </div>
+                  <div class="card col-5 mr-3 ml-1 p-2 bg-info">
+                    <h6 class="text-black text-center" style="font-size: 22px;"><b>UP3</b></h6>
+                    <!-- <h6 class="text-black text-center" style="font-size: 22px; margin-bottom: 1em;"><b>UP2K</b></h6> -->
+                  </div>
+                  <div class="card col-5 ml-3 p-2 bg-lightblue">
+                    <h6 class="text-black text-center" style="font-size: 22px;"><b>UP2K</b></h6>
+                  </div>
+                  <!-- ./div info-box -->
+                </div>
+                <!-- ./div card -->
               </div>
             </div>
-          </div>
+            <!-- Container INFO Box -->
+            <div class="row mx-3">
 
-          <!-- Container INFO Box -->
-          <div class="container mt-4">
-            <div class="row">
-
-              <div class="col-lg-2 col-6 ">
-                <!-- small card -->
-                <div class="small-box bg-warning">
-                  <div class="inner">
-                    <h3>S</h3>
-
-                    <p><?= $pr1['cols1']; ?></p>
-                    <p>7842</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
-                  </a>
-                </div>
-              </div>
               <!-- ./col -->
-              <div class="col-lg-2 col-6">
+              <div class="col-lg-4 col-6">
                 <!-- small card -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>R</h3>
-                    <p><?= $pr1['colr1']; ?></p>
-                    <p>315553</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-user-plus"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-2 col-6">
-                <!-- small card -->
-                <div class="small-box bg-olive">
-                  <div class="inner">
-                    <h3>B</h3>
-                    <p><?= $pr1['colb1']; ?></p>
-
-                    <p>7842</p>
-                  </div>
-                  <div class="icon">
-                    <i class="far fa-bell"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-2 col-6">
-                <!-- small card -->
-                <div class="small-box bg-orange">
-                  <div class="inner">
-                    <h3>I</h3>
-                    <p><?= $pr1['coli1']; ?></p>
-
-                    <p>1687</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-chart-pie"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-lg-2 col-6">
-                <!-- small card -->
-                <div class="small-box bg-lightblue">
-                  <div class="inner">
-                    <h3>P</h3>
-                    <p><?= $pr1['colp1']; ?></p>
-                    <p>2888</p>
+                    <h6>Internal</h6>
+                    <h3><?= $dab2['totalpengunjung']; ?></h3>
                   </div>
                   <div class="icon">
                     <i class="far fa-flag"></i>
                   </div>
-                  <a href="#" class="small-box-footer">
-                    More info <i class="fas fa-arrow-circle-right"></i>
+                  <a href="#" class="text-left small-box-footer">
+                    <i class="fas fa-user-circle mx-2"></i> People
                   </a>
                 </div>
               </div>
               <!-- ./col -->
-              <div class="col-lg-2 col-6">
+              <div class="col-lg-4 col-6">
                 <!-- small card -->
-                <div class="small-box bg-white">
+                <div class="small-box bg-lightblue">
                   <div class="inner">
-                    <!-- <img class="text-center mx-auto" src="dist/img/imgPLN.png" alt="" width="100%"> -->
-                    <h6 class="text-black text-center" style="font-size: 22px"><b><?= $day; ?></b></h6>
-                    <h3 id="clock" class="text-center text-blue"><sup style="font-size: 20px">%</sup></h3>
-                    <h6 class="text-black text-center" style="font-size: 14px"><b><?= $tgl; ?></b></h6>
+                    <h6>Eksternal</h6>
+                    <h3><?= $dab3['totalpengunjung']; ?></h3>
                   </div>
                   <div class="icon">
-                    <!-- <i class="far fa-star"></i> -->
+                    <i class="far fa-bookmark"></i>
                   </div>
-                  <a href="#" class="small-box-footer">
-                    <!-- More info <i class="fas fa-arrow-circle-right"></i> -->
+                  <a href="#" class="text-left small-box-footer">
+                    <i class="fas fa-user-circle mx-2"></i> People
                   </a>
                 </div>
               </div>
+              <!-- ./col -->
+
+              <!-- ./col -->
+              <div class="col-lg-4 col-6">
+                <!-- small card -->
+                <div class="small-box bg-olive">
+                  <div class="inner text-center">
+                    <h6>Total</h6>
+                    <h3><?= $dab['totalpengunjung']; ?></h3>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-bell"></i>
+                  </div>
+                  <a href="#" class="small-box-footer">
+                    <i class="fas fa-user-circle mr-2"></i> People
+                  </a>
+                </div>
+              </div>
+              <!-- ./col -->
+
               <!-- ./col -->
             </div>
             <!-- /.row -->
+            <div class="row mt-3">
+              <div class="col-8">
+                <div class="widget-user-header card bg-green ml-4">
+                  <h4 class="brand-text my-2 p-2 ml-3">
+                    <i class="px-2 far fa-calendar-alt"></i>
+                    <strong>Unit Pelaksana Pelayanan Pelanggan </strong>
+                  </h4>
+                </div>
+              </div>
 
+              <div class="col-4">
+                <button class="btn btn--lg bg-blue mr-4 my-3 float-right">
+                  <a href="pages/absensi/signature.php" class="text-dark p-1">
+                    <i class="fa fa-plus"></i> <b>Touch Me</b>
+                    <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </button>
+              </div>
+              <!-- /.div col-4 -->
+            </div>
+
+            <div class="row mx-3 text-olive">
+
+              <div class="col-3">
+                <div class="info-box">
+                  <!-- <span class="info-box-icon"><i class="far fa-envelope"></i></span> -->
+                  <div class="info-box-content text-center">
+                    <span class="info-box-text">Unit Layanan Pelanggan</span>
+                    <h4 class="info-box-number">Telaga</h4>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./div row -->
+              <div class="col-3">
+                <div class="info-box">
+                  <!-- <span class="info-box-icon"><i class="far fa-envelope"></i></span> -->
+                  <div class="info-box-content text-center">
+                    <span class="info-box-text">Unit Layanan Pelanggan</span>
+                    <h4 class="info-box-number">Limboto</h4>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./div row -->
+              <div class="col-3">
+                <div class="info-box">
+                  <!-- <span class="info-box-icon"><i class="far fa-envelope"></i></span> -->
+                  <div class="info-box-content text-center">
+                    <span class="info-box-text">Unit Layanan Pelanggan</span>
+                    <h4 class="info-box-number">Marisa</h4>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./div row -->
+              <div class="col-3">
+                <div class="info-box">
+                  <!-- <span class="info-box-icon"><i class="far fa-envelope"></i></span> -->
+                  <div class="info-box-content text-center">
+                    <span class="info-box-text">Unit Layanan Pelanggan</span>
+                    <h4 class="info-box-number">Kwandang</h4>
+                  </div>
+
+                </div>
+              </div>
+              <!-- ./div row -->
+            </div>
           </div>
 
+        </div><!-- /.container-card -->
 
-        </div><!-- /.container-fluid -->
+      </section>
+      <!-- ./div container cardbox -->
 
-        <!-- <div class="card mx-auto col-4">
-          <span class="h3 text-center text-olive"><b></b></span>
-        </div> -->
-
-
-        <!-- <div class="card"> -->
-        <div class="card-body">
-          <ul class="pagination pagination-month justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">«</a></li>
-            <li class="page-item  <?= $month == 'Jan' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Jan</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Feb' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Feb</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Mar' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Mar</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Apr' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Apr</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Mey' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Mey</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item <?= $month == 'Jun' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Jun</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Jul' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Jul</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Aug' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Aug</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item <?= $month == 'Sep' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Sep</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item <?= $month == 'Okt' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Okt</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Nov' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Nov</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item  <?= $month == 'Des' ? 'active' : '' ?>">
-              <a class="page-link" href="#">
-                <p class="page-month">Des</p>
-                <p class="page-year"><?= $year; ?></p>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">»</a></li>
-          </ul>
-          <!-- </div> -->
-
-        </div>
-
-        <div class="container">
-          <div class="row mb-4">
-
-            <div class="col-md-4">
-              <!-- Widget: user widget style 1 -->
-              <div class="card card-widget widget-user">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-primary">
-                  <h3 class="brand-text mt-3 text-center"><strong>PENJUALAN LISTRIK</strong></h3>
-                  <h5 class="widget-user-desc text-center">Data (KWh)</h5>
-                </div>
-                <div class="widget-user-image">
-                  <!-- <img class="img-circle elevation-1" src="dist/img/user3-128x128.jpg" alt="User Avatar"> -->
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">238.437 KWH</h5>
-                        <span class="description-text">PRA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">S</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="card-box-text">R</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="card-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">P</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">97.909 KWH</h5>
-                        <span class="description-text">PASCA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">S</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>R</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">B</span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">I</span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>P</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-
-                    <!-- /.col -->
-                  </div>
-
-                </div>
-
-              </div>
-              <!-- /.widget-user -->
-            </div>
-            <!-- /.col KIRI-->
-
-            <div class="col-md-4">
-              <!-- Widget: user widget style 1 -->
-              <div class="card card-widget widget-user">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-secondary">
-                  <h3 class="brand-text mt-3"><b>DAYA TERPASANG</b></h3>
-                  <h5 class="widget-user-desc mt-2">Data (VA)</h5>
-                </div>
-                <div class="widget-user-image">
-                  <!-- <img class="img-circle elevation-2" src="dist/img/user8-128x128.jpg" alt="User Avatar"> -->
-                  <!-- <i class="fa fa-bolt" width="100%"></i> -->
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">3,200 VA</h5>
-                        <span class="description-text">PRA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">S</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="card-box-text">R</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="card-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text">P</span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35 VA</h5>
-                        <span class="description-text">PASCA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>S</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="card-box-text"><b>R</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="card-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>P</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                </div>
-
-
-              </div>
-              <!-- /.widget-user -->
-            </div>
-            <!-- /.col TENGAH-->
-
-            <div class="col-md-4">
-              <!-- Widget: user widget style 1 -->
-              <div class="card card-widget widget-user">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header text-white bg-primary">
-                  <h3 class="brand-text mt-2"><strong>JUMLAH PELANGGAN</strong></h3>
-                  <h5 class="widget-user-desc mt-2">Data (Plg)</h5>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-2.png" width="90" alt="User Avatar">
-                        <h5 class="description-header">3,200 PLG</h5>
-                        <span class="description-text">PRA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>S</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="card-box-text"><b>R</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="card-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>P</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="description-block">
-                        <img class="elevation-1 mb-3" src="dist/img/img-1.png" width="90px" alt="User Avatar">
-                        <h5 class="description-header">35 PLG</h5>
-                        <span class="description-text">PASCA BAYAR</span>
-                      </div>
-                      <!-- /.description-block -->
-                      <!-- Info Boxes Style 2 -->
-                      <div class="info-box-xs mt-3 bg-warning">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>S</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="info-box-number float-right">5,101</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-danger">
-                        <div class="info-box-content m-2">
-                          <span class="card-box-text"><b>R</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-tag"></i></span> -->
-                          <span class="card-box-number float-right">225,612</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-olive">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>B</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">5,977</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mb-2 bg-orange">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>I</b></span>
-                          <!-- <span class="info-box-icon"><i class="far fa-heart"></i></span> -->
-                          <span class="info-box-number float-right">29</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                      <div class="info-box-xs mt-2 bg-lightblue">
-                        <div class="info-box-content m-2">
-                          <span class="info-box-text"><b>P</b></span>
-                          <!-- <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span> -->
-                          <span class="info-box-number float-right">1,657</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                      </div>
-                      <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                </div>
-
-              </div>
-              <!-- /.widget-user -->
-            </div>
-            <!-- /.col KANAN-->
-          </div>
-        </div>
-        <!-- ./div container cardbox -->
-
-      </div>
-      <!-- /.content -->
-    </div>
+    </section>
+    <!-- /.content -->
     <!-- /.content-wrapper -->
 
     <!-- Contact Footer =========================================================== -->
-
     <!-- Main Footer -->
     <div w3-include-html="pages/layout/footer.html"></div>
+  </div>
+
   </div>
   <!-- ./wrapper -->
 
@@ -788,6 +418,7 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 
   <!-- awal include html -->
   <script>
@@ -848,6 +479,15 @@ $pr1 = query("SELECT * FROM pascabayar1")[0];
 
     // Panggil fungsi updateClock() setiap detik
     setInterval(updateClock, 1000);
+
+    $(function() {
+      $('#example').DataTable({
+        'searching': true,
+        'ordering': true,
+        'info': true,
+        'autoWidth': false
+      });
+    });
   </script>
 </body>
 

@@ -1,4 +1,5 @@
 <?php
+
 // require '../../../db/function.php';
 require '../proses.php';
 
@@ -99,8 +100,8 @@ if (isset($_POST['ubah'])) {
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary" name="ubah">Save</button>
-        <button type="submit" class="btn btn-default float-right"><a href="../absen.php">Back</a></button>
+        <button type="submit" class="btn btn-primary float-right" name="ubah">Save</button>
+        <button type="submit" class="btn btn-default"><a href="../absensi.php">Back</a></button>
       </div>
       <!-- /.card-footer -->
     </form>

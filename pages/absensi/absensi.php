@@ -1,8 +1,9 @@
 <?php
-// if (!isset($_SESSION['login'])) {
-//   header("Location: ../examples/login.php");
-//   exit;
-// }
+session_start();
+if (!isset($_SESSION['login'])) {
+  header("Location: ../examples/login.php");
+  exit;
+}
 
 require 'proses.php';
 $koneksi = koneksi();
@@ -81,40 +82,38 @@ $koneksi = koneksi();
     <!-- /.navbar -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-white">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
+      <section class="content-header">
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0"> Data Absensi <small></small></h1>
-              <!-- <h6> -->
-              <!-- </h6> -->
-            </div><!-- /.col -->
+              <h3 class="m-0"> Data Absensi <small></small></h3>
+            </div>
+            <!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Absensi</a></li>
                 <!-- <li class="breadcrumb-item"><a href="printpdf.php">DOMPDF</a></li> -->
-                <li class="breadcrumb-item active"><i class="fa fa-address-book" aria-hidden="true"></i> Absensi</li>
+                <li class="breadcrumb-item active">Edit Data</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-      </div>
+      </section>
       <!-- /.content-header -->
       <div class="content-footer">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6 mb-4">
+            <div class="col-8 mb-4">
               <form method="post" class="form-inline">
                 <input type="date" name="tgl_mulai" class="form-control">
                 <input type="date" name="tgl_selesai" class="form-control ml-3">
                 <button type="submit" name="filter_tgl" class="btn btn-secondary ml-3">Filter</button>
-                <div>
-                  <a href="printphpexcel.php" class="btn btn-gray ml-3">
-                    <i class="fa fa-print" aria-hidden="true"> Print Excel </i>
-                  </a>
-                </div>
+                <span class="ml-3">
+                  <!-- <a href="printphpexcel.php" class="btn btn-gray"><i class="fa fa-print" aria-hidden="true"> Print Excel </i></a> -->
+                </span>
               </form>
               <?php
               if (isset($_POST['filter'])) {
@@ -124,8 +123,8 @@ $koneksi = koneksi();
               }
               ?>
             </div>
-            <div class="ml-auto">
-              <a href="printdomdf.php" class="btn btn-default mr-3">
+            <div class="col-4 ml-auto">
+              <a href="printdomdf.php" class="btn btn-default float-right">
                 <i class="fa fa-print" aria-hidden="true"> Print PDF </i>
               </a>
               <!-- <a href="printexcel.php" class="btn btn-primary mr-3">
@@ -175,7 +174,6 @@ $koneksi = koneksi();
 
                         if ($absensi) {
                           $absensi = mysqli_fetch_all($absensi, MYSQLI_ASSOC);
-
 
                           $i = 1;
                           foreach ($absensi as $ab) {
@@ -267,7 +265,7 @@ $koneksi = koneksi();
   <script>
     $(function() {
       $('#example').DataTable({
-        'searching': true,
+        'searching': false,
         'ordering': true,
         'info': true,
         'autoWidth': false

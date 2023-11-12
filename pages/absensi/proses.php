@@ -117,7 +117,6 @@ function del($id)
   $absen = query("SELECT * FROM t_dataabsen WHERE id_absen = $id");
   unlink('../upload/' . $absen['signed']);
 
-
   mysqli_query($conn, "DELETE FROM t_dataabsen WHERE id_absen =$id") or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }

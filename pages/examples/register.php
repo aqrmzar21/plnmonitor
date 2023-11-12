@@ -1,11 +1,11 @@
 <?php
-session_start();
+// session_start();
 
-// cek jika belum login maka akan mengarahkan ke hal login
-if (!isset($_SESSION['login'])) {
-  header("Location: login.php");
-  exit;
-}
+// // cek jika belum login maka akan mengarahkan ke hal login
+// if (!isset($_SESSION['login'])) {
+//   header("Location: login.php");
+//   exit;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -31,10 +31,10 @@ if (!isset($_SESSION['login'])) {
   <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+        <a href="../../index2.html" class="h2"><b>Absensi</b>PLN</a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg">Daftar untuk menjadi Anggota</p>
 
         <form action="" method="POST">
           <div class="input-group mb-3">
@@ -70,27 +70,21 @@ if (!isset($_SESSION['login'])) {
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
-              <a href="login.php" class="text-center">I already have a membership</a>
+            <div class="col-6">
             </div>
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-6">
               <button type="submit" class="btn btn-primary btn-block" name="register">Register</button>
             </div>
             <!-- /.col -->
           </div>
+          <p class="text-center m-2"><a href="login.php">I already have a membership</a></p>
         </form>
 
-        <div class="social-auth-links text-center">
-          <a href="login.php" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i>
-            Login
-          </a>
-          <a href="logout.php" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i>
-            Logout
-          </a>
-        </div>
+        <!-- <div class="social-auth-links text-center">
+          <a href="login.php" class="btn btn-block btn-primary"><i class="fab fa-facebook mr-2"></i>Login</a>
+          <a href="logout.php" class="btn btn-block btn-danger"><i class="fab fa-google-plus mr-2"></i>Logout</a>
+        </div> -->
 
         <!-- <a href="login.html" class="text-center">I already have a membership</a> -->
       </div>

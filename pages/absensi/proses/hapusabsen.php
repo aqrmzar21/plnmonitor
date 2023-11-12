@@ -1,5 +1,6 @@
 <?php
-require '../../../db/function.php';
+// require '../../../db/function.php';
+require '../proses.php';
 
 // mengambil id dari url
 $id = $_GET['id'];
