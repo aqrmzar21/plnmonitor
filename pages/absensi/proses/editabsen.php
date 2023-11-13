@@ -28,7 +28,7 @@ if (isset($_POST['edit'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIMPLN | Ubah Data</title>
+  <title>PLNMeetSign | Ubah Data</title>
 
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="../../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">

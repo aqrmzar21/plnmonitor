@@ -3,14 +3,13 @@ session_start();
 
 // cek jika belum login maka akan mengarahkan ke hal login
 if (!isset($_SESSION['login'])) {
-  header("Location: pages/examples/login.php");
+  header("Location: login.php");
   exit;
 }
 
 
-require 'db/function.php';
+require '../../db/function.php';
 // tampung ke variabel datanya
-$user = query("SELECT * FROM t_datauser")[0];
 
 ?>
 
@@ -18,17 +17,17 @@ $user = query("SELECT * FROM t_datauser")[0];
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PLNMeetSign | FIXDashboard</title>
+<title>PLNMeetSign | Dashboard</title>
 <link rel="icon" href="dist/img/favicon.ico">
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
-<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
 <!-- IonIcons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="dist/css/adminlte.min.css">
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <!--
 `body` tag options:
@@ -59,6 +58,9 @@ $user = query("SELECT * FROM t_datauser")[0];
         <!-- Navbar Search -->
 
         <!-- Messages Dropdown Menu -->
+        <?php
+        $user = query("SELECT * FROM t_datauser")[0];
+        ?>
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -93,7 +95,7 @@ $user = query("SELECT * FROM t_datauser")[0];
     <!-- /.navbar -->
 
     <?php
-    include 'pages/layout/sidebar.php'
+    include '../layout/sidebar.php'
     ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -103,7 +105,7 @@ $user = query("SELECT * FROM t_datauser")[0];
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard v3</h1>
+              <h1 class="m-0">Beranda Utama</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -161,110 +163,6 @@ $user = query("SELECT * FROM t_datauser")[0];
               </div>
               <!-- /.card -->
 
-              <div class="card">
-                <div class="card-header border-0">
-                  <h3 class="card-title">Products</h3>
-                  <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-sm">
-                      <i class="fas fa-download"></i>
-                    </a>
-                    <a href="#" class="btn btn-tool btn-sm">
-                      <i class="fas fa-bars"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-striped table-valign-middle">
-                    <thead>
-                      <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Sales</th>
-                        <th>More</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                          Some Product
-                        </td>
-                        <td>$13 USD</td>
-                        <td>
-                          <small class="text-success mr-1">
-                            <i class="fas fa-arrow-up"></i>
-                            12%
-                          </small>
-                          12,000 Sold
-                        </td>
-                        <td>
-                          <a href="#" class="text-muted">
-                            <i class="fas fa-search"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                          Another Product
-                        </td>
-                        <td>$29 USD</td>
-                        <td>
-                          <small class="text-warning mr-1">
-                            <i class="fas fa-arrow-down"></i>
-                            0.5%
-                          </small>
-                          123,234 Sold
-                        </td>
-                        <td>
-                          <a href="#" class="text-muted">
-                            <i class="fas fa-search"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                          Amazing Product
-                        </td>
-                        <td>$1,230 USD</td>
-                        <td>
-                          <small class="text-danger mr-1">
-                            <i class="fas fa-arrow-down"></i>
-                            3%
-                          </small>
-                          198 Sold
-                        </td>
-                        <td>
-                          <a href="#" class="text-muted">
-                            <i class="fas fa-search"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                          Perfect Item
-                          <span class="badge bg-danger">NEW</span>
-                        </td>
-                        <td>$199 USD</td>
-                        <td>
-                          <small class="text-success mr-1">
-                            <i class="fas fa-arrow-up"></i>
-                            63%
-                          </small>
-                          87 Sold
-                        </td>
-                        <td>
-                          <a href="#" class="text-muted">
-                            <i class="fas fa-search"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
               <!-- /.card -->
             </div>
             <!-- /.col-md-6 -->
@@ -340,14 +238,8 @@ $user = query("SELECT * FROM t_datauser")[0];
     </div>
     <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <div w3-include-html="pages/layout/footer.html"></div>
 
   </div>
   <!-- ./wrapper -->
@@ -355,62 +247,18 @@ $user = query("SELECT * FROM t_datauser")[0];
   <!-- REQUIRED SCRIPTS -->
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE -->
-  <script src="dist/js/adminlte.js"></script>
-  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="../../dist/js/adminlte.js"></script>
+  <script src="../../plugins/chart.js/Chart.min.js"></script>
 
   <!-- OPTIONAL SCRIPTS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="../../plugins/chart.js/Chart.min.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard3.js"></script>
+  <script src="../../dist/js/pages/dashboard3.js"></script>
   <!-- awal include html -->
-  <script>
-    function includeHTML() {
-      var z, i, elmnt, file, xhttp;
-      /* Loop through a collection of all HTML elements: */
-      z = document.getElementsByTagName("*");
-      for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-          /* Make an HTTP request using the attribute value as the file name: */
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-              if (this.status == 200) {
-                elmnt.innerHTML = this.responseText;
-              }
-              if (this.status == 404) {
-                elmnt.innerHTML = "Page not found.";
-              }
-              /* Remove the attribute, and call this function once more: */
-              elmnt.removeAttribute("w3-include-html");
-              includeHTML();
-            }
-          }
-          xhttp.open("GET", file, true);
-          xhttp.send();
-          /* Exit the function: */
-          return;
-        }
-      }
-    }
-  </script>
-
-  <script>
-    includeHTML();
-    <?php if (isset($_SESSION['logout_message'])) : ?>
-      // Tampilkan pesan alert
-      alert("<?php echo $_SESSION['logout_message']; ?>");
-
-      // Hapus pesan dari sesi
-      <?php unset($_SESSION['logout_message']); ?>
-    <?php endif; ?>
-  </script>
   <!-- akhir dunia -->
   <script>
     $(function() {

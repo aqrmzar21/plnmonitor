@@ -14,7 +14,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Registration Page</title>
+  <title>PLNMeetSign | Registration Page</title>
   <link rel="icon" href="../../dist/img/favicon.ico">
 
   <!-- Google Font: Source Sans Pro -->

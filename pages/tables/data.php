@@ -16,7 +16,7 @@ require '../../db/function.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Data Absen</title>
+  <title>PLNMeetSign | Data Absen</title>
   <link rel="icon" href="../../dist/img/favicon.ico">
 
   <!-- Google Font: Source Sans Pro -->
@@ -35,7 +35,7 @@ require '../../db/function.php';
   <div class="container">
 
     <!-- Main Header Container -->
-    <header class="main-header navbar navbar-expand navbar-light navbar-white">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -62,21 +62,21 @@ require '../../db/function.php';
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../examples/login.php" class="nav-link">Login</a>
+            <a href="../examples/login.php" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i> Login</a>
           </li>
           <li class="nav-item">
-            <a href="../../index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+            <a href="../../index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
           </li>
         </ul>
 
 
       </div>
 
-    </header>
+    </nav>
     <!-- INNER HTML Sidebar -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-white">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container">
@@ -98,17 +98,15 @@ require '../../db/function.php';
       <section class="content-footer">
         <div class="container">
           <div class="row">
-            <div class="col-10 mx-auto">
+            <div class="col-12">
+              <a href="export_excel.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
+              <a href="print_pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
+              <a href="../absensi/signature.php" class="btn btn-md btn-secondary my-3 mr-2" target="_blank"><i class="mr-1 far fa-plus-square" aria-hidden="true"></i> Add Absensi</a>
+            </div>
+            <div class="col-12">
 
-              <div class="card">
+              <div class="card card-outline card-gray">
                 <!-- /.card-body -->
-                <?php
-                $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
-
-                $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
-                $absensi = query($query);
-
-                ?>
                 <div class="card-body">
                   <table class="table">
 
@@ -125,12 +123,17 @@ require '../../db/function.php';
                     </thead>
                     <tbody>
                       <?php
-                      if (count($absensi) > 0) {
-                        $i = 1;
-                        foreach ($absensi as $ab) :
+                      $koneksi = koneksi();
+                      $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
+
+                      $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
+                      $absensi = mysqli_query($koneksi, $query);
+                      $i = 1;
+                      if (mysqli_num_rows($absensi) > 0) {
+                        while ($ab = mysqli_fetch_array($absensi)) {
                       ?>
                           <tr>
-                            <td><?= $i++; ?></td>
+                            <td><?= $i; ?></td>
                             <td><?= $ab['nm_absen']; ?></td>
                             <td><?= $ab['unit']; ?></td>
                             <td><?= $ab['bidang']; ?></td>
@@ -139,9 +142,10 @@ require '../../db/function.php';
                             <td><img src="../absensi/upload/<?= $ab['signed']; ?>" alt="mysign" width="150px"></td>
                           </tr>
                       <?php
-                        endforeach;
+                          $i++;
+                        }
                       } else {
-                        echo '<tr><td colspan="7">Tidak ada data yang tersedia</td></tr>';
+                        echo '<tr><td colspan="7" class="text-danger text-center">Belum ada yang melakukan Absensi untuk Rapat hari ini</td></tr>';
                       }
                       ?>
 

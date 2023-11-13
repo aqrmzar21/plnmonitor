@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Log in</title>
+  <title>PLNMeetSign | Log in</title>
   <link rel="icon" href="../../dist/img/favicon.ico">
 
 

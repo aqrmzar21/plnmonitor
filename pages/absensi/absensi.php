@@ -17,7 +17,7 @@ $koneksi = koneksi();
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Data Absensi</title>
+  <title>PLNMeetSign | Data Absensi</title>
   <link rel="icon" href="../../dist/img/icons.png">
 
   <!-- Google Font: Source Sans Pro -->
@@ -33,13 +33,15 @@ $koneksi = koneksi();
   <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
   <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+  
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
       <div class="container">
         <h3 class="brand-text"><b>PLN</b>Monitor</h3>
 

@@ -8,14 +8,11 @@ if (!isset($_SESSION['login'])) {
 }
 
 require '../../db/function.php';
-
-$user = query("SELECT * FROM t_datauser");
-
 // ambil dari URL id
-// $id = $_GET['id'];
+$id = $_GET['id'];
 
 // query data berdasarkan id_user
-// $u = query("SELECT * FROM t_datauser WHERE id_user = $id");
+$user = query("SELECT * FROM t_datauser WHERE id_user = $id");
 
 ?>
 
@@ -25,7 +22,7 @@ $user = query("SELECT * FROM t_datauser");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Info User</title>
+  <title>PLNMeetSign | Info User</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -41,7 +38,55 @@ $user = query("SELECT * FROM t_datauser");
   <div class="wrapper">
 
     <!-- Navbar -->
-    <?php include '../layout/header.php'; ?>
+    <?php
+    // include '../layout/header.php';
+    ?>
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <!-- <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li> -->
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Navbar Search -->
+        <!-- Messages Dropdown Menu -->
+
+        <!-- User Account: style can be found in dropdown.less -->
+        <li class="dropdown user user-menu">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <img src="dist/img/user1-128x128.jpg" class="user-image" alt="User Image">
+          </a>
+          <span class="badge badge-danger navbar-badge">0</span>
+
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header">
+              <img src="dist/img/user1-128x128.jpg" class="img-circle" alt="User Image">
+              <p><?= $user['nama_pengguna']; ?>
+                <small><?= $user['level']; ?></small>
+              </p>
+            </li>
+            <!-- Menu Footer-->
+            <li class="user-footer">
+              <div class="float-left">
+                <a href="pages/datauser/infouser.php" class="btn btn-default btn-flat">Profil</a>
+              </div>
+              <div class="float-sm-right">
+                <a href="pages/examples/logout.php" class="btn btn-default btn-flat">Keluar</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+
+      </ul>
+    </nav>
     <!-- /.navbar -->
     <?php include '../layout/sidebar.php'; ?>
     <div class="content-wrapper">

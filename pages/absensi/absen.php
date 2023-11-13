@@ -29,7 +29,7 @@ if (isset($_POST['cari'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIMPLN | Absen</title>
+  <title>PLNMeetSign | Absen</title>
   <link type="icon" rel="stylesheet" href="../../dist/img/AsminLTELogo.png">
 
   <!-- Google Font: Source Sans Pro -->

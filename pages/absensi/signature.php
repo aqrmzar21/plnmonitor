@@ -21,7 +21,7 @@ if (isset($_POST['signed'])) {
 <html>
 
 <head>
-    <title>SIMPLN | Absensi</title>
+    <title>PLNMeetSign | Absensi</title>
     <link rel="icon" href="../../dist/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
@@ -95,7 +95,7 @@ if (isset($_POST['signed'])) {
                         <a href="../tables/data.php" class="nav-link">Data Detail</a>
                     </li>
                     <li class="nav-item">
-                        <a href="absensi.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+                        <a href="absensi.php" class="nav-link"><i class="fa fa-info" aria-hidden="true"></i></a>
                     </li>
                 </ul>
 

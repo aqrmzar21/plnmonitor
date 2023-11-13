@@ -50,7 +50,7 @@ $absens = query("SELECT * FROM t_dataabsen");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Home</title>
+  <title>PLNMeetSign | Home</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -124,8 +124,8 @@ $absens = query("SELECT * FROM t_dataabsen");
               <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-cog mr-2"></i> 8 friend requests
+            <a href="pages/examples/logout.php" class="dropdown-item">
+              <i class="fas fa-cog mr-2"></i> FAQ
               <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
             </a>
             <div class="dropdown-divider"></div>
@@ -408,8 +408,14 @@ $absens = query("SELECT * FROM t_dataabsen");
     <!-- /.content-wrapper -->
 
     <!-- Contact Footer =========================================================== -->
+    <footer class="main-footer">
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2023 PT. PLN UP3 KOTA GORONTALO.</strong> All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 4.0
+      </div>
+    </footer>
     <!-- Main Footer -->
-    <div w3-include-html="pages/layout/footer.html"></div>
   </div>
 
   </div>

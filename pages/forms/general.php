@@ -33,7 +33,7 @@ if (isset($_POST['subk'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMPLN | Form Kinerja</title>
+  <title>PLNMeetSign | Form Kinerja</title>
   <link rel="icon" href="../../dist/img/favicon.ico">
 
   <!-- Google Font: Source Sans Pro -->
