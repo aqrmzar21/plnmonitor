@@ -847,6 +847,66 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
+              <div class="card">
+                <!-- /.card-body -->
+                <?php
+                $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
+
+                $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
+                $absensi = query($query);
+
+                if ($absensi) {
+                ?>
+                  <div class="card-body">
+                    <table class="table">
+
+                      <thead>
+                        <tr>
+                          <th>Nama Lengkap</th>
+                          <th>Unit/Perusahaan</th>
+                          <th>Jabatan/Bidang</th>
+                          <th>No Telp</th>
+                          <th>Email</th>
+                          <th>Tanda Tangan</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Unit/Perusahaan</th>
+                        <th>Jabatan/Bidang</th>
+                        <th>No Telp</th>
+                        <th>Email</th>
+                        <th>Tanda Tangan</th>
+                      </tr> -->
+
+                        <?php
+                        // $absensi = query("SELECT * FROM t_dataabsen");
+                        $i = 1;
+                        foreach ($absensi as $ab) : ?>
+                          <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $ab['nm_absen']; ?></td>
+                            <td><?= $ab['unit']; ?></td>
+                            <td><?= $ab['bidang']; ?></td>
+                            <td><?= $ab['nope']; ?></td>
+                            <td><?= $ab['email']; ?></td>
+                            <td><img src="../absensi/upload/<?= $ab['signed']; ?>" alt="mysign" width="150px"></td>
+                          </tr>
+                        <?php
+                          $i++;
+                        endforeach; ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                <?php
+                } else {
+                  echo '<p style="text-align:center;">Belum ada yang melakukan Absensi untuk hari ini.</p>';
+                } ?>
+              </div>
+              <!-- /.card -->
             </div>
           </div>
           <!-- /.row -->

@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['login'])) {
+  header("Location: ../examples/login.php");
+  exit;
+}
 // require '../../../db/function.php';
 require '../proses.php';
 

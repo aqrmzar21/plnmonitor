@@ -6,14 +6,20 @@
 //   header("Location: pages/examples/login.php");
 //   exit;
 // }
+
+// $now = new DateTime();
+// // Format tanggal dan waktu menggunakan format tertentu
+// $formattedDate = $now->format('l, d F Y H:i:s');
+// // Menampilkan hasil
+// echo "Tanggal dan Waktu Sekarang: " . $formattedDate;
 $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
 $tgl = $formatter->format(new DateTime());
 $formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE);
 $now = $formatterID->format(new DateTime());
+$month = explode(" ", $now)[2];
 $formatID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 $live = $formatID->format(new DateTime());
 
-$month = explode(" ", $now)[2];
 $day = explode(" ", $live)[0];
 $day = str_replace(",", "", $day);
 $year = explode(" ", $live)[3];
@@ -174,7 +180,7 @@ $absens = query("SELECT * FROM t_dataabsen");
             <div class="widget-user-header">
               <h3 class="text-olive mx-4 my-2 float-right"><b id="clock">Hi, World!</b></h3>
               <h2 class="brand-text ml-3 mt-2"><strong>Dashbord Info</strong></h2>
-              <p class="widget-user-desc ml-3 mb-4 text-xs"><?= $live ?></p>
+              <p class="widget-user-desc ml-3 mb-4 text-xs"><?= $live; ?></p>
             </div>
             <!-- <<div class="card mx-auto col-4"> -->
             <!-- </div> -->
@@ -420,44 +426,6 @@ $absens = query("SELECT * FROM t_dataabsen");
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 
-  <!-- awal include html -->
-  <script>
-    function includeHTML() {
-      var z, i, elmnt, file, xhttp;
-      /* Loop through a collection of all HTML elements: */
-      z = document.getElementsByTagName("*");
-      for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-          /* Make an HTTP request using the attribute value as the file name: */
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-              if (this.status == 200) {
-                elmnt.innerHTML = this.responseText;
-              }
-              if (this.status == 404) {
-                elmnt.innerHTML = "Page not found.";
-              }
-              /* Remove the attribute, and call this function once more: */
-              elmnt.removeAttribute("w3-include-html");
-              includeHTML();
-            }
-          }
-          xhttp.open("GET", file, true);
-          xhttp.send();
-          /* Exit the function: */
-          return;
-        }
-      }
-    }
-  </script>
-
-  <script>
-    includeHTML();
-  </script>
   <!-- akhir dunia -->
   <script>
     const Toast = Swal.mixin({
@@ -465,7 +433,7 @@ $absens = query("SELECT * FROM t_dataabsen");
       position: 'top-end',
       showConfirmButton: false,
       timer: 3000
-    })
+    });
 
     function updateClock() {
       const now = new Date();

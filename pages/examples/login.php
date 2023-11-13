@@ -3,7 +3,8 @@ session_start();
 
 // cek sudah login maka akan mengarahkan ke hal dasbord
 if (isset($_SESSION['login'])) {
-  header("location: ../../dashbord.php");
+  header("location: ../datauser/infouser.php"); // ini hanya sementara
+  // header("location: ../../dashbord.php");
   exit;
 }
 
@@ -74,7 +75,7 @@ if (isset($_POST['login'])) {
           <div class="row">
             <div class="col-6">
               <!-- <a href="register.php" class="btn btn-primary btn-block" name="register">Register</a> -->
-              <a href="../../index.php" class="btn btn-default btn-block">In</a>
+              <a href="../../index.php" class="btn btn-default btn-block">Home</a>
               <div class="icheck-primary">
                 <!-- <input type="checkbox" id="remember"> -->
                 <label for="remember">

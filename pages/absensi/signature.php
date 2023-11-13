@@ -65,7 +65,7 @@ if (isset($_POST['signed'])) {
     <div class="container">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-light navbar-white">
+        <header class="main-header navbar navbar-expand navbar-light navbar-white">
 
             <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -102,9 +102,8 @@ if (isset($_POST['signed'])) {
 
             </div>
 
-        </nav>
+        </header>
         <!-- /.navbar -->
-
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper bg-wt">
@@ -165,7 +164,7 @@ if (isset($_POST['signed'])) {
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">No HP</label>
-                                            <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter 08xxxxxx" onkeypress="isInputNumber(event)" required>
+                                            <input type="text" class="form-control" id="nohp" name="nope" placeholder="Enter 08xxxxxx" onkeypress="isInputNumber(event)" maxlength="12">
                                         </div>
                                         <div class="form-group">
                                             <label for="agenda">Unit</label>
@@ -272,7 +271,7 @@ if (isset($_POST['signed'])) {
             var ch = String.fromCharCode(evt.which);
 
             // Mengecek apakah karakter adalah digit (0-9) atau titik (".")
-            if (!/^\d*\.?\d*$/.test(ch)) {
+            if (!/^\d+$/.test(ch)) {
                 evt.preventDefault();
             }
 

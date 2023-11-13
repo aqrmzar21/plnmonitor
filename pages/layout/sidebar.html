@@ -676,5 +676,32 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  <!-- Bagian lain dari HTML Anda di sini -->
+
+  <script>
+    function markActiveLink() {
+      var currentLocation = window.location.pathname;
+      var links = document.querySelectorAll('.nav-link');
+
+      links.forEach(function (link) {
+        var linkPath = link.getAttribute('href');
+
+        if (currentLocation === linkPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    // Panggil fungsi markActiveLink setelah dokumen selesai dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+      markActiveLink();
+    });
+  </script>
+
+</body>
+
+</html>
 
 </body>
