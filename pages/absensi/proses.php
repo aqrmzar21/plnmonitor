@@ -114,10 +114,12 @@ function del($id)
   $conn = koneksi();
 
   // menghapus gambar di folder
-  $absen = query("SELECT * FROM t_dataabsen WHERE id_absen = $id");
+  // $absen = query("SELECT * FROM t_dataabsen WHERE id_absen = $id"); // ini yang asli
+  $absen = mysqli_query($conn, "SELECT * FROM t_datapengunjung WHERE id_absen = $id");
+  $absen = mysqli_fetch_assoc($absen);
   unlink('../upload/' . $absen['signed']);
 
-  mysqli_query($conn, "DELETE FROM t_dataabsen WHERE id_absen =$id") or die(mysqli_error($conn));
+  mysqli_query($conn, "DELETE FROM t_dataabsen WHERE id_absen = $id") or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
 
