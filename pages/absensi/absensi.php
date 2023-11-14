@@ -9,6 +9,24 @@ require 'proses.php';
 $koneksi = koneksi();
 // $absensi = query("SELECT * FROM t_dataabsen");
 
+// Membaca data dari cookie
+$location = isset($_COOKIE['location']) ? $_COOKIE['location'] : "";
+$activity = isset($_COOKIE['activity']) ? $_COOKIE['activity'] : "";
+$document = isset($_COOKIE['document']) ? $_COOKIE['document'] : "";
+
+// Logika penanganan ketika cookie belum diinput
+if (empty($location) && empty($activity) && empty($document)) {
+  // Tambahkan tindakan atau pesan yang sesuai di sini
+  // Misalnya, memberikan nilai default atau menampilkan pesan bahwa cookie belum diinput.
+  // Contoh:
+  $location = "Enter ....";
+  $activity = "Enter ....";
+  $document = "Enter ....";
+  echo "Cookie belum diinput.";
+}
+
+// Sekarang Anda dapat menggunakan nilai $location, $activity, dan $document seperti yang Anda butuhkan.
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +61,9 @@ $koneksi = koneksi();
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
       <div class="container">
-        <h3 class="brand-text"><b>PLN</b>Monitor</h3>
+        <h3 class="brand-text">
+          <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
+        </h3>
 
 
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
@@ -117,19 +137,19 @@ $koneksi = koneksi();
 
                   <div class="form-group">
                     <label>No. Dokumen</label>
-                    <input type="text" class="form-control" placeholder="Enter ..." style="text-transform: uppercase">
+                    <input type="text" class="form-control" value="<?= $document; ?>" placeholder="Enter ..." style="text-transform: uppercase">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label>Lokasi</label>
-                    <input type="text" class="form-control" placeholder="Enter ...">
+                    <input type="text" class="form-control" value="<?= $location; ?>" placeholder="Enter ...">
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group">
                     <label>Kegiatan</label>
-                    <input type="text" class="form-control" placeholder="Enter ...">
+                    <input type="text" class="form-control" value="<?= $activity; ?>" placeholder="Enter ...">
                   </div>
                 </div>
               </div>
@@ -316,8 +336,14 @@ $koneksi = koneksi();
     // JavaScript (jQuery)
     $(document).ready(function() {
       $("#saveButton").click(function() {
-        var inputText = $("#inputText").val();
-        $("#displayText").html(inputText);
+        var inputLocation = $("#inputLocation").val();
+        var inputActivity = $("#inputActivity").val();
+        var inputDocument = $("#inputDocument").val();
+        // Menyimpan data ke dalam cookie
+        document.cookie = "location=" + inputLocation;
+        document.cookie = "activity=" + inputActivity;
+        document.cookie = "document=" + inputDocument;
+
         $('#modal-lg').modal('hide');
       });
     });
@@ -334,11 +360,30 @@ $koneksi = koneksi();
           </button>
         </div>
         <div class="modal-body">
-          <input type="text" id="inputText" placeholder="Enter text">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">Lokasi</label>
+                <input type="text" id="inputLocation" class="form-control" placeholder="Enter location info">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">No. Dokumen</label>
+                <input type="text" id="inputDocument" class="form-control" placeholder="Enter document info" style="text-transform: uppercase">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="">Kegiatan</label>
+                <input type="text" id="inputActivity" class="form-control" placeholder="Enter activity info">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="saveButton">Save changes</button>
+          <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
         </div>
       </div>
       <!-- /.modal-content -->

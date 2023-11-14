@@ -78,11 +78,10 @@ $absens = query("SELECT * FROM t_dataabsen");
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li>
-          <h3>
-            <!-- <a href="index3.html" class="nav-link text-primary brand-text" id="tx-light"><strong>SI</strong>Monitoring</a> -->
-            <img class="mx-auto nav-item" src="dist/img/imgPLN.png" alt="" width="20%">
-
-          </h3>
+          <h4>
+            <img class="mx-auto nav-item" src="dist/img/imgPLN.png" alt="" width="15%">
+            <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
+          </h4>
         </li>
         <!-- <li class="nav-item d-none d-sm-inline-block"><a class="nav-link">Home</a></li> -->
 
@@ -335,8 +334,7 @@ $absens = query("SELECT * FROM t_dataabsen");
               <div class="col-4">
                 <button class="btn btn--lg bg-blue mr-4 my-3 float-right">
                   <a href="pages/absensi/signature.php" class="text-dark p-1">
-                    <i class="fa fa-plus"></i> <b>Touch Me</b>
-                    <i class="fas fa-arrow-circle-right"></i>
+                    <i class="fa fa-plus-circle"></i> <b class="mx-1">Absensi Now</b> <i class="fas fa-arrow-circle-right"></i>
                   </a>
                 </button>
               </div>
