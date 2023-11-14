@@ -15,6 +15,11 @@ $tanggal_sekarang = date("Y-m-d");
 $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
 $absensi = mysqli_query($koneksi, $query);
 
+// Membaca data dari cookie
+$location = $_COOKIE['location'];
+$activity = $_COOKIE['activity'];
+$document = $_COOKIE['document'];
+
 $options = new Options();
 $options->set('isHtml5ParserEnabled', true);
 $options->set('isPhpEnabled', true);
@@ -35,13 +40,16 @@ $html .= '<th>';
 $html .= '<img src="data:image/png;base64,' . base64_encode(file_get_contents('logo2.png')) . '" alt="" width="40">';
 $html .= '</th>';
 $html .= '</tr>';
-$html .= '<tr><td style="text-align: center;" colspan="4">FORMULIR DAFTAR HADIR</td><td style="font-size: 12px;" colspan="3">NO DOKUMEN:</td></tr>';
-$html .= '<tr style="font-size: 10px;">';
+$html .= '<tr><td style="text-align: center;" colspan="4">FORMULIR DAFTAR HADIR</td><td style="font-size: 12px;" colspan="3">NO DOKUMEN: <b>' . $document;
+$html .= '</b></td></tr>';
+$html .= '<tr style="font-size: 10px; font-family: Arial;">';
 $html .= '<td colspan="3">Hari/Tanggal : ' . $today;
 $html .= '</td>';
-$html .= '<td colspan="4">Lokasi : </td></tr>';
-$html .= '<tr><td style="font-size: 10px;" colspan="7">Kegiatan :</td></tr>';
-$html .= '<tr><td colspan="7">    </td></tr>';
+$html .= '<td colspan="4">Lokasi : ' . $location;
+$html .= '</td></tr>';
+$html .= '<tr><td style="font-size: 10px;" colspan="7">Kegiatan : ' . $activity;
+$html .= '</td></tr>';
+// $html .= '<tr><td colspan="7">    </td></tr>';
 $html .= '</table>';
 $html .= '<br><br>';
 

@@ -155,7 +155,7 @@ if (isset($_POST['signed'])) {
                                                 <label for="time">Waktu<input type="time" name="waktu" class="form-control mt-2" required></label>
                                             </div> -->
                                         <div class="form-group">
-                                            <label for="name">Nama Lengkap</label>
+                                            <label for="name">Nama</label>
                                             <input type="text" class="form-control" id="name" name="nm_absen" placeholder="Enter Fullname" autofocus required>
                                         </div>
                                         <div class="form-group">
@@ -168,14 +168,26 @@ if (isset($_POST['signed'])) {
                                         </div>
                                         <div class="form-group">
                                             <label for="agenda">Unit</label>
-                                            <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" autocapitalize="word" required>
+                                            <input type="text" class="form-control" id="agenda" name="unit" placeholder="Enter nama Unit/Perusahaan" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="kabid">Jabatan</label>
                                             <!-- <input type="text" class="form-control" id="leader" name="bidang" required> -->
-                                            <?php
-                                            include 'css/opsi.php';
-                                            ?>
+                                            <select name="bidang" id="kabid" class="form-control custom-select" placeholder="Enter Jabatan/Bidang" required>
+                                                <option selected hidden>Enter Jabatan/Bidang</option>
+                                                <option value="REN">Perencanaan</option>
+                                                <option value="Pengadaan">Pengadaan</option>
+                                                <option value="LOG">Logistik</option>
+                                                <option value="JAR">Jaringan</option>
+                                                <option value="SAR PP">Sar PP</option>
+                                                <option value="SDM">Pemberdayaan</option>
+                                                <option value="PAD">Keuangan</option>
+                                                <option value="TEL">Transaksi Energi Listrik</option>
+                                                <option value="UP3">Unit Pelaksana Pelayanan Pelanggan</option>
+                                                <option value="ULP">Unit Layanan Pelaksana</option>
+                                                <option value="UP2K">Unit Pelaksana Proyek Ketenagalistrikan</option>
+                                                <option value="UP2D">Unit Pelaksana Pengatur Distribusi</option>
+                                            </select>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-10">
