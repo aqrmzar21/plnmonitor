@@ -33,6 +33,23 @@
       </ul>
 
       <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+          <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">PerKategori</a>
+          <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+            <li><a href="#" class="dropdown-item">Internal </a></li>
+            <li><a href="#" class="dropdown-item">External</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="../examples/login.php" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i> Login</a>
+        </li>
+        <li class="nav-item">
+          <a href="../../index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+      </ul>
+      <!-- SAMPEL  -->
       <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <li class="nav-item">
@@ -976,6 +993,70 @@
     includeHTML();
   </script>
   <!-- akhir dunia -->
+  <script>
+    // JavaScript (jQuery)
+    $(document).ready(function() {
+      $("#saveButton").click(function() {
+        var inputLocation = $("#inputLocation").val();
+        var inputActivity = $("#inputActivity").val();
+        var inputDocument = $("#inputDocument").val();
+        // Menyimpan data ke dalam cookie
+        document.cookie = "location=" + inputLocation;
+        document.cookie = "activity=" + inputActivity;
+        document.cookie = "document=" + inputDocument;
+
+
+        // Menampilkan data di elemen dengan ID yang sesuai
+        // $("#displayLocation").html(inputLocation);
+        // $("#displayActivity").html(inputActivity);
+        // $("#displayDocument").html(inputDocument);
+
+        // Menutup modal
+        $('#myModal').modal('hide');
+      });
+    });
+  </script>
+  <div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Caption</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">Lokasi</label>
+                <input type="text" id="inputLocation" class="form-control" placeholder="Enter location info">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">No. Dokumen</label>
+                <input type="text" id="inputDocument" class="form-control" placeholder="Enter document info" style="text-transform: uppercase">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="">Kegiatan</label>
+                <input type="text" id="inputActivity" class="form-control" placeholder="Enter activity info">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 </body>
 
 </html>

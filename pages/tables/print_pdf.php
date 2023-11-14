@@ -40,7 +40,7 @@ $html .= '<th>';
 $html .= '<img src="data:image/png;base64,' . base64_encode(file_get_contents('logo2.png')) . '" alt="" width="40">';
 $html .= '</th>';
 $html .= '</tr>';
-$html .= '<tr><td style="text-align: center;" colspan="4">FORMULIR DAFTAR HADIR</td><td style="font-size: 12px;" colspan="3">NO DOKUMEN: <b>' . $document;
+$html .= '<tr><td style="text-align: center;" colspan="4">FORMULIR DAFTAR HADIR</td><td style="font-size: 12px;" colspan="3">NO. DOKUMEN: <b>' . $document;
 $html .= '</b></td></tr>';
 $html .= '<tr style="font-size: 10px; font-family: Arial;">';
 $html .= '<td colspan="3">Hari/Tanggal : ' . $today;

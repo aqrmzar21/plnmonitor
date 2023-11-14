@@ -54,14 +54,6 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
         </ul>
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav ml-auto">
-
-          <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">PerKategori</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="#" class="dropdown-item">Internal </a></li>
-              <li><a href="#" class="dropdown-item">External</a></li>
-            </ul>
-          </li>
           <li class="nav-item">
             <a href="../examples/login.php" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i> Login</a>
           </li>
@@ -88,7 +80,7 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">DataTables</li>
+                <li class="breadcrumb-item active">Daftar Hadir</li>
               </ol>
             </div>
           </div>
@@ -117,9 +109,11 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
               <p>Lokasi :
                 <span id="displayLocation"></span>
               </p>
+              <button class="btn btn-xs btn-primary float-right" type="button" id="clearCookies">Reset</button>
               <p>Kegiatan :
                 <span id="displayActivity"></span>
               </p>
+              <!-- HTML -->
 
               <div class="card card-outline card-gray">
                 <!-- /.card-body -->
@@ -236,23 +230,55 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
   <script>
     // JavaScript (jQuery)
     $(document).ready(function() {
+      // Tombol untuk menghapus cookie
+      $("#clearCookies").click(function() {
+        // Menghapus cookie dengan mengatur tanggal kedaluwarsa ke masa lalu
+        document.cookie = "location=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "activity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "document=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+        // Mereset nilai-nilai di elemen HTML
+        $("#displayLocation").html("");
+        $("#displayActivity").html("");
+        $("#displayDocument").html("");
+      });
+
+      // Tombol untuk menyimpan data ke dalam cookie
       $("#saveButton").click(function() {
         var inputLocation = $("#inputLocation").val();
         var inputActivity = $("#inputActivity").val();
         var inputDocument = $("#inputDocument").val();
+
         // Menyimpan data ke dalam cookie
         document.cookie = "location=" + inputLocation;
         document.cookie = "activity=" + inputActivity;
         document.cookie = "document=" + inputDocument;
 
-        // Menampilkan data di elemen dengan ID yang sesuai
-        $("#displayLocation").html(inputLocation);
-        $("#displayActivity").html(inputActivity);
-        $("#displayDocument").html(inputDocument);
+        // Mengambil nilai dari cookie
+        var locationCookie = getCookie("location");
+        var activityCookie = getCookie("activity");
+        var documentCookie = getCookie("document");
+
+        // Menampilkan data dari cookie ke dalam elemen HTML
+        $("#displayLocation").html(locationCookie);
+        $("#displayActivity").html(activityCookie);
+        $("#displayDocument").html(documentCookie);
 
         // Menutup modal
         $('#myModal').modal('hide');
       });
+
+      // Fungsi untuk mendapatkan nilai cookie berdasarkan nama
+      function getCookie(name) {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.startsWith(name + '=')) {
+            return cookie.substring(name.length + 1);
+          }
+        }
+        return '';
+      }
     });
   </script>
   <div class="modal fade" id="modal-lg">
