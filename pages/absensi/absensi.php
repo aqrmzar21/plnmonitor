@@ -33,7 +33,7 @@ $koneksi = koneksi();
   <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
   <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-  
+
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -85,12 +85,12 @@ $koneksi = koneksi();
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper bg-white">
-      <!-- Content Header (Page header) -->
+      <!-- Content Header (Page Navbar) -->
       <section class="content-header">
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h3 class="m-0"> Data Absensi <small></small></h3>
+              <!-- <h3 class="m-0"> Data Absensi <small></small></h3> -->
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
@@ -105,122 +105,162 @@ $koneksi = koneksi();
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content-header -->
-      <div class="content-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-8 mb-4">
-              <form method="post" class="form-inline">
-                <input type="date" name="tgl_mulai" class="form-control">
-                <input type="date" name="tgl_selesai" class="form-control ml-3">
-                <button type="submit" name="filter_tgl" class="btn btn-secondary ml-3">Filter</button>
-                <span class="ml-3">
-                  <!-- <a href="printphpexcel.php" class="btn btn-gray"><i class="fa fa-print" aria-hidden="true"> Print Excel </i></a> -->
-                </span>
-              </form>
-              <?php
-              if (isset($_POST['filter'])) {
-                $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
-                $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
-                echo "Mulai" . $tgl_mulai . "Sampai" . $tgl_selesai;
-              }
-              ?>
-            </div>
-            <div class="col-4 ml-auto">
-              <a href="printdomdf.php" class="btn btn-default float-right">
-                <i class="fa fa-print" aria-hidden="true"> Print PDF </i>
-              </a>
-              <!-- <a href="printexcel.php" class="btn btn-primary mr-3">
-                <i class="fa fa-print" aria-hidden="true"> Print Excel </i>
-              </a> -->
-            </div>
 
+      <!-- Content Header (Main Header) -->
+      <section class="main-content">
+        <div class="container">
+          <div id="displayText"></div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-6">
+
+                  <div class="form-group">
+                    <label>No. Dokumen</label>
+                    <input type="text" class="form-control" placeholder="Enter ..." style="text-transform: uppercase">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Lokasi</label>
+                    <input type="text" class="form-control" placeholder="Enter ...">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Kegiatan</label>
+                    <input type="text" class="form-control" placeholder="Enter ...">
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
-      </div>
+        <!-- /.container  -->
 
-      <!-- Main content -->
-      <div class="content">
+      </section>
+      <!-- /.content-header -->
+
+      <!-- Content Header (Page Footer) -->
+      <section class="content-footer">
         <div class="container">
-          <div class="row">
 
-            <!-- col-12 -->
-            <div class="col-md-12">
-              <div class="card card-secondary card-outline">
-                <div class="card-body">
-                  <div class="box" id="demo_info">
-                    <table id="example" class="table table-bordered table-striped">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Nama Lengkap</th>
-                          <th>Email</th>
-                          <th>No Handphone</th>
-                          <th>Unit</th>
-                          <th>Jabatan/Bidang</th>
-                          <!-- <th>Tanggal Rapat</th> -->
-                          <!-- <th>Waktu Rapat</th> -->
-                          <th>Signature</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                        <?php
-                        if (isset($_POST['filter_tgl'])) {
-                          $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
-                          $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
-                          $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal BETWEEN '$tgl_mulai' AND '$tgl_selesai'");
-                        } else {
-                          $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen ORDER BY id_absen DESC");
-                        }
-
-                        if ($absensi) {
-                          $absensi = mysqli_fetch_all($absensi, MYSQLI_ASSOC);
-
-                          $i = 1;
-                          foreach ($absensi as $ab) {
-                        ?>
-                            <tr>
-                              <td><?= $i++; ?>.</td>
-                              <td><?= $ab['nm_absen']; ?></td>
-                              <td><?= $ab['email']; ?></td>
-                              <td><?= $ab['nope']; ?></td>
-                              <td><?= $ab['unit']; ?></td>
-                              <td><?= $ab['bidang']; ?></td>
-                              <!-- <td><?= $ab['tanggal']; ?></td> -->
-                              <!-- <td><?= $ab['waktu']; ?></td> -->
-                              <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
-                              <td>
-                                <div>
-                                  <a href="proses/ubahabsen.php?id=<?php echo $ab['id_absen']; ?>" class="btn btn-xs btn-default btn-flat"><i class="fas fa-edit"></i></a>
-                                  <a href="proses/hapusabsen.php?id=<?= $ab['id_absen']; ?>" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash" onclick="return confirm('apakah anda yakin?');"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                        <?php
-                          };
-                        } else {
-                          echo "Query gagal dieksekusi: " . mysqli_error($koneksi);
-                        }
-                        ?>
-
-                      </tbody>
-                    </table>
-                    <!-- </div> -->
-                  </div>
-                  <!-- /.box-body -->
-
-                </div><!-- /.table -->
-              </div><!-- /.card -->
-
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8 row">
+                <form method="post" class="form-inline">
+                  <input type="date" name="tgl_mulai" class="form-control col-3 mx-1">
+                  <input type="date" name="tgl_selesai" class="form-control col-3 mx-1">
+                  <button type="submit" name="filter_tgl" class="btn btn-secondary ">Filter</button>
+                </form>
+                <?php
+                if (isset($_POST['filter'])) {
+                  $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
+                  $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
+                  echo "Mulai" . $tgl_mulai . "Sampai" . $tgl_selesai;
+                }
+                ?>
+              </div>
+              <div class="col-4">
+                <a href="printdomdf.php" class="btn btn-default float-right">
+                  <i class="fa fa-print" aria-hidden="true"> Print PDF </i>
+                </a>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+                  Launch Default Modal
+                </button>
+                <!-- <a href="printexcel.php" class="btn btn-primary mr-3">
+                    <i class="fa fa-print" aria-hidden="true"> Print Excel </i>
+                     </a> -->
+              </div>
             </div>
-            <!-- ./ col-12  -->
 
           </div>
+          <!-- /.div card-body -->
+        </div>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+          <!-- <div class="row"> -->
+
+          <!-- col-12 -->
+          <!-- <div class="col-md-12"> -->
+          <!-- <div class="card card-secondary card-outline"> -->
+          <div class="card-body">
+            <div class="box" id="demo_info">
+              <table id="example" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nama Lengkap</th>
+                    <th>Email</th>
+                    <th>No Handphone</th>
+                    <th>Unit</th>
+                    <th>Jabatan/Bidang</th>
+                    <!-- <th>Tanggal Rapat</th> -->
+                    <!-- <th>Waktu Rapat</th> -->
+                    <th>Signature</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <?php
+                  if (isset($_POST['filter_tgl'])) {
+                    $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
+                    $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
+                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal BETWEEN '$tgl_mulai' AND '$tgl_selesai'");
+                  } else {
+                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen ORDER BY id_absen DESC");
+                  }
+
+                  if ($absensi) {
+                    $absensi = mysqli_fetch_all($absensi, MYSQLI_ASSOC);
+
+                    $i = 1;
+                    foreach ($absensi as $ab) {
+                  ?>
+                      <tr>
+                        <td><?= $i++; ?>.</td>
+                        <td><?= $ab['nm_absen']; ?></td>
+                        <td><?= $ab['email']; ?></td>
+                        <td><?= $ab['nope']; ?></td>
+                        <td><?= $ab['unit']; ?></td>
+                        <td><?= $ab['bidang']; ?></td>
+                        <!-- <td><?= $ab['tanggal']; ?></td> -->
+                        <!-- <td><?= $ab['waktu']; ?></td> -->
+                        <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
+                        <td>
+                          <div>
+                            <a href="proses/ubahabsen.php?id=<?php echo $ab['id_absen']; ?>" class="btn btn-xs btn-default btn-flat"><i class="fas fa-edit"></i></a>
+                            <a href="proses/hapusabsen.php?id=<?= $ab['id_absen']; ?>" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash" onclick="return confirm('apakah anda yakin?');"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                  <?php
+                    };
+                  } else {
+                    echo "Query gagal dieksekusi: " . mysqli_error($koneksi);
+                  }
+                  ?>
+
+                </tbody>
+              </table>
+              <!-- </div> -->
+            </div>
+            <!-- /.box-body -->
+
+          </div><!-- /.table -->
+          <!-- </div>/.card -->
+
+          <!-- </div> -->
+          <!-- ./ col-12  -->
+
+          <!-- </div> -->
           <!-- /.row -->
 
         </div><!-- /.container-fluid -->
-      </div>
+      </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -273,7 +313,40 @@ $koneksi = koneksi();
         'autoWidth': false
       });
     });
+    // JavaScript (jQuery)
+    $(document).ready(function() {
+      $("#saveButton").click(function() {
+        var inputText = $("#inputText").val();
+        $("#displayText").html(inputText);
+        $('#modal-lg').modal('hide');
+      });
+    });
   </script>
+
+  <!-- MODAL ============================================================================= -->
+  <div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="inputText" placeholder="Enter text">
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="saveButton">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal =========================================================================== -->
+
 
 </body>
 

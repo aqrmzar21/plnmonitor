@@ -16,7 +16,7 @@ $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFo
 $tgl = $formatter->format(new DateTime());
 $formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE);
 $now = $formatterID->format(new DateTime());
-$month = explode(" ", $now)[2];
+$month = explode(" ", $now)[1];
 $formatID = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 $live = $formatID->format(new DateTime());
 
@@ -26,13 +26,14 @@ $year = explode(" ", $live)[3];
 
 require 'db/function.php';
 $koneksi = koneksi();
+$today = date("Y-m-d");
 // include 'pages/forms/proses/proses-form.php';
-$absen = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen");
+$absen = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE DATE(tanggal) = '$today' ");
 $dab = mysqli_fetch_assoc($absen);
 $unit = 'UP3 Gorontalo';
-$absen2 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit = '$unit' ");
+$absen2 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit = '$unit' AND DATE(tanggal) = '$today' ");
 $dab2 = mysqli_fetch_assoc($absen2);
-$absen3 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit != '$unit' ");
+$absen3 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit != '$unit' AND DATE(tanggal) = '$today' ");
 $dab3 = mysqli_fetch_assoc($absen3);
 $anggota = mysqli_query($koneksi, "SELECT COUNT(*) AS totalanggota FROM t_datapengunjung");
 $danggota = mysqli_fetch_assoc($anggota);
@@ -179,8 +180,8 @@ $absens = query("SELECT * FROM t_dataabsen");
           <div class="card bg-white my-3 p-2">
             <div class="widget-user-header">
               <h3 class="text-olive mx-4 my-2 float-right"><b id="clock">Hi, World!</b></h3>
-              <h2 class="brand-text ml-3 mt-2"><strong>Dashbord Info</strong></h2>
-              <p class="widget-user-desc ml-3 mb-4 text-xs"><?= $live; ?></p>
+              <h4 class="brand-text ml-3 mt-2"><strong>Dashbord Info</strong></h4>
+              <p class="widget-user-desc ml-3 mb-4 text-blue"><?= $live; ?></p>
             </div>
             <!-- <<div class="card mx-auto col-4"> -->
             <!-- </div> -->
@@ -205,43 +206,36 @@ $absens = query("SELECT * FROM t_dataabsen");
                       <li class="page-item  <?= $day == 'Senin' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Senin</p>
-                          <p class="page-year"><?= $month; ?></p>
                         </a>
                       </li>
                       <li class="page-item  <?= $day == 'Selasa' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Selasa</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item  <?= $day == 'Rabu' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Rabu</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item  <?= $day == 'Kamis' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Kamis</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item  <?= $day == 'Jumat' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Jumat</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item <?= $day == 'Sabtu' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Sabtu</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item  <?= $day == 'Minggu' ? 'active' : '' ?>">
                         <a class="page-link" href="#">
                           <p class="page-month">Ahad</p>
-                          <p class="page-year"><?= $year; ?></p>
                         </a>
                       </li>
                       <li class="page-item"><a class="page-link" disabled href="#">»</a></li>

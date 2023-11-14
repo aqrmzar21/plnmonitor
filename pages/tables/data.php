@@ -7,7 +7,8 @@ require '../../db/function.php';
 // ============================================================================
 // INI ADALAH KODE UNTUK MELIHAT DATA ABSEN TANPA HARUS LOGIN terlebih dahulu 
 // =============================================================================
-
+$koneksi = koneksi();
+$tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
 
 ?>
 
@@ -99,11 +100,26 @@ require '../../db/function.php';
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <a href="export_excel.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
+              <a href="export_word.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
+              <a href="export_excel.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
               <a href="print_pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
-              <a href="../absensi/signature.php" class="btn btn-md btn-secondary my-3 mr-2" target="_blank"><i class="mr-1 far fa-plus-square" aria-hidden="true"></i> Add Absensi</a>
+              <button type="button" class="btn btn-md btn-secondary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
+                <i class="mr-1 far fa-plus-square" aria-hidden="true"></i>
+                Add Informasi
+              </button>
             </div>
             <div class="col-12">
+              <div class="card-header">
+                <h4 class="float-left"><strong>FORMULIR DAFTAR HADIR</strong></h4>
+                <h5 class="float-right">No. Dokumen : <b><span id="displayDocument"></span></b></h5>
+              </div>
+              <p class="float-right">Tanggal : <?= $tanggal_sekarang; ?></p>
+              <p>Lokasi :
+                <span id="displayLocation"></span>
+              </p>
+              <p>Kegiatan :
+                <span id="displayActivity"></span>
+              </p>
 
               <div class="card card-outline card-gray">
                 <!-- /.card-body -->
@@ -123,9 +139,6 @@ require '../../db/function.php';
                     </thead>
                     <tbody>
                       <?php
-                      $koneksi = koneksi();
-                      $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
-
                       $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
                       $absensi = mysqli_query($koneksi, $query);
                       $i = 1;
@@ -220,6 +233,69 @@ require '../../db/function.php';
       });
     });
   </script>
+  <script>
+    // JavaScript (jQuery)
+    $(document).ready(function() {
+      $("#saveButton").click(function() {
+        var inputLocation = $("#inputLocation").val();
+        var inputActivity = $("#inputActivity").val();
+        var inputDocument = $("#inputDocument").val();
+        // Menyimpan data ke dalam cookie
+        document.cookie = "location=" + inputLocation;
+        document.cookie = "activity=" + inputActivity;
+        document.cookie = "document=" + inputDocument;
+
+        // Menampilkan data di elemen dengan ID yang sesuai
+        $("#displayLocation").html(inputLocation);
+        $("#displayActivity").html(inputActivity);
+        $("#displayDocument").html(inputDocument);
+
+        // Menutup modal
+        $('#myModal').modal('hide');
+      });
+    });
+  </script>
+  <div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah Caption</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">Lokasi</label>
+                <input type="text" id="inputLocation" class="form-control" placeholder="Enter location info">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="">No. Dokumen</label>
+                <input type="text" id="inputDocument" class="form-control" placeholder="Enter document info" style="text-transform: uppercase">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label for="">Kegiatan</label>
+                <input type="text" id="inputActivity" class="form-control" placeholder="Enter activity info">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 
 </body>
 

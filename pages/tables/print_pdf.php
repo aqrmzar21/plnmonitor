@@ -61,7 +61,7 @@ $i = 1;
 
 // Lakukan looping melalui data dan tambahkan baris-baris tabel
 foreach ($absensi as $ab) {
-  $html .= '<tr style="font-size: 12px;">';
+  $html .= '<tr style="font-size: 15px;">';
   $html .= '<td>' . $i . '</td>';
   $html .= '<td>' . $ab['nm_absen'] . '</td>';
   $html .= '<td>' . $ab['unit'] . '</td>';
