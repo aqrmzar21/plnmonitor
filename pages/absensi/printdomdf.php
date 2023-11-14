@@ -7,13 +7,23 @@ require 'proses.php';
 // $koneksi = koneksi();
 $koneksi = (mysqli_connect('localhost', 'root', '', 'absensiplen'));
 
+if (!isset($_COOKIE['tanggal']) || empty($_COOKIE['tanggal'])) {
+  $dateValue = new DateTime();
+  // Mendapatkan nilai dari properti date
+  $tanggal = $dateValue->format('Y-m-d'); // Mengatur tanggal saat ini
+  $tglView = new DateTime();
+} else {
+  $tanggalTerpilih = $_COOKIE['tanggal'];
+  $tanggalObj = new DateTime($tanggalTerpilih);
+  $tanggal = $tanggalObj->format('Y-m-d');
+  $tglView = new DateTime($tanggalTerpilih);
+}
 // Misalnya, Anda memiliki array $data yang berisi data yang ingin Anda cetak
-$data = (mysqli_query($koneksi, "SELECT * FROM t_dataabsen"));
-// $today = date("l, d/m/Y");
-// $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
-// $today = $formatter->format(new DateTime());
+$data = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal = '$tanggal' ORDER BY id_absen DESC");
+// $data = (mysqli_query($koneksi, "SELECT * FROM t_dataabsen"));
+
 $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-$today = $formatter->format(new DateTime());
+$today = $formatter->format($tglView);
 
 // Konfigurasi Dompdf
 $options = new Options();
@@ -63,7 +73,7 @@ $i = 1;
 
 // Lakukan looping melalui data dan tambahkan baris-baris tabel
 foreach ($data as $ab) {
-  $html .= '<tr style="font-size: 12px;">';
+  $html .= '<tr style="font-size: 15px;">';
   $html .= '<td>' . $i . '</td>';
   $html .= '<td>' . $ab['nm_absen'] . '</td>';
   $html .= '<td>' . $ab['unit'] . '</td>';
@@ -102,4 +112,4 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 // Simpan PDF dalam file
-$dompdf->stream('dataabsen.pdf');
+$dompdf->stream('daftaraabsen.pdf');

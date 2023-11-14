@@ -5,30 +5,16 @@ if (!isset($_SESSION['login'])) {
   exit;
 }
 
-require 'proses.php';
-$koneksi = koneksi();
-// $absensi = query("SELECT * FROM t_dataabsen");
+if (isset($_POST['tanggal'])) {
+  $tanggalTerpilih = $_POST['tanggal'];
 
-// Membaca data dari cookie
-$location = isset($_COOKIE['location']) ? $_COOKIE['location'] : "";
-$activity = isset($_COOKIE['activity']) ? $_COOKIE['activity'] : "";
-$document = isset($_COOKIE['document']) ? $_COOKIE['document'] : "";
-
-// Logika penanganan ketika cookie belum diinput
-if (empty($location) && empty($activity) && empty($document)) {
-  // Tambahkan tindakan atau pesan yang sesuai di sini
-  // Misalnya, memberikan nilai default atau menampilkan pesan bahwa cookie belum diinput.
-  // Contoh:
-  $location = "Enter ....";
-  $activity = "Enter ....";
-  $document = "Enter ....";
-  echo "Cookie belum diinput.";
+  // Menyimpan tanggal ke dalam cookie selama 1 hari
+  setcookie("tanggal", $tanggalTerpilih, time() + (86400 * 1), "/"); // 86400 = 1 hari
 }
-
-// Sekarang Anda dapat menggunakan nilai $location, $activity, dan $document seperti yang Anda butuhkan.
-
+// print_r($_COOKIE);
+// require 'proses.php';
+// $absensi = query("SELECT * FROM t_dataabsen");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +40,7 @@ if (empty($location) && empty($activity) && empty($document)) {
 
 </head>
 
-<body class="hold-transition sidebar-collapse layout-top-nav">
+<body class="hold-transition layout-top-nav">
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -126,71 +112,43 @@ if (empty($location) && empty($activity) && empty($document)) {
       </section>
       <!-- /.content-header -->
 
-      <!-- Content Header (Main Header) -->
-      <section class="main-content">
-        <div class="container">
-          <div id="displayText"></div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-6">
-
-                  <div class="form-group">
-                    <label>No. Dokumen</label>
-                    <input type="text" class="form-control" value="<?= $document; ?>" placeholder="Enter ..." style="text-transform: uppercase">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label>Lokasi</label>
-                    <input type="text" class="form-control" value="<?= $location; ?>" placeholder="Enter ...">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Kegiatan</label>
-                    <input type="text" class="form-control" value="<?= $activity; ?>" placeholder="Enter ...">
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <!-- /.container  -->
-
-      </section>
-      <!-- /.content-header -->
-
       <!-- Content Header (Page Footer) -->
       <section class="content-footer">
         <div class="container">
 
           <div class="card-body">
             <div class="row">
-              <div class="col-8 row">
-                <form method="post" class="form-inline">
-                  <input type="date" name="tgl_mulai" class="form-control col-3 mx-1">
-                  <input type="date" name="tgl_selesai" class="form-control col-3 mx-1">
-                  <button type="submit" name="filter_tgl" class="btn btn-secondary ">Filter</button>
+              <div class="col-8">
+                <form method="POST" class="form-inline">
+                  <div class="form-group">
+                    <select name="tanggal" class="custom-select form-control-border border-width-2">
+                      <?php
+                      include '../../db/connect.php';
+                      $koneksi = koneksi();
+                      $resultFilter = mysqli_query($koneksi, "SELECT DISTINCT tanggal FROM t_dataabsen ORDER BY tanggal DESC");
+                      while ($row = mysqli_fetch_assoc($resultFilter)) {
+                        $tanggal = date('d F Y', strtotime($row['tanggal'])); // Ubah ke format tanggal dalam bahasa Indonesia
+                        echo "<option value='" . $row['tanggal'] . "'>" . $tanggal . "</option>";
+                      }
+                      ?>
+                    </select>
+                    <button type="submit" name="filter_tgl" class="btn btn-secondary mx-2">Filter</button>
+                  </div>
                 </form>
-                <?php
-                if (isset($_POST['filter'])) {
-                  $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
-                  $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
-                  echo "Mulai" . $tgl_mulai . "Sampai" . $tgl_selesai;
-                }
-                ?>
+
               </div>
               <div class="col-4">
                 <a href="printdomdf.php" class="btn btn-default float-right">
                   <i class="fa fa-print" aria-hidden="true"> Print PDF </i>
                 </a>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
-                  Launch Default Modal
-                </button>
-                <!-- <a href="printexcel.php" class="btn btn-primary mr-3">
-                    <i class="fa fa-print" aria-hidden="true"> Print Excel </i>
-                     </a> -->
+
               </div>
+              <button class="btn btn-xs btn-primary mt-3 float-right" onclick="resetTanggal()">Reset</button>
+              <script>
+                function resetTanggal() {
+                  document.cookie = "tanggal=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+              </script>
             </div>
 
           </div>
@@ -217,55 +175,49 @@ if (empty($location) && empty($activity) && empty($document)) {
                     <th>No Handphone</th>
                     <th>Unit</th>
                     <th>Jabatan/Bidang</th>
-                    <!-- <th>Tanggal Rapat</th> -->
+                    <th>Tanggal Rapat</th>
                     <!-- <th>Waktu Rapat</th> -->
                     <th>Signature</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-
                   <?php
                   if (isset($_POST['filter_tgl'])) {
-                    $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
-                    $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
-                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal BETWEEN '$tgl_mulai' AND '$tgl_selesai'");
+                    $tanggalPilihan = mysqli_real_escape_string($koneksi, $_POST['tanggal']);
+                    $tanggalTerpilih = $tanggalPilihan;
+
+                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal = '$tanggalTerpilih' ORDER BY id_absen DESC");
+                    // print_r($tanggalTerpilih);
                   } else {
-                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen ORDER BY id_absen DESC");
+                    $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen ORDER BY id_absen ASC");
                   }
 
-                  if ($absensi) {
-                    $absensi = mysqli_fetch_all($absensi, MYSQLI_ASSOC);
-
-                    $i = 1;
-                    foreach ($absensi as $ab) {
+                  $i = 1;
+                  while ($ab = mysqli_fetch_assoc($absensi)) :
                   ?>
-                      <tr>
-                        <td><?= $i++; ?>.</td>
-                        <td><?= $ab['nm_absen']; ?></td>
-                        <td><?= $ab['email']; ?></td>
-                        <td><?= $ab['nope']; ?></td>
-                        <td><?= $ab['unit']; ?></td>
-                        <td><?= $ab['bidang']; ?></td>
-                        <!-- <td><?= $ab['tanggal']; ?></td> -->
-                        <!-- <td><?= $ab['waktu']; ?></td> -->
-                        <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
-                        <td>
-                          <div>
-                            <a href="proses/ubahabsen.php?id=<?php echo $ab['id_absen']; ?>" class="btn btn-xs btn-default btn-flat"><i class="fas fa-edit"></i></a>
-                            <a href="proses/hapusabsen.php?id=<?= $ab['id_absen']; ?>" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash" onclick="return confirm('apakah anda yakin?');"></i></a>
-                          </div>
-                        </td>
-                      </tr>
+                    <tr>
+                      <td><?= $i++; ?>.</td>
+                      <td><?= $ab['nm_absen']; ?></td>
+                      <td><?= $ab['email']; ?></td>
+                      <td><?= $ab['nope']; ?></td>
+                      <td><?= $ab['unit']; ?></td>
+                      <td><?= $ab['bidang']; ?></td>
+                      <td><?= $ab['tanggal']; ?></td>
+                      <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
+                      <td>
+                        <div>
+                          <a href="proses/ubahabsen.php?id=<?php echo $ab['id_absen']; ?>" class="btn btn-xs btn-default btn-flat"><i class="fas fa-edit"></i></a>
+                          <a href="proses/hapusabsen.php?id=<?= $ab['id_absen']; ?>" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash" onclick="return confirm('apakah anda yakin?');"></i></a>
+                        </div>
+                      </td>
+                    </tr>
                   <?php
-                    };
-                  } else {
-                    echo "Query gagal dieksekusi: " . mysqli_error($koneksi);
-                  }
+                  endwhile;
                   ?>
-
                 </tbody>
               </table>
+
               <!-- </div> -->
             </div>
             <!-- /.box-body -->
@@ -282,17 +234,11 @@ if (empty($location) && empty($activity) && empty($document)) {
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->
+
     </div>
     <!-- /.content-wrapper -->
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <section class="main-footer">
       <!-- Default to the left -->
       <div class="container">
         <strong>Copyright &copy; 2023 PT. PLN UP3 KOTA GORONTALO.</strong> All rights reserved.
@@ -300,7 +246,7 @@ if (empty($location) && empty($activity) && empty($document)) {
           <b>Version</b> 4.0
         </div>
       </div>
-    </footer>
+    </section>
 
   </div>
   <!-- ./wrapper -->
@@ -333,20 +279,6 @@ if (empty($location) && empty($activity) && empty($document)) {
         'autoWidth': false
       });
     });
-    // JavaScript (jQuery)
-    $(document).ready(function() {
-      $("#saveButton").click(function() {
-        var inputLocation = $("#inputLocation").val();
-        var inputActivity = $("#inputActivity").val();
-        var inputDocument = $("#inputDocument").val();
-        // Menyimpan data ke dalam cookie
-        document.cookie = "location=" + inputLocation;
-        document.cookie = "activity=" + inputActivity;
-        document.cookie = "document=" + inputDocument;
-
-        $('#modal-lg').modal('hide');
-      });
-    });
   </script>
 
   <!-- MODAL ============================================================================= -->
@@ -354,7 +286,7 @@ if (empty($location) && empty($activity) && empty($document)) {
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Edit</h4>
+          <h4 class="modal-title">Caption</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

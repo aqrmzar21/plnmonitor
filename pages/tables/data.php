@@ -105,15 +105,17 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
                 <h4 class="float-left"><strong>FORMULIR DAFTAR HADIR</strong></h4>
                 <h5 class="float-right">No. Dokumen : <b><span id="displayDocument"></span></b></h5>
               </div>
-              <p class="float-right">Tanggal : <?= $tanggal_sekarang; ?></p>
-              <p>Lokasi :
-                <span id="displayLocation"></span>
-              </p>
-              <button class="btn btn-xs btn-primary float-right" type="button" id="clearCookies">Reset</button>
-              <p>Kegiatan :
-                <span id="displayActivity"></span>
-              </p>
-              <!-- HTML -->
+              <div class="card-header">
+                <p class="float-right">Tanggal : <?= $tanggal_sekarang; ?></p>
+                <p>Lokasi :
+                  <span id="displayLocation"></span>
+                </p>
+                <button class="btn btn-xs btn-primary float-right" type="button" id="clearCookies">Reset</button>
+                <p>Kegiatan :
+                  <span id="displayActivity"></span>
+                </p>
+                <!-- HTML -->
+              </div>
 
               <div class="card card-outline card-gray">
                 <!-- /.card-body -->

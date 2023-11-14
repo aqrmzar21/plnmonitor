@@ -1,3 +1,24 @@
+<?php
+
+// Membaca data dari cookie
+$location = isset($_COOKIE['location']) ? $_COOKIE['location'] : "";
+$activity = isset($_COOKIE['activity']) ? $_COOKIE['activity'] : "";
+$document = isset($_COOKIE['document']) ? $_COOKIE['document'] : "";
+
+// Logika penanganan ketika cookie belum diinput
+if (empty($location) && empty($activity) && empty($document)) {
+  // Tambahkan tindakan atau pesan yang sesuai di sini
+  // Misalnya, memberikan nilai default atau menampilkan pesan bahwa cookie belum diinput.
+  // Contoh:
+  $location = "Enter ....";
+  $activity = "Enter ....";
+  $document = "Enter ....";
+  // echo "";
+}
+
+// Sekarang Anda dapat menggunakan nilai $location, $activity, dan $document seperti yang Anda butuhkan.
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -169,7 +190,90 @@
           </div>
         </div><!-- /.container-fluid -->
       </section>
+      <!-- Content Header (Main Header) -->
+      <section class="cookie-content">
+        <div class="container">
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>No. Dokumen</label>
+                    <input type="text" class="form-control" value="<?= $document; ?>" placeholder="Enter ..." style="text-transform: uppercase">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Lokasi</label>
+                    <input type="text" class="form-control" value="<?= $location; ?>" placeholder="Enter ...">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Kegiatan</label>
+                    <input type="text" class="form-control" value="<?= $activity; ?>" placeholder="Enter ...">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!-- /.container  -->
 
+      </section>
+      <!-- /.content-main -->
+      <section class="filter-tanggal">
+        <form method="POST" class="form-inline">
+          <input type="date" name="tgl_mulai" class="form-control col-3 mx-1">
+          <input type="date" name="tgl_selesai" class="form-control col-3 mx-1">
+          <button type="submit" name="filter_tgl" class="btn btn-secondary mx-1">Filter</button>
+        </form>
+        <?php
+        if (isset($_POST['filter'])) {
+          $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
+          $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
+          var_dump($tgl_mulai);
+          die;
+          echo "Mulai" . $tgl_mulai . "Sampai" . $tgl_selesai;
+        }
+
+        if (isset($_POST['filter_tgl'])) {
+          $tgl_mulai = mysqli_real_escape_string($koneksi, $_POST['tgl_mulai']);
+          $tgl_selesai = mysqli_real_escape_string($koneksi, $_POST['tgl_selesai']);
+          $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal BETWEEN '$tgl_mulai' AND '$tgl_selesai'");
+        } else {
+          $absensi = mysqli_query($koneksi, "SELECT * FROM t_dataabsen ORDER BY id_absen DESC");
+        }
+
+        if ($absensi) {
+          $absensi = mysqli_fetch_all($absensi, MYSQLI_ASSOC);
+
+          $i = 1;
+          foreach ($absensi as $ab) {
+        ?>
+            <tr>
+              <td><?= $i++; ?>.</td>
+              <td><?= $ab['nm_absen']; ?></td>
+              <td><?= $ab['email']; ?></td>
+              <td><?= $ab['nope']; ?></td>
+              <td><?= $ab['unit']; ?></td>
+              <td><?= $ab['bidang']; ?></td>
+              <td><?= $ab['tanggal']; ?></td>
+              <!-- <td><?= $ab['waktu']; ?></td> -->
+              <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
+              <td>
+                <div>
+                  <a href="proses/ubahabsen.php?id=<?php echo $ab['id_absen']; ?>" class="btn btn-xs btn-default btn-flat"><i class="fas fa-edit"></i></a>
+                  <a href="proses/hapusabsen.php?id=<?= $ab['id_absen']; ?>" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash" onclick="return confirm('apakah anda yakin?');"></i></a>
+                </div>
+              </td>
+            </tr>
+        <?php
+          };
+        } else {
+          echo "Query gagal dieksekusi: " . mysqli_error($koneksi);
+        }
+        ?>
+      </section>
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
@@ -179,6 +283,9 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Bordered Table</h3>
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+                    Launch Default Modal
+                  </button>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
