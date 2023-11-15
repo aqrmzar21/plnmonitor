@@ -10,9 +10,13 @@ if (isset($_POST['tanggal'])) {
   // Menyimpan tanggal ke dalam cookie selama 1 hari
   setcookie("tanggal", $tanggalTerpilih, time() + (86400 * 1), "/"); // 86400 = 1 hari
 }
-// print_r($_POST);
-// require 'proses.php';
-// $absensi = query("SELECT * FROM t_dataabsen");
+
+require 'proses.php';
+$username = $_SESSION['username'];
+$koneksi = koneksi();
+
+// print_r($_COOKIE['tanggal']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +67,7 @@ if (isset($_POST['tanggal'])) {
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
-            <a href="signature.php" class="nav-link">Absensi</a>
+            <a href="signature.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
           </li>
           <!-- Messages Dropdown Menu -->
           <li class="nav-item">
@@ -72,23 +76,25 @@ if (isset($_POST['tanggal'])) {
           <!-- USER FORM -->
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-1" alt="User Image">
-              <span class="d-none d-md-inline">Alexander Pierce</span>
+              <i class="user-image image-circle fa fa-user-circle" aria-hidden="true"></i>
+              <!-- <span class="d-none d-md-inline"></span> -->
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <!-- User image -->
               <li class="user-header bg-dark">
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
+                <?php $data = mysqli_query($koneksi, "SELECT * FROM t_datauser WHERE username = '$username'");
+                while ($d = mysqli_fetch_array($data)) { ?>
+                  <p>
+                    <?= $d['nama_pengguna']; ?>
+                    <small><?= $username; ?></small>
+                  </p>
+                <?php } ?>
               </li>
               <!-- Menu Body -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <a href="../datauser/infouser.php" class="btn btn-dark btn-sm"><i class="far fa-address-book" aria-hidden="true"></i> Profile</a>
+                <a href="../datauser/infouser.php" class="btn btn-dark btn-sm"><i class="fa fa-cogs" aria-hidden="true"></i> Setting</a>
                 <a href="../examples/logout.php" class="btn btn-dark btn-sm float-right"><i class="fa fa-power-off" aria-hidden="true"></i> Log out</a>
               </li>
             </ul>
@@ -132,8 +138,6 @@ if (isset($_POST['tanggal'])) {
                   <div class="form-group">
                     <select name="tanggal" class="custom-select form-control-border border-width-2">
                       <?php
-                      include '../../db/connect.php';
-                      $koneksi = koneksi();
                       $resultFilter = mysqli_query($koneksi, "SELECT DISTINCT tanggal FROM t_dataabsen ORDER BY tanggal DESC");
                       while ($row = mysqli_fetch_assoc($resultFilter)) {
                         $tanggal = date('d F Y', strtotime($row['tanggal'])); // Ubah ke format tanggal dalam bahasa Indonesia
@@ -141,7 +145,7 @@ if (isset($_POST['tanggal'])) {
                       }
                       ?>
                     </select>
-                    <button type="submit" name="filter_tgl" class="btn btn-secondary mx-2">Filter</button>
+                    <button type="submit" id="saveButton" name="filter_tgl" class="btn btn-secondary mx-2">Filter</button>
                   </div>
                 </form>
 
@@ -172,8 +176,8 @@ if (isset($_POST['tanggal'])) {
                 $tgl_views = $tanggal_sekarang;
               }
 
-              echo $tgl_views;
               ?>
+              <span id="displaytanggal"></span>
             </p>
           </button>
           <script>
@@ -307,6 +311,35 @@ if (isset($_POST['tanggal'])) {
         'autoWidth': false
       });
     });
+    // Fungsi untuk menampilkan tanggal
+    function displayTanggal() {
+      // Mengambil nilai dari cookie
+      var tanggalCookie = getCookie("tanggal");
+
+      // Menampilkan data dari cookie ke dalam elemen HTML
+      $("#displaytanggal").html(tanggalCookie);
+    }
+
+    // Memanggil fungsi saat halaman dimuat
+    $(document).ready(function() {
+      displayTanggal();
+    });
+
+    // Memanggil fungsi saat tombol diklik
+    $("#saveButton").click(function() {
+      displayTanggal();
+    });
+
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return " ";
+    }
   </script>
 
   <!-- MODAL ============================================================================= -->

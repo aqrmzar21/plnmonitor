@@ -87,7 +87,7 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
               <!-- Menu Body -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <a href="../pengaturan/akun.php" class="btn btn-dark btn-sm"><i class="far fa-cog" aria-hidden="true"></i> Setting</a>
+                <a href="../datauser/infouser.php" class="btn btn-dark btn-sm"><i class="fa fa-cogs" aria-hidden="true"></i> Setting</a>
                 <a href="../examples/logout.php" class="btn btn-dark btn-sm float-right"><i class="fa fa-power-off" aria-hidden="true"></i> Log out</a>
               </li>
             </ul>

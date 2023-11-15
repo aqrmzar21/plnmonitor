@@ -36,7 +36,7 @@ $user = query("SELECT * FROM t_datauser");
           <a href="index3.html" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="pages/absensi/absen.php" class="nav-link">Absensi</a>
+          <a href="pages/absensi/absen.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="pages/examples/register-v2.html" class="nav-link">Registrasi</a>

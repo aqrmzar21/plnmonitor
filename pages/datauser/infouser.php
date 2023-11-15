@@ -59,7 +59,7 @@ while ($d = mysqli_fetch_array($data)) {
           <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <!-- Notifications Dropdown Menu -->
             <li class="nav-item">
-              <a href="signature.php" class="nav-link">Absensi</a>
+              <a href="../absensi/absensi.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
             </li>
             <!-- Messages Dropdown Menu -->
             <li class="nav-item">
@@ -84,7 +84,7 @@ while ($d = mysqli_fetch_array($data)) {
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <a href="../pengaturan/akun.php" class="btn btn-dark btn-sm"><i class="fa fa-cogs" aria-hidden="true"></i> Setting</a>
+                  <a href="../datauser/infouser.php" class="btn btn-dark btn-sm"><i class="fa fa-cogs" aria-hidden="true"></i> Setting</a>
                   <a href="../examples/logout.php" class="btn btn-dark btn-sm float-right"><i class="fa fa-power-off" aria-hidden="true"></i> Log out</a>
                 </li>
               </ul>

@@ -216,6 +216,21 @@ if (empty($location) && empty($activity) && empty($document)) {
                 </div>
               </div>
             </form>
+            <?php
+            // Mendapatkan tanggal saat ini
+            $tanggal_sekarang = date("Y-m-d");
+
+            // Memeriksa apakah cookie 'tanggal' sudah diatur
+            if (isset($_COOKIE['tanggal'])) {
+              // Jika cookie sudah diatur, mengambil nilai dari cookie
+              $tgl_views = $_COOKIE['tanggal'];
+            } else {
+              // Jika cookie belum diatur, menggunakan tanggal sekarang sebagai nilai default
+              $tgl_views = $tanggal_sekarang;
+            }
+
+            echo $tgl_views;
+            ?>
           </div>
         </div>
         <!-- /.container  -->
