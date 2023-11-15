@@ -67,7 +67,7 @@ while ($d = mysqli_fetch_array($data)) {
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-1" alt="User Image">
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline"><?= $d['nama_pengguna']; ?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -75,8 +75,8 @@ while ($d = mysqli_fetch_array($data)) {
                   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2012</small>
+                    <?= $d['nama_pengguna']; ?>
+                    <small>Operator Sistem</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
@@ -113,18 +113,18 @@ while ($d = mysqli_fetch_array($data)) {
         <!-- Main content -->
         <section class="content">
 
-          <div class="container">
+          <div class="register-box mx-auto">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/AdminLTELogo.png" alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">BOT System 4.0</h3>
+                <h3 class="profile-username text-center">MeetSignature</h3>
 
-                <p class="text-muted text-center">WEB Engineer</p>
+                <p class="text-muted text-center">Informasi Profile</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
@@ -145,10 +145,10 @@ while ($d = mysqli_fetch_array($data)) {
                   </li>
                 </ul>
 
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-sm">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-lg">
                   <b>Ubah</b>
                 </button>
-                <a href="../datauser/infouser.php" class="btn btn-primary btn-block"><b>Back</b></a>
+                <a href="../datauser/infouser.php" class="btn btn-dark btn-block"><b>Back</b></a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -178,8 +178,8 @@ while ($d = mysqli_fetch_array($data)) {
       });
     </script>
     <!-- INi modal Edit User ==================================================  -->
-    <div class="modal fade" id="modal-sm">
-      <div class="modal-dialog modal-sm">
+    <div class="modal fade" id="modal-lg">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Edit User</h4>
@@ -191,11 +191,11 @@ while ($d = mysqli_fetch_array($data)) {
             <form action="" method="POST">
               <div class="form-group">
                 <label for="exampleInputBorderWidth2">Username</label>
-                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" name="level" value="<?= $u['level']; ?>">
+                <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" name="level" value="<?= $d['level']; ?>">
               </div>
               <div class="form-group">
                 <label for="exampleInputBorder">Password</label>
-                <input type="password" class="form-control form-control-border" id="exampleInputBorder" name="password" value="<?= $u['password']; ?>">
+                <input type="password" class="form-control form-control-border" id="exampleInputBorder" name="password" value="<?= $d['password']; ?>">
               </div>
           </div>
           <div class="modal-footer justify-content-between">

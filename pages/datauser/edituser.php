@@ -10,10 +10,10 @@ if (!isset($_SESSION['login'])) {
 require '../../db/function.php';
 $koneksi = koneksi();
 // ambil dari URL id
-// $id = $_GET['id'];
+$id = $_GET['id'];
 
 // query data berdasarkan id_user
-// $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
+$user = query("SELECT * FROM t_datauser WHERE id_user = $id");
 
 ?>
 
@@ -59,7 +59,7 @@ $koneksi = koneksi();
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
-            <a href="../absensi/absensi.php" class="nav-link">Absensi</a>
+            <a href="../absensi/absensi.php" class="nav-link">Daftar Absen</a>
           </li>
           <li class="nav-item">
             <a href="infouser.php" class="nav-link">Data Admin</a>
@@ -133,23 +133,36 @@ $koneksi = koneksi();
                   <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
-                    <thead>
-                      <tr>
-                        <th width="10px">NO</th>
-                        <th>User</th>
-                        <th>Level</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.card-body -->
+                <form method="POST" action="">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label>Username</label>
+                          <input type="text" class="form-control" value="<?= $user['username']; ?>" placeholder="Enter ..." style="text-transform: lowercase">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label>Password</label>
+                          <input type="password" class="form-control" value="<?= $user['password']; ?>" placeholder="Enter ...">
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label>Nama</label>
+                          <input type="text" class="form-control" value="<?= $user['nama_pengguna']; ?>" placeholder="Enter ...">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="row justify-content-center">
+                    <a href="../datauser/infouser.php" class="btn btn-sm btn-primary m-2">Cancel</a>
+                    <button type="submit" href="#" class="btn btn-sm btn-primary m-2">Save</button>
+                  </div>
               </div>
+              </form>
             </div>
             <!-- <div col-6"> -->
 
