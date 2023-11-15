@@ -215,6 +215,7 @@ if (empty($location) && empty($activity) && empty($document)) {
                   </div>
                 </div>
               </div>
+            </form>
           </div>
         </div>
         <!-- /.container  -->

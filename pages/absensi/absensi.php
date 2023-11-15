@@ -7,11 +7,10 @@ if (!isset($_SESSION['login'])) {
 
 if (isset($_POST['tanggal'])) {
   $tanggalTerpilih = $_POST['tanggal'];
-
   // Menyimpan tanggal ke dalam cookie selama 1 hari
   setcookie("tanggal", $tanggalTerpilih, time() + (86400 * 1), "/"); // 86400 = 1 hari
 }
-// print_r($_COOKIE);
+// print_r($_POST);
 // require 'proses.php';
 // $absensi = query("SELECT * FROM t_dataabsen");
 ?>
@@ -44,7 +43,7 @@ if (isset($_POST['tanggal'])) {
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
       <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
       <div class="container">
         <h3 class="brand-text">
@@ -55,35 +54,45 @@ if (isset($_POST['tanggal'])) {
         <div class="collapse navbar-collapse order-3" id="navbarCollapse">
           <!-- Left navbar links -->
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <!-- <a href="signature.php" class="nav-link">Back</a> -->
-            </li>
-
           </ul>
 
         </div>
         <!-- ./div navbar -->
 
-        <!-- SEARCH FORM -->
-        <!-- <form class="form-inline ml-0 ml-md-3">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form> -->
-
-
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item">
+            <a href="signature.php" class="nav-link">Absensi</a>
+          </li>
           <!-- Messages Dropdown Menu -->
           <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a href="../../index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
           </li>
-          <!-- Notifications Dropdown Menu -->
+          <!-- USER FORM -->
+          <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-1" alt="User Image">
+              <span class="d-none d-md-inline">Alexander Pierce</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <!-- User image -->
+              <li class="user-header bg-dark">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <a href="../datauser/infouser.php" class="btn btn-dark btn-sm"><i class="far fa-address-book" aria-hidden="true"></i> Profile</a>
+                <a href="../examples/logout.php" class="btn btn-dark btn-sm float-right"><i class="fa fa-power-off" aria-hidden="true"></i> Log out</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </nav>
@@ -143,16 +152,35 @@ if (isset($_POST['tanggal'])) {
                 </a>
 
               </div>
-              <button class="btn btn-xs btn-primary mt-3 float-right" onclick="resetTanggal()">Reset</button>
-              <script>
-                function resetTanggal() {
-                  document.cookie = "tanggal=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                }
-              </script>
             </div>
 
           </div>
           <!-- /.div card-body -->
+          <button class="btn btn-xs btn-primary mt-3 float-right" onclick="resetTanggal()">Reset</button>
+          <button class="btn btn-xs float-right mt-3 mx-2">
+            <p class="float-right">Tanggal :
+              <?php
+              // Mendapatkan tanggal saat ini
+              $tanggal_sekarang = date("Y-m-d");
+
+              // Memeriksa apakah cookie 'tanggal' sudah diatur
+              if (isset($_COOKIE['tanggal'])) {
+                // Jika cookie sudah diatur, mengambil nilai dari cookie
+                $tgl_views = $_COOKIE['tanggal'];
+              } else {
+                // Jika cookie belum diatur, menggunakan tanggal sekarang sebagai nilai default
+                $tgl_views = $tanggal_sekarang;
+              }
+
+              echo $tgl_views;
+              ?>
+            </p>
+          </button>
+          <script>
+            function resetTanggal() {
+              document.cookie = "tanggal=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+          </script>
         </div>
       </section>
 

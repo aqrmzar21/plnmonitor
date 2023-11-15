@@ -59,7 +59,10 @@ $koneksi = koneksi();
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
-            <a href="signature.php" class="nav-link">Absensi</a>
+            <a href="../absensi/absensi.php" class="nav-link">Absensi</a>
+          </li>
+          <li class="nav-item">
+            <a href="infouser.php" class="nav-link">Data Admin</a>
           </li>
           <!-- Messages Dropdown Menu -->
           <li class="nav-item">
@@ -100,12 +103,12 @@ $koneksi = koneksi();
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Info User</h1>
+              <h1>Edit User</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">Data User</li>
                 <li class="breadcrumb-item active">Info User</li>
+                <li class="breadcrumb-item active">Edit User</li>
               </ol>
             </div>
           </div>
@@ -141,25 +144,7 @@ $koneksi = koneksi();
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      $pengguna = mysqli_query($koneksi, "SELECT * FROM t_datauser");
 
-                      $no = 1;
-                      foreach ($pengguna as $p) :
-                      ?>
-                        <tr>
-                          <td style="text-align: center"><?php echo $no++; ?>.</td>
-                          <td><?php echo $p['nama_pengguna']; ?> </td>
-                          <td><?php echo $p['level']; ?></td>
-                          <td width="130px">
-                            <div style="text-align: center;">
-                              <a href="infouser.php?id=<?php echo $p['id_user'] ?>" class="btn btn-info btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-eye"></i></a>
-                              <a href="edituser.php?id=<?php echo $p['id_user']; ?>" class="btn btn-default btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fas fa-edit"></i></a>
-                              <a onclick="deleteme(<?php echo $p['id_user']; ?>)" class="btn btn-danger btn-xs btn-flat" style="margin: 0 5px 0 0;"><i class="fa fa-trash"></i></a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>
@@ -209,11 +194,11 @@ $koneksi = koneksi();
           <form action="" method="POST">
             <div class="form-group">
               <label for="exampleInputBorderWidth2">Username</label>
-              <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" name="level" value="<?= $u['level']; ?>">
+              <input type="text" class="form-control form-control-border border-width-2" id="exampleInputBorderWidth2" name="level" value="<?= $p['level']; ?>">
             </div>
             <div class="form-group">
               <label for="exampleInputBorder">Password</label>
-              <input type="password" class="form-control form-control-border" id="exampleInputBorder" name="password" value="<?= $u['password']; ?>">
+              <input type="password" class="form-control form-control-border" id="exampleInputBorder" name="password" value="<?= $p['password']; ?>">
             </div>
         </div>
         <div class="modal-footer justify-content-between">

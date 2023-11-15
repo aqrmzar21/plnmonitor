@@ -191,9 +191,10 @@ function login($data)
     // if ($username == 'admin' && $password == 'admin') {
     // set sesion
     $_SESSION['login'] = true;
+    $_SESSION['username'] = $username;
 
     // header("Location: dataabsen/absens.php");
-    header("Location: ../../dashbord.php");
+    header("Location: ../pengaturan/akun.php");
     exit;
   } else {
     return [
