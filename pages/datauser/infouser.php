@@ -117,7 +117,46 @@ while ($d = mysqli_fetch_array($data)) {
 
           <div class="container">
             <div class="row">
-              <div class="col">
+              <div class="col-4">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                  <div class="card-body box-profile">
+                    <div class="text-center">
+                      <img class="profile-user-img img-fluid img-circle" src="../../dist/img/AdminLTELogo.png" alt="User profile picture">
+                    </div>
+
+                    <h3 class="profile-username text-center">MeetSignature</h3>
+
+                    <p class="text-muted text-center">Informasi Profile</p>
+
+                    <ul class="list-group list-group-unbordered mb-3">
+                      <li class="list-group-item">
+                        <b>Nama Lengkap</b>
+                        <p class="float-right"><?= $d['nama_pengguna']; ?></p>
+                      </li>
+                      <li class="list-group-item">
+                        <b>Jabatan</b>
+                        <p class="float-right"><?= $d['level']; ?></p>
+                      </li>
+                      <li class="list-group-item">
+                        <b>NIP</b>
+                        <p class="float-right"><?= $d['nip']; ?></p>
+                      </li>
+                      <li class="list-group-item">
+                        <b>Nama Pengguna</b>
+                        <p class="float-right"><?= $d['username']; ?></p>
+                      </li>
+                    </ul>
+
+                    <a href="../datauser/infouser.php" class="btn btn-dark btn-block"><b>Back</b></a>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.register -->
+              <div class="col-8">
 
                 <div class="card card-primary card-outline">
                   <div class="card-header">
