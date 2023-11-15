@@ -158,26 +158,27 @@ function edit($data)
 {
   $conn = koneksi();
 
-  //pecah database menjadi lebih singkats
+  // Pecah database menjadi lebih singkat
   $id = $data['id_user'];
-  $nm = htmlspecialchars($data['nm_pengguna']);
-  $tanggal = htmlspecialchars($data['nip']);
+  $nm = htmlspecialchars($data['nama_pengguna']);
   $level = htmlspecialchars($data['level']);
-  $gambar = htmlspecialchars($data['username']);
+  $us = htmlspecialchars($data['username']);
   $pw = htmlspecialchars($data['password']);
 
+  // Perbaikan sintaksis query UPDATE
   $query = "UPDATE t_datauser SET
-            nm_pengguna = '$nm',
-            nip = '$tanggal', 
+            nama_pengguna = '$nm',
             level ='$level',
-            username ='$gambar'
+            username ='$us',
             password ='$pw'
-            WHERE id_absen = $id";
+            WHERE id_user = $id";
 
   mysqli_query($conn, $query) or die(mysqli_error($conn));
-  // info ke sql ada perubahan
+
+  // Info ke SQL ada perubahan
   return mysqli_affected_rows($conn);
 }
+
 
 
 function login($data)
@@ -193,8 +194,8 @@ function login($data)
     $_SESSION['login'] = true;
     $_SESSION['username'] = $username;
 
-    // header("Location: dataabsen/absens.php");
-    header("Location: ../pengaturan/akun.php");
+    header("Location: ../datauser/infouser.php");
+    // header("Location: ../pengaturan/akun.php");
     exit;
   } else {
     return [
@@ -264,20 +265,6 @@ function signed($data)
     echo "Data tanda tangan tidak ditemukan.";
   }
 
-  // // Mengambil data tanda tangan
-  // $image_base64 = $data['signed'];
-  // // Ubah ekstensi sesuai dengan tipe gambar yang Anda gunakan (contoh: PNG)
-  // $ext = 'png';
-
-  // // Menghasilkan nama berkas dengan ekstensi
-  // $file = uniqid() . '.' . $ext;
-
-  // // Menggabungkan direktori upload dengan nama berkas
-  // $fullPath = "upload/" . $file;
-
-  // // Menyimpan berkas tanda tangan
-  // file_put_contents($fullPath, base64_decode($image_base64));
-
   $query = "INSERT INTO 
             t_dataabsen 
             VALUES (NULL, '$nm_absen', '$email', '$nope', '$unit', '$bidang', '$tanggal', '$waktu', '$fileName');
@@ -299,7 +286,7 @@ function del($id)
   unlink('../upload/' . $absen['signed']);
 
 
-  mysqli_query($conn, "DELETE FROM t_dataabsen WHERE id_absen =$id") or die(mysqli_error($conn));
+  mysqli_query($conn, "DELETE FROM t_dataabsen WHERE id_absen = $id") or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
 

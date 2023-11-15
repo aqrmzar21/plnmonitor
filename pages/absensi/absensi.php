@@ -51,7 +51,7 @@ $koneksi = koneksi();
       <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
       <div class="container">
         <h3 class="brand-text">
-          <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
+          <span class="text-white mt-1 pt-2"><strong>Meet</strong>Signature</span>
         </h3>
 
 
@@ -67,7 +67,7 @@ $koneksi = koneksi();
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
-            <a href="signature.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
+            <a href="absensi.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
           </li>
           <!-- Messages Dropdown Menu -->
           <li class="nav-item">
@@ -111,7 +111,7 @@ $koneksi = koneksi();
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <!-- <h3 class="m-0"> Data Absensi <small></small></h3> -->
+              <h3 class="m-0"> View Daftar <small>Absen</small></h3>
             </div>
             <!-- /.col -->
             <div class="col-sm-6">
@@ -162,7 +162,7 @@ $koneksi = koneksi();
           <!-- /.div card-body -->
           <button class="btn btn-xs btn-primary mt-3 float-right" onclick="resetTanggal()">Reset</button>
           <button class="btn btn-xs float-right mt-3 mx-2">
-            <p class="float-right">Tanggal :
+            <p class="float-right">Periode :
               <?php
               // Mendapatkan tanggal saat ini
               $tanggal_sekarang = date("Y-m-d");

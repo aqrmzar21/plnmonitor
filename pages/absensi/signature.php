@@ -84,13 +84,6 @@ if (isset($_POST['signed'])) {
                 <!-- Right navbar links -->
                 <ul class="order-1 order-md-3 navbar-nav ml-auto">
 
-                    <li class="nav-item dropdown">
-                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">PerKategori</a>
-                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            <li><a href="#" class="dropdown-item">Internal </a></li>
-                            <li><a href="#" class="dropdown-item">External</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
                         <a href="../tables/data.php" class="nav-link">Data Detail</a>
                     </li>

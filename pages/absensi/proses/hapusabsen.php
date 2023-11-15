@@ -8,7 +8,7 @@ $id = $_GET['id'];
 if (del($id) > 0) {
   echo "<script>
   alert('data berhasil dihapus');
-  document.location.href ='../absen.php';
+  document.location.href ='../absensi.php';
   </script>";
 } else {
   echo "<script>

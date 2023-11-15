@@ -9,12 +9,26 @@ if (!isset($_SESSION['login'])) {
 
 require '../../db/function.php';
 $koneksi = koneksi();
+$username = $_SESSION['username'];
 // ambil dari URL id
 $id = $_GET['id'];
 
 // query data berdasarkan id_user
 $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
 
+if (isset($_POST['edit'])) {
+  if (edit($_POST) > 0) {
+    echo "<script>
+        alert('data berhasil diubah');  
+        document.location.href ='infouser.php';
+        </script>";
+  } else {
+    echo "<script>
+        alert('data gagal diubah');
+        document.location.href ='edituser.php';
+        </script>";
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +57,7 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
       <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
       <div class="container">
         <h3 class="brand-text">
-          <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
+          <span class="text-white mt-1 pt-2"><strong>Meet</strong>Signature</span>
         </h3>
 
 
@@ -72,7 +86,6 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-1" alt="User Image">
-              <span class="d-none d-md-inline">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <!-- User image -->
@@ -80,8 +93,8 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
                 <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?= $user['nama_pengguna']; ?>
+                  <small><?= $username; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -136,22 +149,29 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
                 <form method="POST" action="">
                   <div class="card-body">
                     <div class="row">
+                      <input type="hidden" name="id_user" class="form-control" value="<?= $user['id_user']; ?>">
                       <div class="col-6">
                         <div class="form-group">
                           <label>Username</label>
-                          <input type="text" class="form-control" value="<?= $user['username']; ?>" placeholder="Enter ..." style="text-transform: lowercase">
+                          <input type="text" name="username" class="form-control" value="<?= $user['username']; ?>" placeholder="Enter ..." style="text-transform: lowercase">
                         </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group">
                           <label>Password</label>
-                          <input type="password" class="form-control" value="<?= $user['password']; ?>" placeholder="Enter ...">
+                          <input type="password" name="password" class="form-control" value="<?= $user['password']; ?>" placeholder="Enter ...">
                         </div>
                       </div>
-                      <div class="col-12">
+                      <div class="col-9">
                         <div class="form-group">
                           <label>Nama</label>
-                          <input type="text" class="form-control" value="<?= $user['nama_pengguna']; ?>" placeholder="Enter ...">
+                          <input type="text" name="nama_pengguna" class="form-control" value="<?= $user['nama_pengguna']; ?>" placeholder="Enter ...">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label>Level</label>
+                          <input type="text" name="level" class="form-control" value="<?= $user['level']; ?>" placeholder="Enter ...">
                         </div>
                       </div>
                     </div>
@@ -159,7 +179,7 @@ $user = query("SELECT * FROM t_datauser WHERE id_user = $id");
                   <!-- /.card-body -->
                   <div class="row justify-content-center">
                     <a href="../datauser/infouser.php" class="btn btn-sm btn-primary m-2">Cancel</a>
-                    <button type="submit" href="#" class="btn btn-sm btn-primary m-2">Save</button>
+                    <button type="submit" name="edit" class="btn btn-sm btn-primary m-2">Save</button>
                   </div>
               </div>
               </form>

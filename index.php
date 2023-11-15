@@ -77,14 +77,17 @@ $absens = query("SELECT * FROM t_dataabsen");
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
-        <li>
-          <h4>
+        <li class="nav-item">
+          <h2>
             <img class="mx-auto nav-item" src="dist/img/imgPLN.png" alt="" width="15%">
-            <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
-          </h4>
+          </h2>
         </li>
-        <!-- <li class="nav-item d-none d-sm-inline-block"><a class="nav-link">Home</a></li> -->
-
+        <li class="nav-item">
+          <h2 class="navbar-brand">
+            <!-- <li class="nav-item d-none d-sm-inline-block"><a class="nav-link">Home</a></li> -->
+            <span class="text-blue"><strong>Meet</strong>Signature</span>
+          </h2>
+        </li>
       </ul>
 
       <!-- Right navbar links -->

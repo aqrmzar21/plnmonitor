@@ -43,7 +43,7 @@ while ($d = mysqli_fetch_array($data)) {
         <!-- <nav class="main-header navbar navbar-expand-md navbar-light bg-white"> -->
         <div class="container">
           <h3 class="brand-text">
-            <span class="text-blue mt-1 pt-2"><strong>Meet</strong>Signature</span>
+            <span class="text-white mt-1 pt-2"><strong>Meet</strong>Signature</span>
           </h3>
 
 
@@ -120,7 +120,7 @@ while ($d = mysqli_fetch_array($data)) {
               <div class="col-4">
 
                 <!-- Profile Image -->
-                <div class="card card-primary card-outline">
+                <div class="card card-dark card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
                       <img class="profile-user-img img-fluid img-circle" src="../../dist/img/AdminLTELogo.png" alt="User profile picture">
@@ -158,7 +158,7 @@ while ($d = mysqli_fetch_array($data)) {
               <!-- /.register -->
               <div class="col-8">
 
-                <div class="card card-primary card-outline">
+                <div class="card card-dark card-outline">
                   <div class="card-header">
                     <h3 class="card-title">Data Operator</h3>
                     <div class="card-tools">
@@ -205,7 +205,7 @@ while ($d = mysqli_fetch_array($data)) {
                   <!-- /.card-body -->
                 </div>
 
-                <div class="card card-primary collapsed-card">
+                <div class="card card-dark collapsed-card">
                   <div class="card-header">
                     <h3 class="card-title">Tambah Data</h3>
                     <div class="card-tools">
