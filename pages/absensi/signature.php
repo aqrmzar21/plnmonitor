@@ -415,10 +415,10 @@ if (isset($_POST['signed'])) {
                 }
                 $("#absensiBerhasil").html(rows)
             });
-        }, 1000)
+        }, 1000);
 
         // setInterval(() => {
-        //     $.get("http://localhost/plnmonitor/pages/absensi/proses/get_absen.php", function(data, status) {
+        //     $.get("http://localhost/plnmonitor/get_absen.php", function(data, status) {
         //         let rows = '';
         //         const currentTime = new Date(); // Waktu saat ini
         //         for (let i = 0; i < data.length; i++) {

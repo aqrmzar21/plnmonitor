@@ -5,9 +5,9 @@ header("Content-Type: application/json");
 // require 'db/function.php';
 require '../proses.php';
 
-// $currentTime = date("Y-m-d");
+$currentTime = date("Y-m-d");
 
-$absen = query("SELECT * FROM t_dataabsen");
-// $absen = query("SELECT * FROM t_dataabsen WHERE waktu >= '$currentTime'");
+// $absen = query("SELECT * FROM t_dataabsen");
+$absen = query("SELECT * FROM t_dataabsen WHERE tanggal >= '$currentTime'");
 
 echo json_encode($absen);
