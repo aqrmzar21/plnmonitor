@@ -7,6 +7,11 @@
 //   exit;
 // }
 
+// $now = new DateTime();
+// // Format tanggal dan waktu menggunakan format tertentu
+// $formattedDate = $now->format('l, d F Y H:i:s');
+// // Menampilkan hasil
+// echo "Tanggal dan Waktu Sekarang: " . $formattedDate;
 $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
 $tgl = $formatter->format(new DateTime());
 $formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE);
@@ -22,7 +27,7 @@ $year = explode(" ", $live)[3];
 require 'db/function.php';
 $koneksi = koneksi();
 $today = date("Y-m-d");
-
+// include 'pages/forms/proses/proses-form.php';
 $absen = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE DATE(tanggal) = '$today' ");
 $dab = mysqli_fetch_assoc($absen);
 $unit = 'UP3 Gorontalo';
@@ -33,8 +38,9 @@ $dab3 = mysqli_fetch_assoc($absen3);
 $anggota = mysqli_query($koneksi, "SELECT COUNT(*) AS totalanggota FROM t_datapengunjung");
 $danggota = mysqli_fetch_assoc($anggota);
 // tampung ke variabel datanya
+// $pr1 = query("SELECT * FROM pascabayar1")[0];
 $absens = query("SELECT * FROM t_dataabsen");
-// print_r($today);
+// print_r($dab2);
 
 ?>
 

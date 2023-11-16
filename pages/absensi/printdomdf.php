@@ -1,5 +1,6 @@
 <?php
-require '../vendor/autoload.php'; // Lokasi autoload.php sesuaikan dengan proyek Anda
+require '../../plugins/dompdf/vendor/autoload.php'; // Lokasi autoload.php sesuaikan dengan proyek Anda
+// require '../vendor/autoload.php'; // Lokasi autoload.php sesuaikan dengan proyek Anda
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
