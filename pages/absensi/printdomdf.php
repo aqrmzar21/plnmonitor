@@ -6,7 +6,7 @@ use Dompdf\Options;
 
 require 'proses.php';
 // $koneksi = koneksi();
-$koneksi = (mysqli_connect('localhost', 'root', '', 'absensiplen'));
+$koneksi = koneksi();
 
 if (!isset($_COOKIE['tanggal']) || empty($_COOKIE['tanggal'])) {
   $dateValue = new DateTime();
