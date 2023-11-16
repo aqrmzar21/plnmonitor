@@ -23,8 +23,6 @@ $absen2 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_data
 $dab2 = mysqli_fetch_assoc($absen2);
 $absen3 = mysqli_query($koneksi, "SELECT COUNT(*) AS totalpengunjung FROM t_dataabsen WHERE unit != '$unit' AND DATE(tanggal) = '$today' ");
 $dab3 = mysqli_fetch_assoc($absen3);
-$anggota = mysqli_query($koneksi, "SELECT COUNT(*) AS totalanggota FROM t_datapengunjung");
-$danggota = mysqli_fetch_assoc($anggota);
 // tampung ke variabel datanya
 // $pr1 = query("SELECT * FROM pascabayar1")[0];
 $absens = query("SELECT * FROM t_dataabsen");
