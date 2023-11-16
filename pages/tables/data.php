@@ -94,7 +94,7 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
             <div class="col-12">
               <a href="export_word.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
               <a href="export_excel.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
-              <a href="print_pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
+              <a href="export_pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
               <button type="button" class="btn btn-md btn-secondary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
                 <i class="mr-1 far fa-plus-square" aria-hidden="true"></i>
                 Add Informasi
