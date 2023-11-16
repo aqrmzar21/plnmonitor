@@ -1,17 +1,5 @@
 <?php
-// session_start();
 
-// // cek jika belum login maka akan mengarahkan ke hal login
-// if (!isset($_SESSION['login'])) {
-//   header("Location: pages/examples/login.php");
-//   exit;
-// }
-
-// $now = new DateTime();
-// // Format tanggal dan waktu menggunakan format tertentu
-// $formattedDate = $now->format('l, d F Y H:i:s');
-// // Menampilkan hasil
-// echo "Tanggal dan Waktu Sekarang: " . $formattedDate;
 $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
 $tgl = $formatter->format(new DateTime());
 $formatterID = new IntlDateFormatter('id_ID', IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE);
