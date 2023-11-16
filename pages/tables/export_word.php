@@ -1,5 +1,6 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../../plugins/phpword/vendor/autoload.php';
+// require_once 'vendor/autoload.php';
 require '../absensi/proses.php';
 // Fetch data from the database
 $koneksi = koneksi();
@@ -46,4 +47,10 @@ while ($ab = mysqli_fetch_array($absensi)) {
 
 // Menyimpan dokumen
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$objWriter->save('heyoWorld.docx');
+
+// Menyiapkan headers untuk download
+header('Content-Type: application/octet-stream');
+header('Content-Disposition: attachment;filename="daftar_absen ('. $tanggal_sekarang . ').docx"');
+
+// Menulis dokumen ke output PHP
+$objWriter->save('php://output');
