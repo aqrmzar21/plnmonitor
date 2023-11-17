@@ -3,6 +3,13 @@
 require '../../db/function.php';
 
 // $absen = query("SELECT * FROM t_dataabsen");
+// $absen = query("SELECT * FROM t_datapengunjung");
+
+// tombol pencarian
+if (isset($_POST['cari'])) {
+  $absen = cari($_POST['keyword']);
+}
+
 
 // ============================================================================
 // INI ADALAH KODE UNTUK MELIHAT DATA ABSEN TANPA HARUS LOGIN terlebih dahulu 
@@ -229,101 +236,6 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
       });
     });
   </script>
-  <script>
-    // JavaScript (jQuery)
-    $(document).ready(function() {
-      // Tombol untuk menghapus cookie
-      $("#clearCookies").click(function() {
-        // Menghapus cookie dengan mengatur tanggal kedaluwarsa ke masa lalu
-        document.cookie = "location=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "activity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "document=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
-        // Mereset nilai-nilai di elemen HTML
-        $("#displayLocation").html("");
-        $("#displayActivity").html("");
-        $("#displayDocument").html("");
-      });
-
-      // Tombol untuk menyimpan data ke dalam cookie
-      $("#saveButton").click(function() {
-        var inputLocation = $("#inputLocation").val();
-        var inputActivity = $("#inputActivity").val();
-        var inputDocument = $("#inputDocument").val();
-
-        // Menyimpan data ke dalam cookie
-        document.cookie = "location=" + inputLocation;
-        document.cookie = "activity=" + inputActivity;
-        document.cookie = "document=" + inputDocument;
-
-        // Mengambil nilai dari cookie
-        var locationCookie = getCookie("location");
-        var activityCookie = getCookie("activity");
-        var documentCookie = getCookie("document");
-
-        // Menampilkan data dari cookie ke dalam elemen HTML
-        $("#displayLocation").html(locationCookie);
-        $("#displayActivity").html(activityCookie);
-        $("#displayDocument").html(documentCookie);
-
-        // Menutup modal
-        $('#myModal').modal('hide');
-      });
-
-      // Fungsi untuk mendapatkan nilai cookie berdasarkan nama
-      function getCookie(name) {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i].trim();
-          if (cookie.startsWith(name + '=')) {
-            return cookie.substring(name.length + 1);
-          }
-        }
-        return '';
-      }
-    });
-  </script>
-  <div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Tambah Caption</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="">Lokasi</label>
-                <input type="text" id="inputLocation" class="form-control" placeholder="Enter location info">
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label for="">No. Dokumen</label>
-                <input type="text" id="inputDocument" class="form-control" placeholder="Enter document info" style="text-transform: uppercase">
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-group">
-                <label for="">Kegiatan</label>
-                <input type="text" id="inputActivity" class="form-control" placeholder="Enter activity info">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
 
 </body>
 

@@ -65,11 +65,14 @@ $koneksi = koneksi();
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item">
+            <a href="absen.php" class="nav-link"><i class="fa fa-address-book mr-1" aria-hidden="true"></i> Form Absen</a>
+          </li>
+          <!-- Messages Dropdown Menu -->
           <li class="nav-item">
             <a href="absensi.php" class="nav-link"><i class="fa fa-id-badge mr-1" aria-hidden="true"></i> Daftar Absen</a>
           </li>
-          <!-- Messages Dropdown Menu -->
+          <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
             <a href="../../index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
           </li>
@@ -207,8 +210,8 @@ $koneksi = koneksi();
                     <th>No Handphone</th>
                     <th>Unit</th>
                     <th>Jabatan/Bidang</th>
-                    <th>Tanggal Rapat</th>
-                    <!-- <th>Waktu Rapat</th> -->
+                    <!-- <th>Tanggal Rapat</th> -->
+                    <th>Waktu Rapat</th>
                     <th>Signature</th>
                     <th>Aksi</th>
                   </tr>
@@ -235,7 +238,7 @@ $koneksi = koneksi();
                       <td><?= $ab['nope']; ?></td>
                       <td><?= $ab['unit']; ?></td>
                       <td><?= $ab['bidang']; ?></td>
-                      <td><?= $ab['tanggal']; ?></td>
+                      <td><?= $ab['waktu']; ?></td>
                       <td><img src="upload/<?= $ab['signed']; ?>" alt="mysign" width="200px"></td>
                       <td>
                         <div>
