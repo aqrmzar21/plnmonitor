@@ -121,7 +121,7 @@ $tanggal_sekarang = date("Y-m-d");
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
-          <div class="alert alert-primary alert-dismissible">
+          <div class="alert alert-secondary alert-dismissible">
             <h5><i class="icon fas fa-info"></i> Info!</h5>
             <b>Silahkan masukan keterangan yang di perlukanan di bawah.</b> <span class="text-md">Tambahakan lokasi, no dokumen, dan keterangan kegiatan untuk di tambahkan.</span>
           </div>
@@ -133,29 +133,10 @@ $tanggal_sekarang = date("Y-m-d");
       <!-- <section class="content-footer"> -->
       <section class="container">
         <div class="row">
-          <div class="card card-primary collapsed-card">
-            <div class="card-header">
-              <h3 class="card-title">Data Kehadiran</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <!-- /.card-tools -->
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <form action="" method="POST">
-                <input type="search" placeholder="Cari data...." name="keyword" class="form-control">
-                <button type="submit" name="cari" class="btn btn-block btn-primary"><i class="fas fa-search"></i></button>
-              </form>
-            </div>
-            <!-- /.card-body -->
-          </div>
           <div class="col-12">
-            <a href="../tables/export_word.php" class="btn btn-md btn-primary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
-            <a href="print-pdf.php" class="btn btn-md btn-primary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
-            <button type="button" class="btn btn-md btn-primary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
+            <a href="../tables/export_word.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
+            <a href="print-pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
+            <button type="button" class="btn btn-md btn-secondary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
               <i class="mr-1 far fa-plus-square" aria-hidden="true"></i>
               Add Informasi
             </button>
@@ -170,14 +151,14 @@ $tanggal_sekarang = date("Y-m-d");
               <p><i>Lokasi</i> :
                 <span id="displayLocation"></span>
               </p>
-              <button class="btn btn-xs btn-primary float-right" type="button" id="clearCookies">Reset</button>
+              <button class="btn btn-xs btn-dark float-right" type="button" id="clearCookies">Reset</button>
               <p><i>Kegiatan</i> :
                 <span id="displayActivity"></span>
               </p>
               <!-- HTML -->
             </div>
 
-            <div class="card card-outline card-primary">
+            <div class="card card-outline card-secondary">
               <!-- /.card-body -->
               <div class="card-body">
                 <table class="table">
@@ -214,7 +195,7 @@ $tanggal_sekarang = date("Y-m-d");
                         $i++;
                       }
                     } else {
-                      echo '<tr><td colspan="7" class="text-danger text-center">Belum ada yang melakukan Absensi untuk Rapat hari ini</td></tr>';
+                      echo '<tr><td colspan="7" class="text-danger text-center my-2"><b>Belum ada yang melakukan Absensi untuk Rapat hari ini</b></td></tr>';
                     }
                     ?>
 

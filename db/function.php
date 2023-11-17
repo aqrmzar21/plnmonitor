@@ -138,9 +138,9 @@ function cari($keyword)
 {
   $conn = koneksi();
 
-  $query = "SELECT * FROM t_datapengunjung 
+  $query = "SELECT * FROM t_dataabsen
               WHERE 
-              nm_pgnjng LIKE '%$keyword%' OR
+              nm_absen LIKE '%$keyword%' OR
               email LIKE '%$keyword%'
               ";
 

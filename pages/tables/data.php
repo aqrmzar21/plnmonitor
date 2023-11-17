@@ -9,7 +9,10 @@ require '../../db/function.php';
 if (isset($_POST['cari'])) {
   $absen = cari($_POST['keyword']);
 }
-
+// Membaca data dari cookie
+$location = $_COOKIE['location'];
+$activity = $_COOKIE['activity'];
+$document = $_COOKIE['document'];
 
 // ============================================================================
 // INI ADALAH KODE UNTUK MELIHAT DATA ABSEN TANPA HARUS LOGIN terlebih dahulu 
@@ -98,33 +101,30 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
       <section class="content-footer">
         <div class="container">
           <div class="row">
-            <div class="col-12">
-              <a href="export_word.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
-              <a href="export_excel.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
-              <a href="export_pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
-              <button type="button" class="btn btn-md btn-secondary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
-                <i class="mr-1 far fa-plus-square" aria-hidden="true"></i>
-                Add Informasi
-              </button>
+            <div class="col-8">
+              <a href="export_word.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
+              <a href="export_excel.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
+              <a href="export_pdf.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
             </div>
-            <div class="col-12">
+            <div class="col-4 justify-content-center">
+              <form action="" method="POST">
+                <button type="submit" name="cari" class="btn btn-block btn-primary col-2 float-right my-1"><i class="fas fa-search"></i></button>
+                <input type="search" placeholder="Cari data...." name="keyword" class="form-control col-6 float-right my-1 mr-2">
+              </form>
+            </div>
+            <div class="col">
               <div class="card-header">
                 <h4 class="float-left"><strong>FORMULIR DAFTAR HADIR</strong></h4>
-                <h5 class="float-right">No. Dokumen : <b><span id="displayDocument"></span></b></h5>
+                <h5 class="float-right">No. Dokumen : <b><?= $document; ?></b></h5>
               </div>
               <div class="card-header">
-                <p class="float-right">Tanggal : <?= $tanggal_sekarang; ?></p>
-                <p>Lokasi :
-                  <span id="displayLocation"></span>
-                </p>
-                <button class="btn btn-xs btn-primary float-right" type="button" id="clearCookies">Reset</button>
-                <p>Kegiatan :
-                  <span id="displayActivity"></span>
-                </p>
+                <p>Tanggal : <?= $tanggal_sekarang; ?></p>
+                <p>Lokasi : <?= $location; ?></p>
+                <p>Kegiatan : <?= $activity; ?></p>
                 <!-- HTML -->
               </div>
 
-              <div class="card card-outline card-gray">
+              <div class="card card-outline card-primary">
                 <!-- /.card-body -->
                 <div class="card-body">
                   <table class="table">
@@ -161,7 +161,7 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
                           $i++;
                         }
                       } else {
-                        echo '<tr><td colspan="7" class="text-danger text-center">Belum ada yang melakukan Absensi untuk Rapat hari ini</td></tr>';
+                        echo '<tr><td colspan="7" class="text-danger text-center">Silahkan lakukan Absensi untuk Rapat terlebih dahulu</td></tr>';
                       }
                       ?>
 
