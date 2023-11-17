@@ -16,10 +16,10 @@ $tanggal_sekarang = date("Y-m-d");
 $query = "SELECT * FROM t_dataabsen WHERE DATE(tanggal) = '$tanggal_sekarang'";
 $absensi = mysqli_query($koneksi, $query);
 
-// Membaca data dari cookie
-$location = $_COOKIE['location'];
-$activity = $_COOKIE['activity'];
-$document = $_COOKIE['document'];
+// Membaca data dari cookie dan jika ketika Admin belum memberikan nilai maka akan memberikan nilai default
+$location = $_COOKIE['location'] ?? '';
+$activity = $_COOKIE['activity'] ?? '';
+$document = $_COOKIE['document'] ?? '';
 
 $options = new Options();
 $options->set('isHtml5ParserEnabled', true);

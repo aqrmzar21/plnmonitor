@@ -111,7 +111,7 @@ $tanggal_sekarang = date("Y-m-d");
 
           <div class="row mb-2">
             <div class="col-6">
-              <h1 class="m-0"> Absensi <small>Data</small></h1>
+              <h1 class="m-0"> List <small>Terbaru</small></h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -135,6 +135,7 @@ $tanggal_sekarang = date("Y-m-d");
         <div class="row">
           <div class="col-12">
             <a href="../tables/export_word.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
+            <!-- <a href="../tables/export_excel.php" class="btn btn-md btn-secondary float-right my-3" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a> -->
             <a href="print-pdf.php" class="btn btn-md btn-secondary float-right my-3 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
             <button type="button" class="btn btn-md btn-secondary my-3 mr-2" data-toggle="modal" data-target="#modal-lg">
               <i class="mr-1 far fa-plus-square" aria-hidden="true"></i>

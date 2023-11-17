@@ -10,9 +10,9 @@ if (isset($_POST['cari'])) {
   $absen = cari($_POST['keyword']);
 }
 // Membaca data dari cookie
-$location = $_COOKIE['location'];
-$activity = $_COOKIE['activity'];
-$document = $_COOKIE['document'];
+$location = $_COOKIE['location'] ?? '';
+$activity = $_COOKIE['activity'] ?? '';
+$document = $_COOKIE['document'] ?? '';
 
 // ============================================================================
 // INI ADALAH KODE UNTUK MELIHAT DATA ABSEN TANPA HARUS LOGIN terlebih dahulu 
@@ -102,9 +102,9 @@ $tanggal_sekarang = date("Y-m-d"); // Mendapatkan tanggal saat ini
         <div class="container">
           <div class="row">
             <div class="col-8">
-              <a href="export_word.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Word</a>
-              <a href="export_excel.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export Excel</a>
-              <a href="export_pdf.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a>
+              <a href="export_word.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Copy Word</a>
+              <a href="export_excel.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Copy Excel</a>
+              <!-- <a href="export_pdf.php" class="btn btn-md btn-primary my-1 mr-2" target="_blank"><i class="mr-1 fas fa-print" aria-hidden="true"></i> Export PDF</a> -->
             </div>
             <div class="col-4 justify-content-center">
               <form action="" method="POST">

@@ -26,10 +26,10 @@ $data = mysqli_query($koneksi, "SELECT * FROM t_dataabsen WHERE tanggal = '$tang
 $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
 $today = $formatter->format($tglView);
 
-// Membaca data dari cookie
-$location = $_COOKIE['location'];
-$activity = $_COOKIE['activity'];
-$document = $_COOKIE['document'];
+// Membaca data dari cookie dan ketika datanya kosong maka akan memberikan nilai default 
+$location = $_COOKIE['location'] ?? '';
+$activity = $_COOKIE['activity'] ?? '';
+$document = $_COOKIE['document'] ?? '';
 
 // Konfigurasi Dompdf
 $options = new Options();
